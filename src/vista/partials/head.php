@@ -50,8 +50,8 @@
       </nav>
 
       <section class="header-btns">
-        <form class="header-search-form" id="header-search-form" action="/via_uy/src/views/buses/search.php" method="GET">
-          <input placeholder="Buscar..." type="search" name="search" class="header-search-input normal-input" id="header-search-input">
+        <form class="header-search-form" id="header-search-form" action="index.php?c=acciones&m=buscar" method="GET">
+          <input placeholder="Buscar..." type="search" name="search" class="header-search-input" id="header-search-input">
           <button type="submit" class="header-search-btn">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>

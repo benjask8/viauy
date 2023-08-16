@@ -1,0 +1,64 @@
+:root{
+    --input-b:rgb(119, 119, 119);
+    --input-b-focus:rgb(185, 185, 185);
+    --input-c:rgb(51, 51, 51);
+    --input-bg:rgb(255, 255, 255);
+
+    --input-f-bg:rgb(233, 233, 233);
+
+
+    --radius: 5px;
+}
+button{
+    border: none;
+}
+.normal-btn{
+    background-color:var(--main-color);
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: var(--radius);
+    transition: filter var(--time) ease; 
+}
+.normal-btn:hover{
+    filter: brightness(0.8);
+}
+.blue-c{
+    color: rgb(51, 87, 153) ;
+}
+.save{
+    color: #fff !important;
+    background-color: rgb(34, 177, 34) !important;
+}
+
+.success{
+    color: #fff !important;
+    background-color: rgb(29, 85, 206) !important;
+}
+
+
+.danger{
+    color: #fff !important;
+    background-color: rgb(206, 29, 29) !important;
+}   
+
+.normal-input{
+    transition: all var(--time) ease;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-b);
+    border-radius: var(--radius);
+    color: var(--input-c);
+    padding:2px 14px;
+}
+
+.normal-input:focus{
+    letter-spacing: 1px;
+    border-color: var(--input-b-focus);
+    outline: none;
+}
+
+.message-error{
+    color: rgb(250, 128, 128);
+}
+.message-success{
+    color: rgb(128, 250, 148);
+}
