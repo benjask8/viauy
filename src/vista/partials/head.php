@@ -23,7 +23,7 @@
           <i class="fa-solid fa-bars"></i>
         </button>
         <h1 class="header-logo">
-          <a href="/via_uy" class="header-logo-a">Via<span class="blue-c">Uy</span></a>
+          <a href="/viauy" class="header-logo-a">Via<span class="blue-c">Uy</span></a>
         </h1>
       </nav>
       <nav class="header-links" id="header-links">
@@ -71,8 +71,8 @@
               <a href="/via_uy/src/views/user/admin/dashboard.php"><i class="fa-solid fa-code"></i> Dessarrollador</a>
             <?php endif; ?>
           <?php else: ?>
-            <a href="/via_uy/src/views/user/login.php"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
-            <a href="/via_uy/src/views/user/signup.php"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
+            <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
+            <a href="index.php?c=user&m=signup"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
           <?php endif; ?>
         </nav>
 
