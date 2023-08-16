@@ -5,7 +5,7 @@
 <section class="footer-links-container">
 <nav class="footer-links">
   <p class="footer-links-title">Servicios</p>
-  <a href="/via_uy/src/views/company/petition.php" class="">Registro de Empresas de Ómnibus</a>
+  <a href="index.php?c=company&m=petition" class="">Registro de Empresas de Ómnibus</a>
   <a href="/gestion-rutas" class="footer-links-a">Gestión de Rutas</a>
   <a href="/flota-buses" class="footer-links-a">Flota de Buses</a>
 </nav>
@@ -34,7 +34,7 @@
 
 
 
-<script src="/via_uy/src/public/js/script.js"></script>
+<script src="public/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
