@@ -1,0 +1,11 @@
+{
+    "license": "proprietary",
+    "name": "octobyte/viauy",
+    "description": "descripcion",
+    "autoload": {
+        "psr-4": {
+            "Octobyte\\viauy\\": "src/"
+        }
+    },
+    "require": {}
+}
