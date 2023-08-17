@@ -2,39 +2,87 @@
 
 namespace Octobyte\viauy\modelo;
 
-use PDO;
+use PDOException;
+use Octobyte\viauy\libs\Conexion;
 
-class UsuarioModel
+class User extends Conexion
 {
-    private $db;
+  private $username;
+  private $email;
+  private $password;
+  private $passwordC;
 
-    public function __construct($db)
-    {
-        $this->db = $db;
+  public function __construct($username, $email, $password, $passwordC)
+  {
+    $this->username = $username;
+    $this->email = $email;
+    $this->password = $password;
+    $this->passwordC = $passwordC;
+  }
+
+  public function validateUsername($username)
+  {
+    $minLength = 6;
+    $maxLength = 16;
+    $length = strlen($username);
+    return ($length >= $minLength && $length <= $maxLength);
+  }
+
+  public function validatePassword($password)
+  {
+    $minLength = 8;
+    $maxLength = 16;
+    $length = strlen($password);
+    return ($length >= $minLength && $length <= $maxLength);
+  }
+
+  public function saveUser()
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    if ($this->password === $this->passwordC) {
+      try {
+        if (!$this->validateUsername($this->username)) {
+          return '<span style="color: red;">Nombre de Usuario debe tener entre 6 y 16 caracteres</span>';
+        }
+
+        if (!$this->validatePassword($this->password)) {
+          return '<span style="color: red;">Contraseña debe tener entre 8 y 16 caracteres</span>';
+        }
+
+        // Verificar si el nombre de usuario o el correo electrónico ya están registrados
+        $sqlCheck = 'SELECT COUNT(*) as count FROM user WHERE userName = :username OR email = :email';
+        $stmtCheck = $pdo->prepare($sqlCheck);
+        $stmtCheck->bindParam(':username', $this->username);
+        $stmtCheck->bindParam(':email', $this->email);
+        $stmtCheck->execute();
+        $result = $stmtCheck->fetch();
+
+        if ($result['count'] > 0) {
+          return '<span style="color: red;">Nombre de Usuario o Email ya registrado</span>';
+        }
+
+        // Si no están registrados, proceder con el registro
+        $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
+
+        $sqlInsert = 'INSERT INTO user (userName, email, password) VALUES (:username, :email, :password)';
+        $stmtInsert = $pdo->prepare($sqlInsert);
+        $stmtInsert->bindParam(':username', $this->username);
+        $stmtInsert->bindParam(':email', $this->email);
+        $stmtInsert->bindParam(':password', $hashPassword);
+
+        if ($stmtInsert->execute()) {
+          $msg = '<span style="color: green;">Usuario registrado con éxito</span>';
+        }
+
+        return $msg;
+      } catch (\Throwable $th) {
+        throw $th;
+      } finally {
+        $pdo = null;
+      }
+    } else {
+      return '<span style="color: red;">Las contraseñas no coinciden</span>';
     }
-
-    public function crearUsuario($ci, $nombre, $apellido, $telefono, $correo)
-    {
-        $sql = "INSERT INTO Usuarios (ci, nombre, apellido, telefono, correo) VALUES (:ci, :nombre, :apellido, :telefono, :correo)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':ci', $ci, PDO::PARAM_INT);
-        $stmt->bindValue(':nombre', $nombre, PDO::PARAM_STR);
-        $stmt->bindValue(':apellido', $apellido, PDO::PARAM_STR);
-        $stmt->bindValue(':telefono', $telefono, PDO::PARAM_INT);
-        $stmt->bindValue(':correo', $correo, PDO::PARAM_STR);
-
-        return $stmt->execute();
-    }
-
-    public function correoExistente($correo)
-    {
-        $sql = "SELECT COUNT(*) FROM Usuarios WHERE correo = :correo";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':correo', $correo, PDO::PARAM_STR);
-        $stmt->execute();
-
-        return $stmt->fetchColumn() > 0;
-    }
-    
-    // Agrega otros métodos relacionados con la interacción con la tabla Usuarios si es necesario
+  }
 }

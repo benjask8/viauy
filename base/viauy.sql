@@ -1,13 +1,13 @@
 create database ViaUY;
 use ViaUY;
 
-create table Usuarios(
-ci int,
-nombre char,
-apellido char,
-teléfono int(9),
-correo char primary key
+CREATE TABLE User (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    userName VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255)
 );
+
 
 create table Administrador(
 ciA int,

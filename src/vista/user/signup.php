@@ -5,9 +5,8 @@ require 'src/vista/partials/head.php';
 <section class="login-container">
   <form action="index.php?c=user&m=doSignup" class="login-form" method="POST" autocomplete="off">
     <h2 class="login-form-title">Registrarte</h2>
-    <?php if (!empty($message)) : ?>
-    <p> <?= $message ?></p>
-    <?php endif; ?>
+
+    <p><?= $this->datos; ?></p>
 
     <label for="login-input-mail">Email</label>
     <input type="email" name="email" class="login-input" id="login-input-mail" autocomplete="off"
@@ -22,13 +21,14 @@ require 'src/vista/partials/head.php';
       placeholder="Introduce tu Contraseña">
 
     <label for="login-input-password">Confirmar Contraseña</label>
-    <input type="password" name="verify-password" class="login-input" id="login-input-password" autocomplete="off"
+    <input type="password" name="passwordC" class="login-input" id="login-input-password" autocomplete="off"
       placeholder="Confirma tu Contraseña">
 
     <input type="submit" value="Registrarse">
   </form>
   <p>¿Ya tienes una cuenta? <a href="index.php?c=user&m=login">Iniciar Sesión</a></p>
 </section>
+
 
 <script>
 cambiarTitulo("ViaUy | Registrarse")
