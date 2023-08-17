@@ -89,13 +89,28 @@
 
 
   <script>
-    
-function closeMessage() {
-    var msgContainer = document.querySelector('.floating-msg');
-    msgContainer.style.display = 'none';
-}
+
   function cambiarTitulo(nuevoTitulo) {
     document.title = nuevoTitulo;
   }
+
+  const floatingMsg = document.querySelector(".floating-msg");
+  
+  setTimeout(function () {
+    floatingMsg.style.opacity = "0";
+    floatingMsg.style.transition = "opacity 1s ease-in-out";
+    setTimeout(function () {
+      floatingMsg.style.display = "none";
+    }, 1000); // Tiempo de espera para que se complete la animación
+  }, 5000);
+  
+  const closeBtn = document.querySelector(".close-btn");
+  closeBtn.addEventListener("click", function () {
+    floatingMsg.style.opacity = "0";
+    floatingMsg.style.transition = "opacity 1s ease-in-out";
+    setTimeout(function () {
+      floatingMsg.style.display = "none";
+    }, 1000);
+  });
   </script>
   <section class="container-fluid">

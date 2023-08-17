@@ -39,7 +39,7 @@ class User_Controller extends Controlador
 
     if ($loginResult === 'success') {
         // Inicio de sesión exitoso, redirigir a una página de bienvenida
-        $this->cargarVista("user/welcome", $loginResult);
+        header("Location: index.php?c=user&m=welcome&msg=bienvenido");
         exit;
     } else {
         $this->cargarVista("user/login", $loginResult);

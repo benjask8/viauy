@@ -67,18 +67,17 @@ button{
     border-radius: 10px;
 }
 
-
 .floating-msg {
     display: flex;
     justify-content: center;
     align-items: center;
-    position:fixed;
+    position: fixed;
     z-index: 3000;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: var(--color1);
+    color: var(--main-font-color);
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -86,10 +85,10 @@ button{
   }
   
   .close-btn {
-    padding-left:20px;
+    padding-left: 20px;
     background-color: transparent;
     border: none;
-    color: #fff;
+    color: var(--main-font-color);
     font-size: 16px;
     cursor: pointer;
     text-decoration: none;
@@ -103,4 +102,5 @@ button{
       opacity: 1;
     }
   }
+  
   
