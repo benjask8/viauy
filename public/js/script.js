@@ -30,3 +30,4 @@ function openHeaderMenu() {
 function openUserOptions(){
     userOptions.toggleClass("user-options-open");
 }
+

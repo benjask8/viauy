@@ -56,9 +56,51 @@ button{
     outline: none;
 }
 
-.message-error{
-    color: rgb(250, 128, 128);
+.error-msg{
+    background-color: rgb(250, 128, 128);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
 }
-.message-success{
-    color: rgb(128, 250, 148);
+.success-msg{
+    background-color: rgb(128, 250, 148);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
 }
+
+
+.floating-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    z-index: 3000;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.9s ease-in-out;
+  }
+  
+  .close-btn {
+    padding-left:20px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

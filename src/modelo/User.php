@@ -85,4 +85,34 @@ class User extends Conexion
       return '<span style="color: red;">Las contraseñas no coinciden</span>';
     }
   }
+  public function loginUser()
+  {
+      $pdo = $this->getConexion()->getPdo();
+  
+      try {
+          $sql = 'SELECT * FROM user WHERE userName = :username';
+          $stmt = $pdo->prepare($sql);
+          $stmt->bindParam(':username', $this->username);
+          $stmt->execute();
+          $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+  
+          if ($user && password_verify($this->password, $user['password'])) {
+              $_SESSION['user_id'] = $user['id'];
+              $_SESSION['user_name'] = $user['userName'];
+              $_SESSION['esAdmin'] = $user['esAdmin'];
+              // Verificar si el usuario es administrador y establecer $_SESSION['esAdmin']
+              // Aquí realizarías la lógica necesaria para determinar si es administrador o no
+  
+              return 'success'; // Devolver un indicador de inicio de sesión exitoso
+          } else {
+              return '<p class="error-msg">Nombre de usuario o contraseña incorrectos</p>';
+          }
+      } catch (\Throwable $th) {
+          return '<p class="error-msg">Ocurrió un error durante el inicio de sesión</p>';
+      } finally {
+          $pdo = null;
+      }
+  }
+  
+
 }

@@ -1,16 +1,21 @@
 <?php
 require 'src/vista/partials/head.php';
+
+if (isset($_SESSION['user_id'])) {
+  header('Location: /viauy');
+  exit();
+}
+
+
 ?>
 
-
 <section class="login-container">
-  <form action="/via_uy/src/views/user/login.php" class="login-form" method="POST" autocomplete="off">
+  <form action="index.php?c=user&m=doLogin" class="login-form" method="POST" autocomplete="off">
     <h2 class="login-form-title">Iniciar Sesión</h2>
-    <?php if (!empty($message)) : ?>
-    <p><?= $message ?></p>
-    <?php endif; ?>
+    <?= $this->datos; ?>  
+    
     <label for="login-input-mail">Email o Nombre de Usuario</label>
-    <input type="text" name="email" class="login-input" id="login-input-mail" autocomplete="off"
+    <input type="text" name="username" class="login-input" id="login-input-mail" autocomplete="off"
       placeholder="Introduce tu Email o Nombre de Usuario">
     <label for="login-input-password">Contraseña</label>
     <div class="password-container">
@@ -24,7 +29,6 @@ require 'src/vista/partials/head.php';
   </form>
   <p>¿No tienes una cuenta? <a href="index.php?c=user&m=signup">Regístrate</a></p>
 </section>
-<p><?= $this->datos; ?></p>
 <script>
 const togglePassword = document.getElementById('toggle-password');
 const passwordInput = document.getElementById('login-input-password');
@@ -45,6 +49,7 @@ togglePassword.addEventListener('change', function() {
 });
 
 cambiarTitulo("ViaUy | Iniciar Sesión");
+
 </script>
 <?php
 require 'src/vista/partials/footer.php';

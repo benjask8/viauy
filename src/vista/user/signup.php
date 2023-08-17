@@ -1,5 +1,11 @@
 <?php
 require 'src/vista/partials/head.php';
+
+if (isset($_SESSION['user_id'])) {
+  header('Location: /viauy');
+  exit();
+}
+
 ?>
 
 <section class="login-container">

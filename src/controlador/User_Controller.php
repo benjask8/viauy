@@ -10,17 +10,41 @@ class User_Controller extends Controlador
   {
     $this->cargarVista("user/login");
   }
-
   public function signup()
   {
     $this->cargarVista("user/signup");
   }
+  public function welcome()
+  {
+    $this->cargarVista("user/welcome");
+  }
+
 
   //do
+  public function logout()
+  {
+      session_destroy();
+      header("Location: index.php?c=user&m=login&msg=Cerraste%20sesion%20exitosamente");
+      exit();
+  }
+  
+
   public function doLogin()
   {
-    // Implementar la lógica de inicio de sesión
-  }
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $user = new User($username, '', $password, '');
+    $loginResult = $user->loginUser();
+
+    if ($loginResult === 'success') {
+        // Inicio de sesión exitoso, redirigir a una página de bienvenida
+        $this->cargarVista("user/welcome", $loginResult);
+        exit;
+    } else {
+        $this->cargarVista("user/login", $loginResult);
+    }
+}
 
   public function doSignup()
   {

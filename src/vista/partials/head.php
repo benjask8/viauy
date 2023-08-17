@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -9,13 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
   <link rel="stylesheet" href="public/css/style.css">
-  <link rel="stylesheet" href="public/css/pre.css">
+  <link rel="stylesheet" href="public/css/pres.css">
   <link rel="stylesheet" href="public/css/responsive2.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+<?php if (isset($_GET['msg'])) : ?>
+  <div class="floating-msg">
+        <div class="message"><?= $_GET['msg']; ?></div>
+        <b class="close-btn" onclick="closeMessage()">X</b>
+  </div>
+<?php endif; ?>
 
   <header class="header">
     <nav class="header-logo-bar">
@@ -68,7 +73,7 @@
         <?php if (isset($_SESSION['user_id'])) : ?>
         <a href="/via_uy/src/views/user/mainProfile.php"
           title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
-        <a href="/via_uy/src/views/user/logout.php"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
+        <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
         <?php if ($_SESSION['esAdmin']) : ?>
         <a href="/via_uy/src/views/user/admin/dashboard.php"><i class="fa-solid fa-code"></i> Dessarrollador</a>
         <?php endif; ?>
@@ -84,6 +89,11 @@
 
 
   <script>
+    
+function closeMessage() {
+    var msgContainer = document.querySelector('.floating-msg');
+    msgContainer.style.display = 'none';
+}
   function cambiarTitulo(nuevoTitulo) {
     document.title = nuevoTitulo;
   }
