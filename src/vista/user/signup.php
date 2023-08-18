@@ -7,9 +7,17 @@ if (isset($_SESSION['user_id'])) {
 }
 
 ?>
-
+<style>
+  .header,
+  .footer{
+    display:none;
+  }
+</style>
 <section class="login-container">
   <form action="index.php?c=user&m=doSignup" class="login-form" method="POST" autocomplete="off">
+  <a href="/viauy"class="login-form-exit">
+    <i class="fa-solid fa-xmark"></i>
+  </a>  
     <h2 class="login-form-title">Registrarte</h2>
 
     <p><?= $this->datos; ?></p>

@@ -6,21 +6,29 @@
 /* font-family: 'Bricolage Grotesque', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,800&display=swap');
 
-:root{
+:root {
+    /* Colores */
+    --main-color: rgb(255, 255, 255);
+    --main-font-color: hsl(206, 48%, 24%);
+    --second-font-color: hsl(204, 19%, 42%);
+    --main-a-h-color: #1b5f9e;
+    --color1: #3093EE;
+    --main-color-hover: rgb(40, 118, 207);
+    --body-bg: hsl(211, 53%, 88%);
+    --main-btn-hover-color: #c3daf0;
+    --border-color: hsla(205, 29%, 66%, 0.2);
+  
+    /* Tipografía */
     --main-font: 'Bricolage Grotesque', sans-serif;
-    --main-font-color:hsl(206, 48%, 24%);
-    --second-font-color:hsl(204, 19%, 42%);
-    --main-color:rgb(255, 255, 255);
-    --main-a-h-color:#1b5f9e;
-    --color1:#3093EE;
-    --main-color-hover:rgb(40, 118, 207);
-    --body-bg:hsl(210, 100%, 96%);
-    --main-btn-hover-color:#c3daf0;
-    --border-color:hsla(205, 29%, 66%, 0.2);
-
-    --time: .3s;
-    --shadow:0px 1px 4px hsla(206, 48%, 24%, 0.1);
-}
+  
+    /* Tiempos y sombras */
+    --time: 0.3s;
+    --shadow: 0px 1px 4px hsla(206, 48%, 24%, 0.1);
+  
+    /* Otros */
+    --input-bg: red;
+  }
+  
 
 body {
     font-family: Arial, sans-serif;
@@ -71,6 +79,10 @@ button{
 }
 .header-logo-bar{
     display: flex;
+}
+
+.header-links-li-m{
+    display: none;
 }
 .header-links-ul{
     display: flex;
@@ -260,21 +272,27 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 50px 0;
+    height: 100vh;
+    
 }
 
 .login-form {
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     width: 400px;
-    padding: 20px;
+    height: 90vh;
     background-color: var(--main-color);
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
 }
 
 .login-form-title {
     font-size: 1.6em;
+    color: var(--main-font-color);
     margin-bottom: 15px;
     text-align: center;
 }
@@ -284,25 +302,40 @@ button{
     color: var(--main-font-color);
     font-weight: bold;
 }
+.login-form-exit{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--second-font-color);
+}
+.login-form-exit:hover{
+    background-color: var(--main-btn-hover-color);
+}
 
 .login-input {
-    width: 100%;
+    width: 95%;
     border-radius: 4px;
-    border: 1px solid var(--main-font-color);
+    border: 2px solid transparent;
     color: var(--main-font-color);
+    background-color: var(--border-color) !important;
     padding: 10px;
-    font-size: 1em;
+    font-size: .8em;
     margin-top: 5px;
     transition: border-color 0.3s ease;
 }
 
-.login-input:focus {
-    outline: none;
-    border-color: var(--color1);
+.login-input::placeholder{
+    color: var(--second-font-color);
+}
+.login-input:hover{
+    border-color: var(--border-color);
 }
 
-.password-container {
-    position: relative;
+.login-input:focus {
+    border-color: rgb(185, 228, 241);
+    outline: none;
 }
 
 .login-input-password {
@@ -329,6 +362,7 @@ button{
 }
 
 .login-form input[type=submit] {
+    width: 95%;
     margin-top: 15px;
     background-color: var(--color1);
     color: var(--main-color);
@@ -345,14 +379,16 @@ button{
 }
 
 .login-container p {
-    font-size: 1em;
+    font-weight: 900;
+    font-size: .8em;
     margin-top: 15px;
     text-align: center;
+    color: var(--main-font-color);
 }
 
 .login-container p a {
+    font-size: .8em;
     color: var(--color1);
-    text-decoration: underline;
 }
 
 .login-container p a:hover {

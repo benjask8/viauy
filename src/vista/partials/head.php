@@ -7,8 +7,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/estilos.css">
-  <link rel="stylesheet" href="public/css/pre.css">
+  <link rel="stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="public/css/pre2.css">
   <link rel="stylesheet" href="public/css/responsive1.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
@@ -42,6 +42,10 @@
         <li class="header-links-li"><a href="index.php?c=index&m=help">Ayuda</a></li>
         <li class="header-links-li"><a href="">Buses</a></li>
         <li class="header-links-li"><a href="">Rutas</a></li>
+
+        <li class="header-links-li header-links-li-m"><a href="/viauy/">Iniciar Sesion</a></li>
+        <li class="header-links-li header-links-li-m"><a href="/viauy/">Registrarse</a></li>
+
       </ul>
       <ul class="header-links-social">
         <li class="header-links-li"><a href="">www.viauy.com</a></li>
@@ -68,9 +72,16 @@
       <button class="header-btns-button header-btns-search" id="header-btns-search">
         buscar
       </button>
-      <button class="header-btns-button header-btns-btn" id="open-user-options">
-        iniciar sesion 
-      </button>
+      <?php if (isset($_SESSION['user_id'])) : ?>
+        <button class="header-btns-button header-btns-btn" id="open-user-options">
+          Usuario 
+        </button>
+        <?php else : ?>
+        <button class="header-btns-button header-btns-btn" id="open-user-options">
+          iniciar sesion 
+        </button>
+      <?php endif; ?>
+
       <nav class="user-options" id="user-options">
         <?php if (isset($_SESSION['user_id'])) : ?>
         <a href="/via_uy/src/views/user/mainProfile.php"

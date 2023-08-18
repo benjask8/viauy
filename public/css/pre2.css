@@ -57,11 +57,11 @@ button{
 }
 
 .error-msg{
-    color: rgb(230, 82, 82);
+    color: rgb(230, 82, 82) !important;
     border-radius: 10px;
 }
 .success-msg{
-    color: rgb(116, 247, 137);
+    color: rgb(116, 247, 137) !important;
     border-radius: 10px;
 }
 
