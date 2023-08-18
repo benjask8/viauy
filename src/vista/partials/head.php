@@ -23,7 +23,9 @@
 <?php endif; ?>
 
   <header class="header">
-
+  <button class="header-bars" id="header-bars">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     <nav class="header-logo-bar">
       <h1 class="header-logo">
         <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> buSpot</a>
@@ -60,7 +62,7 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-      <a href="index.php?c=index&m=help"class="header-btns-button">
+      <a href="index.php?c=index&m=help"class="header-btns-button header-btns-help">
         Ayuda
       </a>
       <button class="header-btns-button header-btns-search" id="header-btns-search">
@@ -84,9 +86,7 @@
       </nav>
 
     </section>
-    <button class="header-bars" id="header-bars">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+    
   </header>
 
 

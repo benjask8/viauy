@@ -3,19 +3,24 @@
    .header-links{
     width: 100%;
    }
+   .header-btns{
+    display: none;
+   }
+   .header-bars{
+    order: 12;
+   }
 }
 
 
 @media screen and (max-width: 768px) {
-  
+  .header-btns-help{
+    display: none;
+  }
   .header-links-open{
     display: flex;
   }
   .header-bars{
     display: flex;
-  }
-  .header{
-    padding: 10px;
   }
   .header-actions{
     display: none;

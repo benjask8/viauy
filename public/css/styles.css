@@ -145,7 +145,7 @@ button{
     justify-content: space-between;
     position: absolute;
     background-color: var(--main-color);
-    right: 0px;
+    left: 0px;
     overflow: hidden;
     top: 75px;
     transition: all var(--time) ease;
