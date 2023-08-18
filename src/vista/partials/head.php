@@ -96,6 +96,7 @@
 
   const floatingMsg = document.querySelector(".floating-msg");
   
+  <?php if (isset($_GET['msg'])) : ?>
   setTimeout(function () {
     floatingMsg.style.opacity = "0";
     floatingMsg.style.transition = "opacity 1s ease-in-out";
@@ -103,7 +104,6 @@
       floatingMsg.style.display = "none";
     }, 1000); // Tiempo de espera para que se complete la animación
   }, 5000);
-  
   const closeBtn = document.querySelector(".close-btn");
   closeBtn.addEventListener("click", function () {
     floatingMsg.style.opacity = "0";
@@ -112,5 +112,7 @@
       floatingMsg.style.display = "none";
     }, 1000);
   });
+<?php endif; ?>
+
   </script>
   <section class="container-fluid">
