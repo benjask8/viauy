@@ -14,7 +14,7 @@
     --main-a-h-color: #1b5f9e;
     --color1: #3093EE;
     --main-color-hover: rgb(40, 118, 207);
-    --body-bg: hsl(211, 53%, 88%);
+    --body-bg: hsl(210, 50%, 92%);
     --main-btn-hover-color: #c3daf0;
     --border-color: hsla(205, 29%, 66%, 0.2);
   
@@ -555,63 +555,68 @@ button{
 }
   /* footer end */
 
+/* company start */
+.page-title {
+    color: var(--main-font-color);
+    text-align: center;
+    padding: 20px 0;
+}
 
-  /* company start */
-        .page-title {
-            color: #333;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .page-description {
-            color: #666;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .company-container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .form-label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .form-textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            resize: none; /* Evita la redimensión del textarea */
-        }
-        .form-submit {
-            background-color: #007bff;
-            color: #fff;
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .form-submit:hover {
-            background-color: #0056b3;
-        }
+.page-description {
+    color: var(--second-font-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.company-container {
+    background-color: var(--main-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--main-font-color);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    color: var(--main-font-color);
+    background-color: var(--border-color);
+}
+
+.form-textarea {
+    resize: none;
+}
+
+.form-submit {
+    background-color: var(--color1);
+    color: var(--main-color);
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: var(--main-a-h-color);
+    color: var(--main-color);
+}
 /* company end */
-
 
 
 /* search.php start */
