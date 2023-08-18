@@ -18,31 +18,28 @@
 <?php if (isset($_GET['msg'])) : ?>
   <div class="floating-msg">
         <div class="message"><?= $_GET['msg']; ?></div>
-        <b class="close-btn" onclick="closeMessage()">X</b>
+        <b class="close-btn" onclick="closeMessage()"><i class="fa-solid fa-xmark"></i></b>
   </div>
 <?php endif; ?>
 
   <header class="header">
-    <nav class="header-logo-bar">
 
-      <button class="header-bars" id="header-bars">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+    <nav class="header-logo-bar">
       <h1 class="header-logo">
-        <a href="/viauy" class="header-logo-a">Via<span class="blue-c">Uy</span></a>
+        <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> buSpot</a>
       </h1>
+    </nav>
+    <nav class="header-actions">
+      <a href="" class="header-actions-a"><i class="fa-solid fa-bus"></i>Buses</a>
+      <a href="" class="header-actions-a"><i class="fa-solid fa-route"></i>Rutas</a>
+      <a href="" class="header-actions-a"><i class="fa-solid fa-building"></i>Compañias</a>
     </nav>
     <nav class="header-links" id="header-links">
       <ul class="header-links-ul">
-        <li class="header-links-li">
-          <button class="header-ul-bars" id="header-ul-bars">
-            <i class="fa-solid fa-x"></i>
-          </button>
-        </li>
         <li class="header-links-li"><a href="/viauy/">Inicio</a></li>
         <li class="header-links-li"><a href="index.php?c=index&m=help">Ayuda</a></li>
         <li class="header-links-li"><a href="">Buses</a></li>
-        <li class="header-links-li"><a href="">Lineas</a></li>
+        <li class="header-links-li"><a href="">Rutas</a></li>
       </ul>
       <ul class="header-links-social">
         <li class="header-links-li"><a href="">www.viauy.com</a></li>
@@ -63,11 +60,14 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-      <button class="header-btns-search" id="header-btns-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
+      <a href="index.php?c=index&m=help"class="header-btns-button">
+        Ayuda
+      </a>
+      <button class="header-btns-button header-btns-search" id="header-btns-search">
+        buscar
       </button>
-      <button class="header-btns-btn" id="open-user-options">
-        <i class="fa-regular fa-user"></i>
+      <button class="header-btns-button header-btns-btn" id="open-user-options">
+        iniciar sesion 
       </button>
       <nav class="user-options" id="user-options">
         <?php if (isset($_SESSION['user_id'])) : ?>
@@ -84,7 +84,9 @@
       </nav>
 
     </section>
-
+    <button class="header-bars" id="header-bars">
+        <i class="fa-solid fa-bars"></i>
+      </button>
   </header>
 
 

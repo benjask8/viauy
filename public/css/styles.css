@@ -2,17 +2,20 @@
 /* font-family: 'Kanit', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /* font-family: 'Poppins', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap');
+/* font-family: 'Bricolage Grotesque', sans-serif; */
 
 
 :root{
-    --main-font: 'Poppins', sans-serif;
-    --main-font-color:rgb(58, 58, 58);
+    --main-font: 'Bricolage Grotesque', sans-serif;
+    --main-font-color:hsl(206, 48%, 24%);
     --main-color:rgb(255, 255, 255);
     --main-a-h-color:#1b5f9e;
     --color1:#3093EE;
     --main-color-hover:rgb(40, 118, 207);
-    --body-bg:#f5f5f5;
-
+    --body-bg:hsl(210, 100%, 96%);
+    --main-btn-hover-color:#c3daf0;
+    --border-color:rgb(206, 206, 206);
 
     --time: .3s;
     --shadow:0px 5px 5px rgba(18, 1, 1, 0.045);
@@ -49,17 +52,12 @@ button{
 
 /* header start */
 .header {
-    box-shadow: var(--shadow);
-    background-color: var(--main-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    height: 80px;
+    padding: 30px 40px;
+    height: 100px;
     width: 100%;
-    position: fixed; /* Agregado para mantener el header fijo en la pantalla */
-    top: 0; /* Fija el header en la parte superior */
-    left: 0;
     z-index: 1000; /* Asegura que el header esté en la parte superior */
 }
 
@@ -69,7 +67,7 @@ button{
 }
 .header-logo a{
     font-weight: 900;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .header-logo-bar{
     display: flex;
@@ -78,34 +76,90 @@ button{
     display: flex;
     flex-direction: column;
 }
-.header-links{
-    z-index: 400 !important;
+.header-actions{
+    padding: 2px;
+    background-color: rgb(243, 249, 255);
+    border:1px solid var(--border-color);
+    border-radius: 20px;
+    height: max-content;
     display: flex;
+}
+
+.header-actions-a i{    
+    padding-right:7px;
+}
+
+.header-actions-a{
+    color: var(--main-font-color);
+    font-weight: 900;
+    font-size: .7em;
+    border-radius: 20px;
+    padding: 6px 20px;
+}
+
+.header-actions-a:first-child i{
+    color: rgb(73, 98, 238);
+}
+.header-actions-a:nth-child(2) i{
+    color: rgb(61, 201, 124);
+}
+
+.header-actions-a:nth-child(3) i{
+    color: rgb(216, 97, 42);
+}
+.header-actions-a:nth-child(1):hover{
+    background-color: rgb(210, 217, 255);
+}
+.header-actions-a:nth-child(2):hover{
+    background-color: rgb(218, 250, 228);
+}
+.header-actions-a:nth-child(3):hover{
+    background-color: rgb(255, 231, 220);
+}
+
+
+.header-btns-button{
+    margin: 0px !important;
+    text-transform: capitalize;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: .7em;
+    font-weight: 900;
+    color: var(--main-font-color);
+}
+
+.header-btns-button:hover{
+    background-color: var(--main-btn-hover-color);
+}
+.header-bars{
+    display: none;
+    width: 30px;
+    color: var(--main-font-color);
+}
+.header-links{
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+    z-index: 400 !important;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
     background-color: var(--main-color);
-    left: -2000px;
-    top: 80px;
+    right: 0px;
+    overflow: hidden;
+    top: 75px;
     transition: all var(--time) ease;
-    height: calc(100vh - 80px);
-}
-.header-ul-bars{
-    display: none;
+    height: max-content;
 }
 .header-links-ul li a{
     width: 100%;
     padding: 20px 20px;
-    display: inline-block;
+    display:block;
     font-weight: 900;
     transition: all var(--time) ease;
 }
 .header-links-ul li a:hover{
-    color: #fff;
-    background-color: var(--main-color-hover);
-}
-.header-links-open{
-    left: 0px;
+    background-color: var(--main-btn-hover-color);
 }
 .header-links-social{
     display: flex;
@@ -134,14 +188,15 @@ button{
 }
 .header-search-form-open{
     box-shadow: var(--shadow);
-    height: 45px !important;
-    padding: 5px 5px !important;
+    height: max-content !important;
+    padding: 0px 30px !important;
 }
 .header-search-form{
+    border-radius: 20px;
     padding: 0px 5px;
     display: flex;
     justify-content: space-around;
-    transition: all var(--time) ease;
+    align-items: center;
     width: 100%;
     position: absolute;
     top: 80px;
@@ -153,12 +208,15 @@ button{
     overflow: hidden;
 }
 .header-search-input{
+    margin: 6px;
     border: none;
-    height:100%;
+    height:40px;
     outline: none;
     width: 95%;
+    border-right: 1px solid var(--border-color);
 }
 .header-search-btn{
+    color: var(--main-font-color);
     height:100%;
     padding: 0px 10px;
     margin: 0px !important;
@@ -169,12 +227,11 @@ button{
 /* user options start*/
 .user-options{
     background-color: var(--main-color);
-    top: 43px;
-    right: 50px;
+    top: 77px;
     display: flex;
     flex-direction: column;
     height: 0px;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
     padding: 0px 20px;
     border-radius: 10px;

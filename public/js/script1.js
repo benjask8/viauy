@@ -17,7 +17,7 @@ function openHeaderSearch() {
 }
 function openHeaderMenu() {
     if(queEs == false){
-        $("#header-bars").html('<i class="fa-solid fa-x"></i>');
+        $("#header-bars").html('<i class="fa-solid fa-xmark"></i>');
         queEs=true;
     }
     else{
