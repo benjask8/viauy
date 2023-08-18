@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
   <link rel="stylesheet" href="public/css/pres.css">
   <link rel="stylesheet" href="public/css/responsive2.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
@@ -39,8 +39,8 @@
             <i class="fa-solid fa-x"></i>
           </button>
         </li>
-        <li class="header-links-li"><a href="">Inicio</a></li>
-        <li class="header-links-li"><a href="">Ayuda</a></li>
+        <li class="header-links-li"><a href="/viauy/">Inicio</a></li>
+        <li class="header-links-li"><a href="index.php?c=index&m=help">Ayuda</a></li>
         <li class="header-links-li"><a href="">Buses</a></li>
         <li class="header-links-li"><a href="">Lineas</a></li>
       </ul>
@@ -57,7 +57,7 @@
     </nav>
 
     <section class="header-btns">
-      <form class="header-search-form" id="header-search-form" action="index.php?c=acciones&m=buscar" method="GET">
+      <form class="header-search-form" id="header-search-form" action="index.php?c=actions&m=buscar" method="GET">
         <input placeholder="Buscar..." type="search" name="search" class="header-search-input" id="header-search-input">
         <button type="submit" class="header-search-btn">
           <i class="fa-solid fa-magnifying-glass"></i>

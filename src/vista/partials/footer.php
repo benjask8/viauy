@@ -11,7 +11,7 @@
 </nav>
 <nav class="footer-links">
   <p class="footer-links-title">Recursos</p>
-  <a href="/blog" class="footer-links-a">Blog</a>
+  <a href="index.php?c=index&m=blog" class="footer-links-a">Blog</a>
   <a href="/tutoriales" class="footer-links-a">Tutoriales</a>
   <a href="/contacto" class="footer-links-a">Contacto</a>
 </nav>
@@ -19,7 +19,7 @@
   <p class="footer-links-title">Acerca de ViaUY</p>
   <a href="/acerca" class="footer-links-a">Sobre Nosotros</a>
   <a href="/equipo" class="footer-links-a">Nuestro Equipo</a>
-  <a href="/testimonios" class="footer-links-a">Testimonios</a>
+  <a href="index.php?c=index&m=testimony" class="footer-links-a">Testimonios</a>
 </nav>
 <nav class="footer-links">
   <p class="footer-links-title">Redes Sociales</p>

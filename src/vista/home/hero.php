@@ -1,6 +1,6 @@
 <section class="hero">
     
-<form class="hero-form">
+<form class="hero-form" action="index.php?c=actions&m=buscar" method="GET">
             <h2 class="hero-h2">Consulta de Líneas de Autobús</h2>
             <div class="hero-form-group">
                 <label class="hero-label" for="hero-hora">

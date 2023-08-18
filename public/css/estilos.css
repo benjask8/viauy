@@ -384,7 +384,7 @@ button{
 /* footer start */
 .footer {
     background-color: var(--color4);
-    margin-top: 200px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     color: var(--main-font-color);
@@ -550,3 +550,131 @@ button{
 }
 
 /* profile end */
+
+/* Estilos para la página de ayuda */
+.help-container {
+    padding: 20px;
+  }
+  
+  .help-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--main-font-color);
+  }
+  
+  .help-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: var(--main-font-color);
+  }
+  
+  .help-section {
+    margin-bottom: 40px;
+  }
+  
+  .help-subtitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--main-font-color);
+  }
+  
+  .help-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--main-font-color);
+  }
+  
+  .help-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Resto de tus estilos CSS */
+  
+
+  /* Estilos para la página de blog */
+.blog-container {
+    padding: 20px;
+  }
+  
+  .blog-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--main-font-color);
+  }
+  
+  .blog-post {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--main-font-color);
+  }
+  
+  .post-date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .post-content {
+    font-size: 16px;
+    color: var(--main-font-color);
+    margin-bottom: 10px;
+  }
+  
+  .read-more-link {
+    display: inline-block;
+    color: var(--main-a-h-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Resto de tus estilos CSS */
+  
+  /* Estilos para la página de testimonios */
+.testimonios-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .testimonios-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .testimonio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .testimonio-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .testimonio-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .testimonio-author {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Otros estilos de diseño y colores según tus preferencias */
+  
