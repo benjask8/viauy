@@ -1,0 +1,125 @@
+@media screen and (max-width: 500px) {
+   .header-links{
+        top: 0px;
+        height: 100vh;
+   }
+   .header-ul-bars:hover{
+        color: var(--main-a-h-color);
+   }
+    .header-ul-bars{
+        display: inline;
+        padding: 20px 20px;
+        color: var(--main-color);
+    }
+    .header-links-open{
+        width: 100vw;
+        background-color: var(--color1);
+    }
+    .header-links-ul{
+        width: 100%;
+    }
+    .header-links-ul li a{
+        color: var(--main-color);
+        text-transform: uppercase;
+    }
+    .header-links-ul li a:hover{
+        color: var(--main-a-h-color);
+        background-color: var(--color1) !important;
+        letter-spacing: 2px !important;
+    }
+    .header-links-social a:hover{
+        color: var(--main-a-h-color);
+    }
+    .header-links-social a{
+        color: var(--main-color);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    /* Estilos para dispositivos con un ancho máximo de 768px */
+    .footer-links-container {
+        flex-direction: column; /* Cambia a una columna */
+    }
+    
+    .footer-links {
+        padding: 20px; /* Restaura el padding */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+    }
+  
+    .hero-txt {
+      width: 90%;
+      margin: 10px auto;
+    }
+  
+    .hero-form {
+      width: 90%;
+      margin: 10px auto;
+    }
+  
+    .hero-h2 {
+      margin-bottom: 10px;
+    }
+  
+    .hero-label {
+      margin-bottom: 3px;
+    }
+  
+    .hero-input[type="text"],
+    .hero-input[type="number"],
+    .hero-input[type="datetime-local"] {
+      padding: 8px;
+    }
+  
+    .hero-button {
+      padding: 8px 14px;
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    .login-form {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .login-container {
+      align-items: center;
+      padding: 20px 0;
+    }
+  
+    .login-form {
+      padding: 30px;
+    }
+  
+    .login-form-title {
+      font-size: 1.4em;
+    }
+  
+    .login-input,
+    .login-input-password {
+      padding: 8px;
+      font-size: 0.9em;
+    }
+  
+    .toggle-password-l {
+      font-size: 1em;
+    }
+  
+    .login-form input[type=submit] {
+      padding: 8px 14px;
+      font-size: 0.9em;
+    }
+  
+    .login-container p {
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+  }
+  

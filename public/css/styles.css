@@ -42,7 +42,13 @@ button{
     border: none;
     cursor: pointer;
 }
-.header{
+
+.container-fluid{
+    margin-top: 80px;
+}
+
+/* header start */
+.header {
     box-shadow: var(--shadow);
     background-color: var(--main-color);
     display: flex;
@@ -51,6 +57,10 @@ button{
     padding: 20px;
     height: 80px;
     width: 100%;
+    position: fixed; /* Agregado para mantener el header fijo en la pantalla */
+    top: 0; /* Fija el header en la parte superior */
+    left: 0;
+    z-index: 1000; /* Asegura que el header esté en la parte superior */
 }
 
 .header-logo{
@@ -154,18 +164,20 @@ button{
     margin: 0px !important;
 }
 
+/* header end */
+
 /* user options start*/
 .user-options{
-    background-color:var(--main-color);
-    top: 80px;
-    right: 0px;
+    background-color: var(--main-color);
+    top: 43px;
+    right: 50px;
     display: flex;
     flex-direction: column;
     height: 0px;
     position: absolute;
     overflow: hidden;
-    transition: all var(--time);
     padding: 0px 20px;
+    border-radius: 10px;
 }
 .user-options a{
     color: var(--main-font-color);
@@ -197,7 +209,7 @@ button{
 .login-form {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 400px;
     padding: 20px;
     background-color: var(--main-color);
     border-radius: 5px;
@@ -296,6 +308,8 @@ button{
 
 /* hero start */
 .hero{
+    background-color: ;
+    color: var(--main-font-color);
     display: flex;
     justify-content: center;
     align-items:center;
@@ -380,7 +394,6 @@ button{
 
 
 
-
 /* footer start */
 .footer {
     background-color: var(--color4);
@@ -388,40 +401,41 @@ button{
     display: flex;
     flex-direction: column;
     color: var(--main-font-color);
-  }
-  
-  .footer-links {
-    padding: 40px;
+    padding-bottom: 20px; /* Agregado para espaciado inferior */
+}
+
+.footer-links {
+    padding: 20px; /* Reducido el padding para dispositivos pequeños */
     display: flex;
     flex-direction: column;
-  }
-  
-  .footer-links-title {
+}
+
+.footer-links-title {
     margin: 10px 0px;
     font-weight: 900;
-    font-size: 1.3em;
+    font-size: 1.2em; /* Ajustado el tamaño de fuente */
     text-transform: capitalize;
     padding: 0px;
-  }
-  
-  .footer-links-a {
+}
+
+.footer-links-a {
     color: var(--main-font-color);
-  }
-  
-  .footer-links-a:hover {
+}
+
+.footer-links-a:hover {
     color: var(--main-a-h-color);
-  }
-  
-  .footer-links-container {
+}
+
+.footer-links-container {
     justify-content: space-around;
     display: flex;
-  }
-  
-  .footer-cr {
+    flex-wrap: wrap; /* Agregado para ajustar en múltiples líneas */
+}
+
+.footer-cr {
     text-align: center;
     padding: 20px;
-  }
-  
+}
   /* footer end */
 
 
