@@ -7,9 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/styles.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
   <link rel="stylesheet" href="public/css/pre.css">
-  <link rel="stylesheet" href="public/css/responsive.css">
+  <link rel="stylesheet" href="public/css/responsive1.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 </head>
@@ -62,7 +62,7 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-      <a href="index.php?c=index&m=help"class="header-btns-button header-btns-help">
+      <a href="index.php?c=index&m=help"class="header-btns-button">
         Ayuda
       </a>
       <button class="header-btns-button header-btns-search" id="header-btns-search">
