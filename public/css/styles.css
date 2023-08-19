@@ -55,9 +55,6 @@ button{
     cursor: pointer;
 }
 
-.container-fluid{
-}
-
 /* header start */
 .header {
     display: flex;
@@ -87,6 +84,12 @@ button{
 .header-links-ul{
     display: flex;
     flex-direction: column;
+}
+
+.header-links-li-space{
+    background-color:var(--border-color);
+    height: 2px;
+    margin: 20px 0px;
 }
 .header-actions{
     padding: 2px;

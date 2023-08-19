@@ -1,7 +1,7 @@
 <?php
 require 'src/vista/partials/head.php';
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_name'])) {
   header('Location: /viauy');
   exit();
 }

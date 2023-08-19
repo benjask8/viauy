@@ -90,15 +90,14 @@ class User extends Conexion
       $pdo = $this->getConexion()->getPdo();
   
       try {
-          $sql = 'SELECT * FROM user WHERE userName = :username';
+          $sql = 'SELECT * FROM user WHERE username = :username';
           $stmt = $pdo->prepare($sql);
           $stmt->bindParam(':username', $this->username);
           $stmt->execute();
           $user = $stmt->fetch(\PDO::FETCH_ASSOC);
   
           if ($user && password_verify($this->password, $user['password'])) {
-              $_SESSION['user_id'] = $user['id'];
-              $_SESSION['user_name'] = $user['userName'];
+              $_SESSION['user_name'] = $user['username'];
               $_SESSION['esAdmin'] = $user['esAdmin'];
               // Verificar si el usuario es administrador y establecer $_SESSION['esAdmin']
               // Aquí realizarías la lógica necesaria para determinar si es administrador o no

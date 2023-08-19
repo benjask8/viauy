@@ -7,9 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="public/css/styles.css">
   <link rel="stylesheet" href="public/css/pre2.css">
-  <link rel="stylesheet" href="public/css/responsive1.css">
+  <link rel="stylesheet" href="public/css/responsive.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 </head>
@@ -28,13 +28,13 @@
       </button>
     <nav class="header-logo-bar">
       <h1 class="header-logo">
-        <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> buSpot</a>
+        <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> viaUy</a>
       </h1>
     </nav>
     <nav class="header-actions">
       <a href="" class="header-actions-a"><i class="fa-solid fa-bus"></i>Buses</a>
       <a href="" class="header-actions-a"><i class="fa-solid fa-route"></i>Rutas</a>
-      <a href="" class="header-actions-a"><i class="fa-solid fa-building"></i>Compañias</a>
+      <a href="index.php?c=company&m=index" class="header-actions-a"><i class="fa-solid fa-building"></i>Compañias</a>
     </nav>
     <nav class="header-links" id="header-links">
       <ul class="header-links-ul">
@@ -42,10 +42,15 @@
         <li class="header-links-li"><a href="index.php?c=index&m=help">Ayuda</a></li>
         <li class="header-links-li"><a href="">Buses</a></li>
         <li class="header-links-li"><a href="">Rutas</a></li>
-
-        <li class="header-links-li header-links-li-m"><a href="/viauy/">Iniciar Sesion</a></li>
-        <li class="header-links-li header-links-li-m"><a href="/viauy/">Registrarse</a></li>
-
+        <?php if (isset($_SESSION['user_name'])) : ?>
+            
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li header-links-li-m"><a href="/viauy/">@<?= $_SESSION['user_name']?></a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
+        <?php else : ?>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login">Iniciar Sesion</a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=signup">Registrarse</a></li>
+        <?php endif ?>
       </ul>
       <ul class="header-links-social">
         <li class="header-links-li"><a href="">www.viauy.com</a></li>

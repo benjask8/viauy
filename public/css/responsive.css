@@ -53,17 +53,16 @@
     }
   
     .hero-txt {
-      width: 90%;
+      width: 100%;
       margin: 10px auto;
     }
   
     .hero-form {
-      width: 90%;
-      margin: 10px auto;
+      flex-direction: column;
+      padding: 30px 10px;
     }
-  
-    .hero-h2 {
-      margin-bottom: 10px;
+    .hero-form-group{
+      width:100%;
     }
   
     .hero-label {
@@ -73,11 +72,15 @@
     .hero-input[type="text"],
     .hero-input[type="number"],
     .hero-input[type="datetime-local"] {
-      padding: 8px;
+      width: 100%;
+      height: 60px;
+      font-size: 1em;
     }
   
     .hero-button {
       padding: 8px 14px;
+      width: 98%;
+      border-radius: 7px;
     }
   }
   
