@@ -1,44 +1,44 @@
 CREATE DATABASE ViaUY;
 USE ViaUY;
 
-CREATE TABLE User (
+CREATE TABLE user (
     username VARCHAR(255) PRIMARY KEY ,
     email VARCHAR(255) UNIQUE,
     password VARCHAR(255)
 );
 
-CREATE TABLE Administrator (
+CREATE TABLE administrator (
     idAdministrator INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255),
     phone INT(9),
     email VARCHAR(255) UNIQUE,
-    FOREIGN KEY (username) REFERENCES User(username)
+    FOREIGN KEY (username) REFERENCES user(username)
 );
 
-CREATE TABLE Passenger (
+CREATE TABLE passenger (
     idPassenger INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255),
     phone INT(9),
     email VARCHAR(255) UNIQUE,
-    FOREIGN KEY (username) REFERENCES User(username)
+    FOREIGN KEY (username) REFERENCES user(username)
 );
 
-CREATE TABLE Company (
+CREATE TABLE company (
     companyName VARCHAR(255) PRIMARY KEY,
     phone INT(9)
 );
 
-CREATE TABLE CompanyAdmin (
+CREATE TABLE companyAdmin (
     idCompanyAdmin INT AUTO_INCREMENT PRIMARY KEY,
     companyName VARCHAR(255),
     username VARCHAR(255),
     phone INT(9),
     email VARCHAR(255) UNIQUE,
-    FOREIGN KEY (companyName) REFERENCES Company(companyName),
-    FOREIGN KEY (username) REFERENCES User(username)
+    FOREIGN KEY (companyName) REFERENCES company(companyName),
+    FOREIGN KEY (username) REFERENCES user(username)
 );
 
-CREATE TABLE Route (
+CREATE TABLE route (
     idRoute INT AUTO_INCREMENT PRIMARY KEY,
     origin VARCHAR(255),
     destination VARCHAR(255),
@@ -46,38 +46,38 @@ CREATE TABLE Route (
     arrivalTime TIME
 );
 
-CREATE TABLE RouteStreets (
+CREATE TABLE routeStreets (
     idRoute INT AUTO_INCREMENT PRIMARY KEY,
     street VARCHAR(255),
-    FOREIGN KEY (idRoute) REFERENCES Route(idRoute)
+    FOREIGN KEY (idRoute) REFERENCES route(idRoute)
 );
 
-CREATE TABLE RouteStops (
+CREATE TABLE routeStops (
     idRoute INT AUTO_INCREMENT PRIMARY KEY,
     stop VARCHAR(255),
-    FOREIGN KEY (idRoute) REFERENCES Route(idRoute)
+    FOREIGN KEY (idRoute) REFERENCES route(idRoute)
 );
 
-CREATE TABLE Bus (
+CREATE TABLE bus (
     idBus INT AUTO_INCREMENT PRIMARY KEY
 );
 
-CREATE TABLE BusFeatures (
+CREATE TABLE busFeatures (
     idBus INT AUTO_INCREMENT,
     feature VARCHAR(255),
     PRIMARY KEY (idBus, feature),
-    FOREIGN KEY (idBus) REFERENCES Bus(idBus)
+    FOREIGN KEY (idBus) REFERENCES bus(idBus)
 );
 
-CREATE TABLE Travels (
+CREATE TABLE travels (
     idRoute INT,
     idBus INT,
     PRIMARY KEY (idRoute, idBus),
-    FOREIGN KEY (idRoute) REFERENCES Route(idRoute),
-    FOREIGN KEY (idBus) REFERENCES Bus(idBus)
+    FOREIGN KEY (idRoute) REFERENCES route(idRoute),
+    FOREIGN KEY (idBus) REFERENCES bus(idBus)
 );
 
-CREATE TABLE Reservations (
+CREATE TABLE reservations (
     email VARCHAR(255),
     idPassenger INT,
     idRoute INT,
@@ -85,17 +85,28 @@ CREATE TABLE Reservations (
     idReservation INT AUTO_INCREMENT PRIMARY KEY,
     seat VARCHAR(255),
     details VARCHAR(255),
-    FOREIGN KEY (email) REFERENCES Passenger(email),
-    FOREIGN KEY (idPassenger) REFERENCES Passenger(idPassenger),
-    FOREIGN KEY (idRoute) REFERENCES Route(idRoute),
-    FOREIGN KEY (idBus) REFERENCES Bus(idBus)
+    FOREIGN KEY (email) REFERENCES passenger(email),
+    FOREIGN KEY (idPassenger) REFERENCES passenger(idPassenger),
+    FOREIGN KEY (idRoute) REFERENCES route(idRoute),
+    FOREIGN KEY (idBus) REFERENCES bus(idBus)
 );
 
-CREATE TABLE Manages (
+CREATE TABLE manages (
     idRoute INT,
     idBus INT,
     idCompanyAdmin INT,
-    FOREIGN KEY (idCompanyAdmin) REFERENCES CompanyAdmin(idCompanyAdmin),
-    FOREIGN KEY (idBus) REFERENCES Bus(idBus),
-    FOREIGN KEY (idRoute) REFERENCES Route(idRoute)
+    FOREIGN KEY (idCompanyAdmin) REFERENCES companyAdmin(idCompanyAdmin),
+    FOREIGN KEY (idBus) REFERENCES bus(idBus),
+    FOREIGN KEY (idRoute) REFERENCES route(idRoute)
+);
+
+CREATE TABLE companyRequest (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    companyName VARCHAR(255),
+    contactName VARCHAR(255),
+    contactEmail VARCHAR(255),
+    contactPhone VARCHAR(20),
+    message TEXT,
+    status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+    submissionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

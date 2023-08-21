@@ -23,7 +23,7 @@
 <?php endif; ?>
 
   <header class="header">
-  <button class="header-bars" id="header-bars">
+      <button class="header-bars" id="header-bars">
         <i class="fa-solid fa-bars"></i>
       </button>
     <nav class="header-logo-bar">
@@ -37,19 +37,28 @@
       <a href="index.php?c=company&m=index" class="header-actions-a"><i class="fa-solid fa-building"></i>Compañias</a>
     </nav>
     <nav class="header-links" id="header-links">
+      <button class="header-links-bar" id="header-links-bar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
       <ul class="header-links-ul">
-        <li class="header-links-li"><a href="/viauy/">Inicio</a></li>
-        <li class="header-links-li"><a href="index.php?c=index&m=help">Ayuda</a></li>
-        <li class="header-links-li"><a href="">Buses</a></li>
-        <li class="header-links-li"><a href="">Rutas</a></li>
+        <li class="header-links-li header-links-li-m header-links-li-title">Opciones</a></li>
+        <li class="header-links-li"><a href="/viauy/"><i class="fa-solid fa-house"></i>Inicio</a></li>
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li"><a href="index.php?c=index&m=help"><i class="fa-solid fa-circle-info"></i>Ayuda</a></li>
+        <li class="header-links-li header-links-li-m header-links-li-title">Viajes</a></li>
+
+        <li class="header-links-li"><a href=""><i class="fa-solid fa-bus"></i>Buses</a></li>
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li"><a href=""><i class="fa-solid fa-route"></i>Rutas</a></li>
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li header-links-li-m header-links-li-title">Ususario</a></li>
         <?php if (isset($_SESSION['user_name'])) : ?>
             
         <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
         <li class="header-links-li header-links-li-m"><a href="/viauy/">@<?= $_SESSION['user_name']?></a></li>
         <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
         <?php else : ?>
-        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login">Iniciar Sesion</a></li>
-        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=signup">Registrarse</a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
         <?php endif ?>
       </ul>
       <ul class="header-links-social">

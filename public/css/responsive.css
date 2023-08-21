@@ -1,5 +1,7 @@
 @media screen and (max-width: 500px) {
-  
+    .header{
+      padding: 10px !important;
+    }
    .header-links{
     width: 100%;
    }
@@ -21,6 +23,12 @@
    .header-bars{
     order: 12;
    }
+   .hero-txt-title{
+    font-size: 1em;
+  }
+  .hero-txt-desc{
+    font-size: .7em;
+  }
 }
 
 
@@ -56,6 +64,7 @@
       width: 100%;
       margin: 10px auto;
     }
+    
   
     .hero-form {
       flex-direction: column;

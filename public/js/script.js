@@ -3,9 +3,9 @@ const headerSearchForm = $("#header-search-form");
 const userOptions = $("#user-options");
 const headerBars = $("#header-bars");
 queEs = false;
-
 $("#open-user-options").on("click", openUserOptions);
 $("#header-bars").on("click", openHeaderMenu);
+$("#header-links-bar").on("click", openHeaderMenu);
 $("#header-ul-bars").on("click", openHeaderMenu);
 $("#header-btns-search").on("click", openHeaderSearch);
 

@@ -17,6 +17,8 @@
     --body-bg: hsl(210, 50%, 92%);
     --main-btn-hover-color: #c3daf0;
     --border-color: hsla(205, 29%, 66%, 0.2);
+
+    --icons-color:hsl(205, 25%, 53%);
   
     /* Tipografía */
     --main-font: 'Bricolage Grotesque', sans-serif;
@@ -89,7 +91,17 @@ button{
 .header-links-li-space{
     background-color:var(--border-color);
     height: 2px;
-    margin: 20px 0px;
+    margin-left: 20px;
+}
+
+.header-links-li-title{
+    background-color:var(--border-color);
+    margin-left: 20px;
+    padding: 10px;
+    color: var(--main-font-color);
+    font-family: var(--main-font);
+    font-size: .7em;
+    border-radius: 20px 0px 0px 20px;
 }
 .header-actions{
     padding: 2px;
@@ -146,35 +158,66 @@ button{
 .header-btns-button:hover{
     background-color: var(--main-btn-hover-color);
 }
+.header-bars:hover{
+    background-color: var(--border-color);
+}
 .header-bars{
     display: none;
-    width: 30px;
+    justify-content: center;
+    padding: 10px 0px;
+    border-radius: 10px;
+    width: 40px;
     color: var(--main-font-color);
 }
 .header-links{
+    position: fixed;
+    padding-top: 100px;
     box-shadow: var(--shadow);
-    border-radius: 20px;
     z-index: 400 !important;
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    position: absolute;
     background-color: var(--main-color);
     left: 0px;
     overflow: hidden;
-    top: 75px;
+    top: 0px;
     transition: all var(--time) ease;
-    height: max-content;
+    height: 100vh;
+}
+
+
+.header-links-bar:hover{
+    background-color: var(--border-color);
+}
+
+.header-links-bar{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+    border-radius: 10px;
+    width: 40px;
+    color: var(--main-font-color);
+    position: fixed;
+    top: 37px;
+    right: 10px;
+    color: var(--icons-color);
+}
+.header-links-ul li i{
+    color: var(--icons-color);
+    font-size: .9em;
+    padding-right: 10px;
 }
 .header-links-ul li a{
     width: 100%;
     padding: 20px 20px;
     display:block;
-    font-weight: 900;
+    font-size: .8em;
+    font-weight: 700;
     transition: all var(--time) ease;
 }
 .header-links-ul li a:hover{
-    background-color: var(--main-btn-hover-color);
+    text-decoration: underline;
+    color: var(--main-color-hover);
 }
 .header-links-social{
     display: flex;
@@ -416,7 +459,7 @@ button{
     width: 65%;
     color: var(--main-font-color);
     margin: 10px;
-    padding: 30px;
+    padding: 0px 30px;
     text-align: start;
 }
 
