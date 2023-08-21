@@ -181,10 +181,24 @@ button{
     justify-content: space-between;
     background-color: var(--main-color);
     left: 0px;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
     top: 0px;
     transition: all var(--time) ease;
     height: 100vh;
+}
+/* Estilos para la barra de desplazamiento */
+.header-links::-webkit-scrollbar {
+    width: 6px; /* Ancho de la barra de desplazamiento */
+}
+
+.header-links::-webkit-scrollbar-track {
+    background: transparent; /* Fondo de la barra de desplazamiento */
+}
+
+.header-links::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb-color); /* Color del pulgar de la barra de desplazamiento */
+    border-radius: 3px; /* Borde redondeado del pulgar */
 }
 
 
