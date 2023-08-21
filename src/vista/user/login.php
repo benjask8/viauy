@@ -18,7 +18,9 @@ require 'src/vista/partials/head.php';
 <section class="login-container">
   <form action="index.php?c=user&m=doLogin" class="login-form" method="POST" autocomplete="off">
   <a href="/viauy"class="login-form-exit">
-    <i class="fa-solid fa-xmark"></i>
+  <span class="material-symbols-outlined">
+    close
+  </span>
   </a>  
   <h2 class="login-form-title">Iniciar Sesión</h2>
     <?= $this->datos; ?>  

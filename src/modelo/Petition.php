@@ -34,4 +34,31 @@ class Petition extends Conexion
             return false; // Error
         }
     }
+    public function getAllCompanyRequests()
+    {
+        try {
+            $pdo = $this->getConexion()->getPdo();
+            $query = "SELECT * FROM companyrequest";
+            $stmt = $pdo->query($query);
+            $companyRequests = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $companyRequests;
+        } catch (PDOException $e) {
+            return false; // Error
+        }
+    }
+
+    public function updateStatus($id, $status)
+{
+    try {
+        $pdo = $this->getConexion()->getPdo();
+        $query = "UPDATE companyrequest SET status = ? WHERE id = ?";
+        $stmt = $pdo->prepare($query); // Usar prepare en lugar de query
+        $stmt->execute([$status, $id]);
+        return $status; // Devolver verdadero en caso de éxito
+    } catch (PDOException $e) {
+        return false; // Devolver falso en caso de error
+    }
+}
+
+    
 }

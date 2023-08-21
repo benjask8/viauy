@@ -353,6 +353,9 @@ button{
     color: var(--main-font-color);
     font-weight: bold;
 }
+.login-form-exit span{
+    font-size: 1.6em;
+}
 .login-form-exit{
     position: absolute;
     top: 20px;
