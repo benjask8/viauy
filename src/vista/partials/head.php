@@ -9,7 +9,7 @@
   <title>ViaUy</title>
   <link rel="stylesheet" href="public/css/styles.css">
   <link rel="stylesheet" href="public/css/pre2.css">
-  <link rel="stylesheet" href="public/css/responsive.css">
+  <link rel="stylesheet" href="public/css/responsives.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 </head>
@@ -86,7 +86,7 @@
       <button class="header-btns-button header-btns-search" id="header-btns-search">
         buscar
       </button>
-      <?php if (isset($_SESSION['user_id'])) : ?>
+      <?php if (isset($_SESSION['user_name'])) : ?>
         <button class="header-btns-button header-btns-btn" id="open-user-options">
           Usuario 
         </button>
@@ -97,13 +97,10 @@
       <?php endif; ?>
 
       <nav class="user-options" id="user-options">
-        <?php if (isset($_SESSION['user_id'])) : ?>
+        <?php if (isset($_SESSION['user_name'])) : ?>
         <a href="/via_uy/src/views/user/mainProfile.php"
           title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
         <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
-        <?php if ($_SESSION['esAdmin']) : ?>
-        <a href="/via_uy/src/views/user/admin/dashboard.php"><i class="fa-solid fa-code"></i> Dessarrollador</a>
-        <?php endif; ?>
         <?php else : ?>
         <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
         <a href="index.php?c=user&m=signup"><i class="fa-solid fa-user-plus"></i> Registrarse</a>

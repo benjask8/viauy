@@ -1,5 +1,5 @@
-CREATE DATABASE ViaUY;
-USE ViaUY;
+CREATE DATABASE viauy;
+USE viauy;
 
 CREATE TABLE user (
     username VARCHAR(255) PRIMARY KEY ,

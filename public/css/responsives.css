@@ -5,6 +5,11 @@
    .header-links{
     width: 100%;
    }
+   
+  .header-links-bar{
+    left:unset !important;
+    right: 20px;
+  }
    .header-links-li-m{
     display: inline-block;
   }
@@ -38,6 +43,9 @@
   }
   .header-links-open{
     display: flex;
+  }
+  .header-links-bar{
+    left: 20px;
   }
   .header-bars{
     display: flex;

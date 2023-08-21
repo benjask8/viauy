@@ -1,10 +1,10 @@
 <?php
-require 'src/vista/partials/head.php';
 
 if (isset($_SESSION['user_name'])) {
   header('Location: /viauy');
   exit();
 }
+require 'src/vista/partials/head.php';
 
 
 ?>
