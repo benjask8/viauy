@@ -1,10 +1,14 @@
 <?php
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
     require_once 'src/vista/admin/partials/estructure.php';
 ?>
 
     <h3>Dashboard</h3>
 
 <?php
-    // Incluye la parte final de la estructura de la página
     require_once 'src/vista/admin/partials/endEstructure.php';
+} else {
+    header('Location: /viauy');
+    exit();
+}
 ?>

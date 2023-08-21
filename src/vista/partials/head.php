@@ -7,11 +7,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/styles.css">
+  <link rel="stylesheet" href="public/css/styles1.css">
   <link rel="stylesheet" href="public/css/pre2.css">
-  <link rel="stylesheet" href="public/css/responsives.css">
+  <link rel="stylesheet" href="public/css/responsive.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
@@ -24,7 +26,9 @@
 
   <header class="header">
       <button class="header-bars" id="header-bars">
-        <i class="fa-solid fa-bars"></i>
+      <span class="material-symbols-outlined">
+menu
+</span>
       </button>
     <nav class="header-logo-bar">
       <h1 class="header-logo">
@@ -38,7 +42,9 @@
     </nav>
     <nav class="header-links" id="header-links">
       <button class="header-links-bar" id="header-links-bar">
-        <i class="fa-solid fa-xmark"></i>
+      <span class="material-symbols-outlined">
+      close
+      </span>
       </button>
       <ul class="header-links-ul">
         <li class="header-links-li header-links-li-m header-links-li-title">Opciones</a></li>
@@ -50,14 +56,18 @@
         <li class="header-links-li"><a href=""><i class="fa-solid fa-bus"></i>Buses</a></li>
         <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
         <li class="header-links-li"><a href=""><i class="fa-solid fa-route"></i>Rutas</a></li>
-        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
         <li class="header-links-li header-links-li-m header-links-li-title">Ususario</a></li>
         <?php if (isset($_SESSION['user_name'])) : ?>
             
-        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-        <li class="header-links-li header-links-li-m"><a href="/viauy/">@<?= $_SESSION['user_name']?></a></li>
-        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
-        <?php else : ?>
+          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['user_name']?></a></li>
+          <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
+          
+          <?php if ($_SESSION['is_admin'] === 1): ?>
+            <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+            <li class="header-links-li header-links-li-m"><a href="index.php?c=admin&m=dashboard" title="">Dashboard</a></li>
+          <?php endif; ?>
+          <?php else : ?>
         <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
         <?php endif ?>
       </ul>
@@ -98,8 +108,12 @@
 
       <nav class="user-options" id="user-options">
         <?php if (isset($_SESSION['user_name'])) : ?>
-        <a href="/via_uy/src/views/user/mainProfile.php"
-          title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
+          <?php if ($_SESSION['is_admin'] === 1): ?>
+            <a href="index.php?c=admin&m=dashboard" title="">Dashboard</a> <br>
+          <?php endif; ?>
+
+
+        <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
         <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
         <?php else : ?>
         <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>

@@ -98,6 +98,7 @@ class User extends Conexion
   
           if ($user && password_verify($this->password, $user['password'])) {
               $_SESSION['user_name'] = $user['username'];
+              $_SESSION['is_admin'] = $user['is_admin'];
               // Verificar si el usuario es administrador y establecer $_SESSION['esAdmin']
               // Aquí realizarías la lógica necesaria para determinar si es administrador o no
   

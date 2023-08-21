@@ -4,7 +4,8 @@ USE viauy;
 CREATE TABLE user (
     username VARCHAR(255) PRIMARY KEY ,
     email VARCHAR(255) UNIQUE,
-    password VARCHAR(255)
+    password VARCHAR(255),
+    is_admin BOOLEAN DEFAULT 0
 );
 
 CREATE TABLE administrator (
@@ -100,7 +101,7 @@ CREATE TABLE manages (
     FOREIGN KEY (idRoute) REFERENCES route(idRoute)
 );
 
-CREATE TABLE companyRequest (
+CREATE TABLE companyrequest (
     id INT AUTO_INCREMENT PRIMARY KEY,
     companyName VARCHAR(255),
     contactName VARCHAR(255),

@@ -17,12 +17,12 @@ function openHeaderSearch() {
 }
 function openHeaderMenu() {
     if(queEs == false){
-        $("#header-bars").html('<i class="fa-solid fa-xmark"></i>');
+        $("#header-bars").html('<span class="material-symbols-outlined">close</span>');
         queEs=true;
     }
     else{
         queEs=false;
-        $("#header-bars").html('<i class="fa-solid fa-bars"></i>');
+        $("#header-bars").html('<span class="material-symbols-outlined">menu</span>');
     }
     headerLinks.toggleClass("header-links-open");
 }

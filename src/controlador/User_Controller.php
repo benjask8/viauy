@@ -56,4 +56,8 @@ class User_Controller extends Controlador
     $msg = $user->saveUser();
     $this->cargarVista("user/signup", $msg);
   }
+
+  public function profile(){
+    $this->cargarVista("user/profile");
+  }
 }
