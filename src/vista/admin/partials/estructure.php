@@ -54,11 +54,6 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
             menu
         </span>
     </button>
-    <form class="dashboard-header-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" name="" placeholder="Search..." id="">
-        <button>Search</button>
-    </form>
     <div class="dashboard-header-profile">
         <p><?= $_SESSION['user_name']?></p>
     </div>
@@ -74,7 +69,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
         </span>
     </button>
 
-    <ul class="aside-links">
+    <!-- <ul class="aside-links">
         <p class="aside-links-subtitle">Inicio</p>
         <li class="aside-links-li">
             <ul class="aside-links-li-ul">
@@ -103,7 +98,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
                     <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-tag"></i>Ofertas</a></li>
                     <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-circle-info"></i>Ayuda</a></li>
             </ul>
-        </li>
+        </li> -->
         <p class="aside-links-subtitle">Empresas</p>
         <li class="aside-links-li">
             <ul class="aside-links-li-ul">

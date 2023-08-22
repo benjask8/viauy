@@ -58,7 +58,8 @@ class Admin_Controller extends Controlador
 
     if ($companyRequests !== false) {
       $data = [
-          'companyRequests' => $companyRequests
+          'companyRequests' => $companyRequests,
+          'actualFilter' => $filter
       ];
       $this->cargarVista("admin/company/requests", $data);
   } else {
