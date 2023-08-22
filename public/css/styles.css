@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap-bars');
 /* font-family: 'Kanit', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /* font-family: 'Poppins', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap');
 /* font-family: 'Bricolage Grotesque', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap');
+/* font-family: 'Public Sans', sans-serif; */
 
 :root {
     /* Colores */
@@ -14,7 +16,7 @@
     --main-a-h-color: #1b5f9e;
     --color1: #3093EE;
     --main-color-hover: rgb(40, 118, 207);
-    --body-bg: hsl(210, 50%, 92%);
+    --body-bg: linear-gradient(281.45deg, #F0FFF7 0%, #E6F6FF 100%);
     --main-btn-hover-color: #c3daf0;
     --border-color: hsla(205, 29%, 66%, 0.2);
 
@@ -34,7 +36,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: var(--body-bg);
+    background-image: var(--body-bg);
     margin: 0;
     padding: 0;
 }
@@ -63,7 +65,7 @@ button{
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    height: 100px;
+    height: 80px;
     width: 100%;
     z-index: 1000; /* Asegura que el header esté en la parte superior */
 }
@@ -75,6 +77,7 @@ button{
 .header-logo a{
     font-weight: 900;
     font-size: 1.5em;
+    color: var(--color1);
 }
 .header-logo-bar{
     display: flex;
@@ -105,7 +108,6 @@ button{
 }
 .header-actions{
     padding: 2px;
-    background-color: rgb(243, 249, 255);
     border:1px solid var(--border-color);
     border-radius: 20px;
     height: max-content;
@@ -114,35 +116,16 @@ button{
 
 .header-actions-a i{    
     padding-right:7px;
+    color: var(--icons-color);
 }
 
 .header-actions-a{
-    color: var(--main-font-color);
     font-weight: 900;
     font-size: .7em;
     border-radius: 20px;
     padding: 6px 20px;
 }
 
-.header-actions-a:first-child i{
-    color: rgb(73, 98, 238);
-}
-.header-actions-a:nth-child(2) i{
-    color: rgb(61, 201, 124);
-}
-
-.header-actions-a:nth-child(3) i{
-    color: rgb(216, 97, 42);
-}
-.header-actions-a:nth-child(1):hover{
-    background-color: rgb(210, 217, 255);
-}
-.header-actions-a:nth-child(2):hover{
-    background-color: rgb(218, 250, 228);
-}
-.header-actions-a:nth-child(3):hover{
-    background-color: rgb(255, 231, 220);
-}
 
 
 .header-btns-button{
@@ -166,7 +149,7 @@ button{
     justify-content: center;
     padding: 10px;
     border-radius: 10px;
-    color: var(--main-font-color);
+    color: var(--icons-color);
 }
 .header-bars  span{
     font-size: 1.6em;
@@ -187,7 +170,18 @@ button{
     transition: all var(--time) ease;
     height: 100vh;
 }
-
+.header-links-logo{
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    margin:0px 20px;
+}
+.header-links-logo a{
+    font-weight: 900;
+    font-size: 1.5em;
+    color: var(--color1);
+}
 .header-links-open{
     display: none;
 }
@@ -218,7 +212,7 @@ button{
     color: var(--main-font-color);
     position: absolute;
     width: max-content;
-    top: 37px;
+    top: 10px;
     right: 10px;
     color: var(--icons-color);
 }
@@ -352,7 +346,7 @@ button{
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 400px;
+    width: 500px;
     height: 90vh;
     background-color: var(--main-color);
     border-radius: 20px;
@@ -391,7 +385,7 @@ button{
     border-radius: 4px;
     border: 2px solid transparent;
     color: var(--main-font-color);
-    background-color: var(--border-color) !important;
+    background-image: var(--body-bg) !important;
     padding: 10px;
     font-size: .8em;
     margin-top: 5px;
@@ -481,7 +475,7 @@ button{
 
 .hero-txt{
     border-radius: 10px;
-    width: 65%;
+    width: 55%;
     color: var(--main-font-color);
     margin: 10px;
     padding: 0px 20px;
@@ -490,7 +484,7 @@ button{
 
 .hero-txt-title{
     font-weight:900;
-    font-size: 2em;
+    font-size: 2.1em;
 }
 .hero-txt-desc{
     padding-top: 10px;
@@ -549,6 +543,7 @@ button{
     border-radius: 5px;
     transition: border-color 0.3s ease;
     font-size: .8em;
+    background-image: var(--body-bg);
 }
 .hero-input[type="text"]::placeholder,
 .hero-input[type="number"]::placeholder,
@@ -564,7 +559,7 @@ button{
 
 .hero-button {
     font-weight: 900;
-    background-color: hsl(206, 100%, 51%);
+    background-image: linear-gradient(281.45deg, hsl(206, 100%, 67%) 0%, hsl(206, 100%, 51%) 100%);;
     color: var(--main-color);
     padding: 10px 16px;
     border: none;
@@ -572,11 +567,11 @@ button{
     width: 200px;
     height: 70px !important;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: filter 0.3s ease, color 0.3s ease;
 }
 
 .hero-button:hover {
-    background-color: hsl(206, 100%, 64%);
+    filter: brightness(80%); /* Reduce el brillo al 50% para simular el efecto de oscuridad */
 }
 /* hero end */
 

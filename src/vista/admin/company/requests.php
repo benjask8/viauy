@@ -1,30 +1,40 @@
-<?php
-    require_once 'src/vista/admin/partials/estructure.php';
-?>
+<?php require_once 'src/vista/admin/partials/estructure.php'; ?>
 
+<div class="page-container">
+    <h1 class="page-title">Company Requests</h1>
 
-<h1>Company requests here</h1>
-
-<?php foreach ($datos['companyRequests'] as $request) : ?>
-    <h2>Company Name: <?= $request['companyName'] ?></h2>
-    <p>Contact Name: <?= $request['contactName'] ?></p>
-    <p>Contact Email: <?= $request['contactEmail'] ?></p>
-    <p>Contact Phone: <?= $request['contactPhone'] ?></p>
-    <p>Message: <?= $request['message'] ?></p>
-    <p>Id: <?= $request['id'] ?></p>
-
-    <form action="index.php?c=admin&m=dashboard_optionRequest" method="post">
-    <input type="hidden" name="id" value="<?= $request['id'] ?>">
-    <select name="action" id="action">
-        <option value="accept">Aceptar</option>
-        <option value="deny">Denegar</option>
+    <form action="index.php?c=admin&m=filterRequests" method="post" class="filter-form">
+    <label for="filter">Filter by status:</label>
+    <select name="filter" id="filter" class="filter-select">
+        <option value="all">All</option>
+        <option value="Approved">Accepted</option>
+        <option value="Rejected">Denied</option>
+        <option value="pending">Pending</option>
     </select>
-    <input type="submit" value="Enviar">
+    <input type="submit" value="Filter" class="filter-button">
     </form>
 
-    <hr>
-<?php endforeach; ?>
 
-<?php
-    require_once 'src/vista/admin/partials/endEstructure.php';
-?>
+    <?php foreach ($datos['companyRequests'] as $request) : ?>
+        <div class="request-card">
+            <h2 class="request-title"><?= $request['companyName'] ?></h2>
+            <p><strong>Contact Name:</strong> <?= $request['contactName'] ?></p>
+            <p><strong>Contact Email:</strong> <?= $request['contactEmail'] ?></p>
+            <p><strong>Contact Phone:</strong> <?= $request['contactPhone'] ?></p>
+            <p><strong>Message:</strong> <?= $request['message'] ?></p>
+            <p><strong>Request ID:</strong> <?= $request['id'] ?></p>
+
+            <form action="index.php?c=admin&m=dashboard_optionRequest" method="post" class="request-form">
+                <input type="hidden" name="id" value="<?= $request['id'] ?>">
+                <label for="action">Action:</label>
+                <select name="action" id="action" class="action-select">
+                    <option value="accept">Approve</option>
+                    <option value="deny">Deny</option>
+                </select>
+                <input type="submit" value="Submit" class="submit-button">
+            </form>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php require_once 'src/vista/admin/partials/endEstructure.php'; ?>

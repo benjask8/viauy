@@ -9,7 +9,7 @@
   <title>ViaUy</title>
   <link rel="stylesheet" href="public/css/styles.css">
   <link rel="stylesheet" href="public/css/pre2.css">
-  <link rel="stylesheet" href="public/css/responsives1.css">
+  <link rel="stylesheet" href="public/css/responsives.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 
@@ -47,6 +47,9 @@ menu
       </span>
       </button>
       <ul class="header-links-ul">
+        <h1 class="header-links-logo">
+          <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> viaUy</a>
+        </h1>
         <li class="header-links-li header-links-li-m header-links-li-title">Opciones</a></li>
         <li class="header-links-li"><a href="/viauy/"><i class="fa-solid fa-house"></i>Inicio</a></li>
         <li class="header-links-li header-links-li-m header-links-li-space"></a></li>

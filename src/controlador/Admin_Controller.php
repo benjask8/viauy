@@ -49,6 +49,24 @@ class Admin_Controller extends Controlador
         exit();
       }
   }
+
+
+  public function filterRequests(){
+    $filter = $_POST['filter'];
+    $petition = new Petition("","","","","");
+    $companyRequests = $petition->filterByStatus($filter);
+
+    if ($companyRequests !== false) {
+      $data = [
+          'companyRequests' => $companyRequests
+      ];
+      $this->cargarVista("admin/company/requests", $data);
+  } else {
+      // Manejar el caso de error
+      echo "Error al obtener las solicitudes de compañías.";
+  }
+  }
+
   
 
 }

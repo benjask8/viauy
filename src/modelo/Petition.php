@@ -48,17 +48,41 @@ class Petition extends Conexion
     }
 
     public function updateStatus($id, $status)
-{
-    try {
-        $pdo = $this->getConexion()->getPdo();
-        $query = "UPDATE companyrequest SET status = ? WHERE id = ?";
-        $stmt = $pdo->prepare($query); // Usar prepare en lugar de query
-        $stmt->execute([$status, $id]);
-        return $status; // Devolver verdadero en caso de éxito
-    } catch (PDOException $e) {
-        return false; // Devolver falso en caso de error
+    {
+        try {
+            $pdo = $this->getConexion()->getPdo();
+            $query = "UPDATE companyrequest SET status = ? WHERE id = ?";
+            $stmt = $pdo->prepare($query); // Usar prepare en lugar de query
+            $stmt->execute([$status, $id]);
+            return $status; // Devolver verdadero en caso de éxito
+        } catch (PDOException $e) {
+            return false; // Devolver falso en caso de error
+        }
     }
-}
 
+    public function filterByStatus($filter){
+        try {
+            $pdo = $this->getConexion()->getPdo();
+            
+            if ($filter === 'all') {
+                $query = "SELECT * FROM companyrequest";
+            } else {
+                $query = "SELECT * FROM companyrequest WHERE status = ?";
+            }
+            
+            $stmt = $pdo->prepare($query);
+    
+            if ($filter !== 'all') {
+                $stmt->bindParam(1, $filter);
+            }
+    
+            $stmt->execute();
+    
+            $filteredRequests = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $filteredRequests; // Devolver los registros filtrados en caso de éxito
+        } catch (PDOException $e) {
+            return []; // Devolver un array vacío en caso de error
+        }
+    }
     
 }

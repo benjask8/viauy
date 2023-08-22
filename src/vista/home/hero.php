@@ -2,7 +2,7 @@
     <!-- <section class="hero-txt">Viaja con Via<span style="font-size:1em;color:rgb(51, 87, 153);">Uy</span>, viaja <span id="hero-txt-span" class="hero-txt-span">Facil</span></section> -->
     <section class="hero-txt">
         <h2 class="hero-txt-title">
-            Encuentra, Reserva y Compra tus Boletos de Autobús en viaUy, la Forma Más Fácil y Rápida de Viajar
+            Encuentra, Reserva y Compra tus Boletos de Autobús en viaUy
         </h2>
         <p class="hero-txt-desc">¡Tu Viaje Perfecto Comienza Aquí!</p>
     </section>

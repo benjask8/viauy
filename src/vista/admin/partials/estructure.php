@@ -10,7 +10,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="public/css/dashboard1.css">
     <link rel="stylesheet" href="public/css/pre2.css">
     <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 
@@ -49,7 +49,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
 
 
     <div class="aside-profile">
-        <a href="/via_uy" class="aside-profile-username">Via<span class="username-span">Uy</span></a>
+        <a href="/viauy" class="aside-profile-username">Via<span class="username-span">Uy</span></a>
     </div>
     <ul class="aside-links">
         <p class="aside-links-subtitle">Inicio</p>
