@@ -1,10 +1,14 @@
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
     .header{
       padding: 10px !important;
     }
    .header-links{
     width: 100%;
-   }
+    left: 1000px !important;
+  }  
+  .header-links-open{
+    left: 0px !important;
+  }
    
   .header-links-bar{
     left:unset !important;
@@ -41,12 +45,17 @@
   .header-btns-help{
     display: none;
   }
+  .header-links{
+    display: flex;
+    left: -1000px;
+  }
   .header-links-open{
     display: flex;
+    left: 0px;
   }
   .header-links-bar{
     top: 30px;
-    left: 40px;
+    left: 10px;
   }
   .header-bars{
     display: flex;
