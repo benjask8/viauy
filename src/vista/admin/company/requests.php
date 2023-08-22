@@ -21,8 +21,9 @@
             <p><strong>Contact Name:</strong> <?= $request['contactName'] ?></p>
             <p><strong>Contact Email:</strong> <?= $request['contactEmail'] ?></p>
             <p><strong>Contact Phone:</strong> <?= $request['contactPhone'] ?></p>
-            <p><strong>Message:</strong> <?= $request['message'] ?></p>
+            <pre><strong>Message:</strong> <?= $request['message'] ?></pre>
             <p><strong>Request ID:</strong> <?= $request['id'] ?></p>
+            <p><strong>Request Status:</strong> <?= $request['status'] ?></p>
 
             <form action="index.php?c=admin&m=dashboard_optionRequest" method="post" class="request-form">
                 <input type="hidden" name="id" value="<?= $request['id'] ?>">

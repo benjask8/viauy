@@ -10,10 +10,11 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="public/css/dashboard1.css">
+    <link rel="stylesheet" href="public/css/dashboard2.css">
     <link rel="stylesheet" href="public/css/pre2.css">
     <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Dashboard</title>
 </head>
 <body>
@@ -45,12 +46,34 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
   });
 <?php endif; ?>
 </script>
-<aside class="dashboard-aside">
 
 
-    <div class="aside-profile">
-        <a href="/viauy" class="aside-profile-username">Via<span class="username-span">Uy</span></a>
+<header class="dashboard-header">
+    <button onclick="openAside()" class="aside-menu">
+        <span class="material-symbols-outlined">
+            menu
+        </span>
+    </button>
+    <form class="dashboard-header-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" name="" placeholder="Search..." id="">
+        <button>Search</button>
+    </form>
+    <div class="dashboard-header-profile">
+        <p><?= $_SESSION['user_name']?></p>
     </div>
+</header>
+<div class="dashboard-body">
+
+
+
+<aside class="dashboard-aside" id="dashboard-aside">
+    <button onclick="openAside()" class="aside-menu">
+        <span class="material-symbols-outlined">
+            close
+        </span>
+    </button>
+
     <ul class="aside-links">
         <p class="aside-links-subtitle">Inicio</p>
         <li class="aside-links-li">
@@ -91,16 +114,10 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
     </ul>
 </aside>
 
+<script>
+    var asideElement = document.getElementById("dashboard-aside");
+    function openAside() {
+    asideElement.classList.toggle("dashboard-aside-open");
+}
 
-
-<header class="dashboard-header">
-    <form class="dashboard-header-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" name="" placeholder="Search..." id="">
-        <button>Search</button>
-    </form>
-    <div class="dashboard-header-profile">
-        <p><?= $_SESSION['user_name']?></p>
-    </div>
-</header>
-<div class="dashboard-body">
+</script>
