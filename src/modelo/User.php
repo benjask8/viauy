@@ -113,5 +113,31 @@ class User extends Conexion
       }
   }
   
+  public function getAllUsers()
+    {
+        try {
+            $pdo = $this->getConexion()->getPdo();
+            $query = "SELECT * FROM user";
+            $stmt = $pdo->query($query);
+            $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $users;
+        } catch (PDOException $e) {
+            return false; // Error
+        }
+    }
+
+    public function updateAdmin($id, $esAdmin)
+    {
+        try {
+            $pdo = $this->getConexion()->getPdo();
+            $query = "UPDATE user SET is_admin = ? WHERE username = ?";
+            $stmt = $pdo->prepare($query); // Usar prepare en lugar de query
+            $stmt->execute([$esAdmin, $id]);
+            return $esAdmin; // Devolver verdadero en caso de éxito
+        } catch (PDOException $e) {
+            return false; // Devolver falso en caso de error
+        }
+    }
+
 
 }

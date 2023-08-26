@@ -99,11 +99,19 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
                     <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-circle-info"></i>Ayuda</a></li>
             </ul>
         </li> -->
+
         <p class="aside-links-subtitle">Empresas</p>
         <li class="aside-links-li">
             <ul class="aside-links-li-ul">
                 <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-copyright"></i>Empresas</a></li>
-                <li class="aside-links-li-ul-li"><a href="index.php?c=admin&m=dashboard_companyrequests" class="aside-links-li-ul-li-a"><i class="fa-solid fa-hourglass-start"></i>Solicitudes</a></li>
+                <li class="aside-links-li-ul-li"><a href="index.php?c=admin&m=dashboardCompanyRequests" class="aside-links-li-ul-li-a"><i class="fa-solid fa-hourglass-start"></i>Solicitudes</a></li>
+            </ul>
+        </li>
+        <p class="aside-links-subtitle">Usuarios</p>
+        <li class="aside-links-li">
+            <ul class="aside-links-li-ul">
+                    <li class="aside-links-li-ul-li"><a href="index.php?c=admin&m=usershow" class="aside-links-li-ul-li-a"><i class="fa-solid fa-users"></i>Clientes</a></li>
+                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-sharp fa-solid fa-gears"></i>Administradores</a></li>
             </ul>
         </li>
     </ul>

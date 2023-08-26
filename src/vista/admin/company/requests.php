@@ -39,7 +39,7 @@
             <p><strong>Request ID:</strong> <?= $request['id'] ?></p>
             <p><strong>Request Status:</strong> <?= $request['status'] ?></p>
 
-            <form action="index.php?c=admin&m=dashboard_optionRequest" method="post" class="request-form">
+            <form action="index.php?c=admin&m=dashboardOptionRequest" method="post" class="request-form">
                 <input type="hidden" name="id" value="<?= $request['id'] ?>">
                 <label for="action">Action:</label>
                 <select name="action" id="action" class="action-select">
