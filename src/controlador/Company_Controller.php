@@ -82,7 +82,7 @@ class Company_Controller extends Controlador
       }
     }
     else{
-      $msg = "Token No Existe O no Aprovado";
+      $msg = '<span style="color: red;">Token NO existe o no aprovado';
     }
 
     $this->cargarVista("company/signup", $msg);

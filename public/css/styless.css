@@ -53,6 +53,32 @@ a{
     list-style: none;
     box-sizing: border-box;
 }
+
+
+/* Estilos generales para el scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--icons-color) var(--main-color);
+}
+
+/* Estilo del scrollbar en navegadores WebKit (Safari, Chrome) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--main-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--icons-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--icons-color);
+}
+
 button{
     background-color: transparent;
     border: none;
