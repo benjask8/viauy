@@ -125,6 +125,22 @@ class User extends Conexion
             return false; // Error
         }
     }
+    
+    public function getUser($usernameget)
+  {
+      try {
+          $pdo = $this->getConexion()->getPdo();
+          $query = "SELECT * FROM user WHERE username = ?";
+          $stmt = $pdo->prepare($query);
+          $stmt->execute([$usernameget]);
+          $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+          return $user; // Devuelve un array, incluso si está vacío
+      } catch (PDOException $e) {
+          return false; // Devuelve false en caso de error
+      }
+  }
+
 
     public function updateAdmin($id, $esAdmin)
     {

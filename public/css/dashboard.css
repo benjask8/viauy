@@ -278,7 +278,11 @@ body{
     font-size: 20px;
     margin-bottom: 10px;
 }
-
+.request-title-admin{
+    display: flex;
+    align-items: center;
+    color: rgb(54, 122, 248);
+}
 .request-form {
     margin-top: 15px;
     display: flex;

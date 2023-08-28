@@ -68,7 +68,17 @@ class Company_Controller extends Controlador
   }
   
   public function mainProfile(){
-    $this->cargarVista("company/mainProfile");
+    $this->cargarVista("company/profile/main");
+  }
+  public function mainProfile_Admins(){
+    $this->cargarVista("company/profile/admins");
+  }
+  public function mainProfile_Buses(){
+    $this->cargarVista("company/profile/buses");
+  }
+
+  public function mainProfile_Lineas(){
+    $this->cargarVista("company/profile/lineas");
   }
 
 

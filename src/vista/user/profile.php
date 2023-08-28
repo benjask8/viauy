@@ -1,15 +1,7 @@
-<?php
-if (!isset($_SESSION['user_name'])) {
-    header('Location: /viauy');
-    exit();
-}
-require 'src/vista/partials/head.php';
-
-
-?>
-<h1>User Profile!!!</h1>
-<h2><?= $_SESSION['user_name']?></h2>
-
-<?php
-require 'src/vista/partials/footer.php';
-?>
+<?php if (empty($this->datos['user'])) : ?>
+    <p>Usuario no existe</p>
+<?php else : ?>
+    <?php foreach ($this->datos['user'] as $usuario): ?>
+        <p>Nombre de usuario: <?= $usuario['username'] ?></p>
+    <?php endforeach; ?>
+<?php endif; ?>

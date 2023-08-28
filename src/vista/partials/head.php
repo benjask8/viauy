@@ -119,7 +119,7 @@ menu
       <nav class="user-options" id="user-options">
         <?php if (isset($_SESSION['user_name'])) : ?>
           <?php if ($_SESSION['is_admin'] === 1): ?>
-            <a href="index.php?c=admin&m=dashboard" title="">Dashboard</a> <br>
+            <a href="index.php?c=admin&m=dashboard" title=""> <span class="material-symbols-outlined">dashboard</span>Dashboard</a> <br>
           <?php endif; ?>
           <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
           <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>

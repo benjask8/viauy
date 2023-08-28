@@ -57,7 +57,18 @@ class User_Controller extends Controlador
     $this->cargarVista("user/signup", $msg);
   }
 
-  public function profile(){
-    $this->cargarVista("user/profile");
+  public function mainProfile(){
+    $this->cargarVista("user/mainProfile");
   }
+
+  public function profile(){
+    $getusername = $_GET['user'] ?? "index";
+    $user = new User("","","","");
+    $newUser = $user->getUser($getusername);
+
+    $this->cargarVista("user/profile", ["user" => $newUser]);
+  }
+
+
+
 }
