@@ -247,6 +247,15 @@ body{
 }
 
 /* Estilos para cada tarjeta de solicitud */
+.request-approved{
+    background-color: rgb(225, 253, 227) ;
+}
+.request-rejected{
+    background-color: rgb(252, 209, 209);
+}
+.request-pending{
+    background-color: rgb(222, 225, 255);
+}
 .request-card {
     padding: 25px;
     width: 100%;

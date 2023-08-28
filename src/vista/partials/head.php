@@ -61,7 +61,6 @@ menu
         <li class="header-links-li"><a href=""><i class="fa-solid fa-route"></i>Rutas</a></li>
         <li class="header-links-li header-links-li-m header-links-li-title">Ususario</a></li>
         <?php if (isset($_SESSION['user_name'])) : ?>
-            
           <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['user_name']?></a></li>
           <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
           <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
@@ -70,9 +69,17 @@ menu
             <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
             <li class="header-links-li header-links-li-m"><a href="index.php?c=admin&m=dashboard" title="">Dashboard</a></li>
           <?php endif; ?>
-          <?php else : ?>
+        <?php else : ?>
         <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
-        <?php endif ?>
+        <?php endif;?>
+
+        <?php if (isset($_SESSION['company_name'])) : ?>
+            
+            <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['company_name']?></a></li>
+            <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+            <li class="header-links-li header-links-li-m"><a href="index.php?c=company&m=logout">Cerrar Sesion</a></li>
+        <?php endif;?>
+            
       </ul>
       <ul class="header-links-social">
         <li class="header-links-li"><a href="">www.viauy.com</a></li>
@@ -114,13 +121,17 @@ menu
           <?php if ($_SESSION['is_admin'] === 1): ?>
             <a href="index.php?c=admin&m=dashboard" title="">Dashboard</a> <br>
           <?php endif; ?>
-
-
-        <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
-        <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
+          <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
+          <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
         <?php else : ?>
-        <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
-        <a href="index.php?c=user&m=signup"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
+          <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
+          <a href="index.php?c=user&m=signup"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['company_name'])) : ?><br><br>
+          <p>Empresa</p>
+          <a href="index.php?c=company&m=mainProfile" title="<?= $_SESSION['company_name'] ?>"><i class="fa-solid fa-building"></i> @<?= $_SESSION['company_name'] ?></a> <br>
+          <a href="index.php?c=company&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
         <?php endif; ?>
       </nav>
 

@@ -82,5 +82,31 @@ class Company extends Conexion
     }
   }
 
+  
+  public function loginCompany()
+  {
+      $pdo = $this->getConexion()->getPdo();
+  
+      try {
+          $sql = 'SELECT * FROM company WHERE companyName = :name';
+          $stmt = $pdo->prepare($sql);
+          $stmt->bindParam(':name', $this->name);
+          $stmt->execute();
+          $company = $stmt->fetch(\PDO::FETCH_ASSOC);
+  
+          if ($company && password_verify($this->password, $company['password'])) {
+              $_SESSION['company_name'] = $company['companyName'];
+              return 'success';
+          } else {
+              return '<p class="error-msg">Nombre de compañia o contraseña incorrectos</p>';
+          }
+      } catch (\Throwable $th) {
+          return '<p class="error-msg">Ocurrió un error durante el inicio de sesión</p>';
+      } finally {
+          $pdo = null;
+      }
+  }
+  
+
 
 }

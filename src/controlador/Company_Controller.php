@@ -55,12 +55,39 @@ class Company_Controller extends Controlador
   public function signup(){
     $this->cargarVista("company/signup");
   }
+  public function logout()
+  {
+      session_destroy();
+      header("Location: index.php?c=company&m=login&msg=Cerraste%20sesion%20exitosamente");
+      exit();
+  }
+  
 
-
-  public function doLogin(){
-    $this->cargarVista("company/login");
+  public function welcome(){
+    $this->cargarVista("company/welcome");
+  }
+  
+  public function mainProfile(){
+    $this->cargarVista("company/mainProfile");
   }
 
+
+  public function doLogin()
+  {
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+
+    $company = new Company($name, '', $password, '');
+    $loginResult = $company->loginCompany();
+
+    if ($loginResult === 'success') {
+        // Inicio de sesión exitoso, redirigir a una página de bienvenida
+        header("Location: index.php?c=company&m=welcome&msg=bienvenido");
+        exit;
+    } else {
+        $this->cargarVista("company/login", $loginResult);
+    }
+  }
 
   public function doSignup(){
     $name = $_POST['name'];
@@ -88,6 +115,6 @@ class Company_Controller extends Controlador
     $this->cargarVista("company/signup", $msg);
   }
 
-
+  
 
 }

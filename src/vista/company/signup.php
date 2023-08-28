@@ -1,5 +1,10 @@
 <?php
 
+
+if (isset($_SESSION['company_name'])) {
+  header('Location: /viauy');
+  exit();
+}
 require 'src/vista/partials/head.php';
 
 
@@ -42,7 +47,7 @@ require 'src/vista/partials/head.php';
 
     <input type="submit" value="Registrarse">
   </form>
-  <p>¿Ya tienes una cuenta? <a href="index.php?c=user&m=login">Iniciar Sesión</a></p>
+  <p>¿Ya tienes una cuenta? <a href="index.php?c=company&m=login">Iniciar Sesión</a></p>
 </section>
 
 

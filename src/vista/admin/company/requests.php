@@ -30,7 +30,15 @@
             <div class="cards-container">
                 
     <?php foreach ($datos['companyRequests'] as $request) : ?>
-        <div class="request-card">
+        <?php if($request['status'] == "Pending"): ?>
+            <div class="request-card request-pending">
+        <?php endif?>
+        <?php if($request['status'] == "Rejected"): ?>
+            <div class="request-card request-rejected">
+        <?php endif?>
+        <?php if($request['status'] == "Approved"): ?>
+            <div class="request-card request-approved">
+        <?php endif?>
             <h2 class="request-title"><?= $request['companyName'] ?></h2>
             <p><strong>Contact Name:</strong> <?= $request['contactName'] ?></p>
             <p><strong>Contact Email:</strong> <?= $request['contactEmail'] ?></p>
