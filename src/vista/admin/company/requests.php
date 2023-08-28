@@ -27,13 +27,15 @@
         <?php endif?>
     <?php endif?>
 
-
+            <div class="cards-container">
+                
     <?php foreach ($datos['companyRequests'] as $request) : ?>
         <div class="request-card">
             <h2 class="request-title"><?= $request['companyName'] ?></h2>
             <p><strong>Contact Name:</strong> <?= $request['contactName'] ?></p>
             <p><strong>Contact Email:</strong> <?= $request['contactEmail'] ?></p>
             <p><strong>Contact Phone:</strong> <?= $request['contactPhone'] ?></p>
+            <p><strong>Token:</strong> <?= $request['token'] ?></p>
             <pre><strong>Message:</strong>
 <?= $request['message'] ?></pre>
             <p><strong>Request ID:</strong> <?= $request['id'] ?></p>
@@ -50,6 +52,7 @@
             </form>
         </div>
     <?php endforeach; ?>
+            </div>
 </div>
 
 <?php require_once 'src/vista/admin/partials/endEstructure.php'; ?>

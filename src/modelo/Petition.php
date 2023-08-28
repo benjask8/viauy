@@ -22,18 +22,49 @@ class Petition extends Conexion
 
     public function savePetition()
     {
-      $pdo = $this->getConexion()->getPdo();
-
+        $pdo = $this->getConexion()->getPdo();
+    
         try {
-            $query = "INSERT INTO companyrequest (companyName, contactName, contactEmail, contactPhone, message)
-                      VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO companyrequest (companyName, contactName, contactEmail, contactPhone, message, token)
+                      VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($query);
-            $stmt->execute([$this->companyName, $this->contactName, $this->contactEmail, $this->contactPhone, $this->message]);
-            return true; // Success
+            $token = $this->generateUniqueToken(); // Llamada a la función de generación de tokens
+            $stmt->execute([$this->companyName, $this->contactName, $this->contactEmail, $this->contactPhone, $this->message, $token]);
+            return $token; // Éxito
         } catch (PDOException $e) {
             return false; // Error
         }
     }
+    
+    // Función para generar un token único similar a la función en SQL
+    private function generateUniqueToken()
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-0123456789';
+        $token = '';
+        while (strlen($token) < 8) {
+            $token .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $token;
+    }
+    
+
+        public function petitionExists($contactEmail)
+    {
+        $pdo = $this->getConexion()->getPdo();
+
+        try {
+            $query = "SELECT COUNT(*) FROM companyrequest WHERE contactEmail = ?";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([$contactEmail]);
+            $count = $stmt->fetchColumn();
+
+            return $count > 0;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+
     public function getAllCompanyRequests()
     {
         try {
@@ -84,5 +115,38 @@ class Petition extends Conexion
             return []; // Devolver un array vacío en caso de error
         }
     }
+    
+
+    public function confirmToken($token, $email)
+    {
+        $pdo = $this->getConexion()->getPdo();
+
+        try {
+            $query = "SELECT COUNT(1) FROM companyrequest WHERE token = ? AND contactEmail = ? AND status = 'Approved'";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([$token, $email]);
+            $count = $stmt->fetchColumn();
+
+            return $count === 1; 
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function dropPetition($token)
+    {
+        $pdo = $this->getConexion()->getPdo();
+
+        try {
+            $query = "DELETE FROM companyrequest WHERE token = ?";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([$token]);
+
+            return true; // Devolver true si la eliminación fue exitosa
+        } catch (PDOException $e) {
+            return false; // Devolver false si hubo un error
+        }
+    }
+
     
 }

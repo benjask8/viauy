@@ -3,21 +3,28 @@
 :root{
     --aside-w:190px;
     --header-h:45px;
-    --color1:rgb(17, 166, 235);
-    --color2:rgb(75, 143, 233);
-    --color3:rgb(61, 86, 124);
-    --color4:rgb(48, 56, 68);
-    --color5:rgb(36, 41, 49);
-    --color6:rgb(255, 255, 255);
-    --color7:rgb(240, 240, 240);
-    --color8:rgb(117, 135, 163);
-    --color9:rgb(74, 81, 95);
+    --color1: rgb(37, 137, 197); /* Tonos de azul más brillante */
+    --color2: rgb(58, 168, 242);
+    --color3: rgb(102, 122, 158); /* Azul-grisáceo */
+    --color4: rgb(68, 75, 87); /* Gris más oscuro */
+    --color5: rgb(47, 52, 61); /* Fondo más oscuro */
+    --color6: rgb(255, 255, 255);
+    --color7: rgb(240, 240, 240);
+    --color8: rgb(117, 135, 163);
+    --color9: rgb(74, 81, 95);
+    --main-bg-color: rgb(238, 243, 248); /* Fondo principal más claro */
+    --main-bg-color2: rgb(165, 193, 242); /* Fondo secundario más suave */
+    --main-bg-color3: rgb(37, 137, 197); 
 
 
     --time:.2s;
 
     --font1:'Poppins', sans-serif;
-    --shadow:10px 0px 10px rgba(5, 0, 0, 0.116);
+    --shadow: inset 0px 0px 20px rgba(17, 0, 0, 0.089);
+    --normal-border:1px solid rgba(0, 0, 0, 0.068);
+
+    --body-bg: linear-gradient(173deg, var(--main-bg-color) 50%, var(--main-bg-color2) 100%);
+    
 }
 *{
     font-family: var(--font1);
@@ -27,8 +34,56 @@
     text-decoration: none;
     box-sizing: border-box;
 }
+/* Estilos generales para el scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--main-bg-color2) var(--main-bg-color);
+}
+
+/* Estilo del scrollbar en navegadores WebKit (Safari, Chrome) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-bg-color2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color3);
+}
+
+/* Estilo del scrollbar en navegadores Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color1) var(--main-bg-color2);
+}
+
+/* Estilo del scrollbar en navegadores Firefox */
+*::-moz-scrollbar {
+    width: 8px;
+}
+
+*::-moz-scrollbar-track {
+    background-color: var(--main-bg-color2);
+}
+
+*::-moz-scrollbar-thumb {
+    background-color: var(--color1);
+    border-radius: 10px;
+}
+
+*::-moz-scrollbar-thumb:hover {
+    background-color: var(--color2);
+}
+
+
 body{
-    background-color: var(--color7);
 }
 .dashboard-body{
     width:100%;
@@ -36,18 +91,21 @@ body{
 }
 .dashboard-aside{
     overflow-y: scroll;
-    background-color: var(--color4);
-    display: none;
+    border-right: var(--normal-border);
+    background-color: var(--main-bg-color);
+    display: flex;
     flex-direction: column;
     position: fixed;
     height: 100vh;
-    top: 0px;
+    left: -1020px;
+    top: calc(var(--header-h) - 1px);
     z-index: 2 !important;
-    width: var(--aside-w);
+    width: max-content;
+    transition: left var(--time) ease-out;
 }
 
 .dashboard-aside-open{
-    display: flex;
+    left: 0px;
 }
 .aside-profile{
     height: var(--header-h);
@@ -63,30 +121,6 @@ body{
     background-color: transparent;
     color: #fff;
 }
-
-/* Estilo para el contenedor principal */
-.dashboard-aside{
-    overflow-y: auto; /* Habilitar el desplazamiento vertical */
-    scrollbar-width: thin; /* Ancho del scrollbar */
-    scrollbar-color: #888888 #f2f2f2; /* Color del scrollbar */
-  }
-  
-  /* Estilo para el scrollbar */
-  .dashboard-aside::-webkit-scrollbar {
-    width: 6px; /* Ancho del scrollbar */
-  }
-  
-  /* Estilo para el thumb del scrollbar */
-  .dashboard-aside::-webkit-scrollbar-thumb {
-    background-color: var(--color8); /* Color del thumb */
-    border-radius: 3px; /* Borde redondeado del thumb */
-  }
-  
-  /* Estilo para el fondo del scrollbar */
-  .dashboard-aside::-webkit-scrollbar-track {
-    background-color: var(--color5); /* Color del fondo del scrollbar */
-    border-radius: 3px; /* Borde redondeado del fondo */
-  }
   
 .aside-profile-username{
     color: var(--color6);
@@ -96,7 +130,7 @@ body{
 }
 .aside-links-subtitle{
     text-transform: uppercase;
-    color: var(--color8);
+    color: var(--main-bg-color2);
     font-size: .7em;
     padding: 10px 20px;
     font-weight: 900;
@@ -104,19 +138,22 @@ body{
 .aside-links-li{
     transition: all var(--time);
 }
-.aside-links-li:hover{
-    background-color: var(--color4);
-}
 .aside-links-li-ul-li-a:hover{
-    color: var(--color6);
+    background-color: var(--main-bg-color3);
+    color: #fff;
 }
 .aside-links-li-ul-li{
+    width: 100%;
     padding: 10px 20px;
 }
 .aside-links-li-ul-li-a{
+    width: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: var(--radius);
     transition: all var(--time);
     font-weight: 900;
-    color: var(--color8);
+    color: var(--main-bg-color3);
     font-size: .8em;
 }
 
@@ -126,12 +163,13 @@ body{
 
 
 .aside-menu{
+    background-color: transparent;
     cursor: pointer;
 }
 
 .dashboard-header{
-    background-color: var(--color6);
-    box-shadow: var(--shadow);
+    background-color: var(--main-bg-color);
+    border-bottom: var(--normal-border);
     position: fixed;
     width: 100%;
     padding: 20px;
@@ -191,6 +229,12 @@ body{
 
 
 /* Estilos generales */
+.cards-container{
+    height: 90vh;
+    overflow-y: scroll;
+    padding: 20px;
+
+}
 .page-container {
     max-width: 800px;
     margin: 0 auto;
@@ -204,11 +248,11 @@ body{
 
 /* Estilos para cada tarjeta de solicitud */
 .request-card {
-    padding: 15px;
+    padding: 25px;
     width: 100%;
     margin-bottom: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
 }
 
 .request-card p,

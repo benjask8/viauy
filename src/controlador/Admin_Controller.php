@@ -40,13 +40,13 @@ class Admin_Controller extends Controlador
   
       if ($msg) {
         if($action === "accept"){
-          header("Location: index.php?c=admin&m=dashboard_companyrequests&msg=Solicitud%20aceptada%20exitosamente");
+          header("Location: index.php?c=admin&m=dashboardCompanyRequests&msg=Solicitud%20aceptada%20exitosamente");
           exit();
         }
-        header("Location: index.php?c=admin&m=dashboard_companyrequests&msg=Solicitud%20denegada%20exitosamente");
+        header("Location: index.php?c=admin&m=dashboardCompanyRequests&msg=Solicitud%20denegada%20exitosamente");
         exit();
       } else {
-        header("Location: index.php?c=admin&m=dashboard_companyrequests&msg=Solicitud%20no%20enviada");
+        header("Location: index.php?c=admin&m=dashboardCompanyRequests&msg=Solicitud%20no%20enviada");
         exit();
       }
   }

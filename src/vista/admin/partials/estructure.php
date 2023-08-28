@@ -10,7 +10,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="public/css/dashboard2.css">
+    <link rel="stylesheet" href="public/css/dashboard4.css">
     <link rel="stylesheet" href="public/css/pre2.css">
     <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 
@@ -63,12 +63,6 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
 
 
 <aside class="dashboard-aside" id="dashboard-aside">
-    <button onclick="openAside()" class="aside-menu">
-        <span class="material-symbols-outlined">
-            close
-        </span>
-    </button>
-
     <!-- <ul class="aside-links">
         <p class="aside-links-subtitle">Inicio</p>
         <li class="aside-links-li">

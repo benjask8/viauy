@@ -4,6 +4,7 @@
 
     <h2>Petición Enviada con Éxito</h2>
     <p>Tu solicitud ha sido enviada con éxito. Nos pondremos en contacto contigo pronto.</p>
+    <p>su token es: <strong><?= $this->datos?></strong></p>
 
 <script>
     cambiarTitulo("ViaUy | Solicitud De Empresa");
