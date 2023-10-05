@@ -40,11 +40,11 @@ class Company extends Conexion
     if ($this->password === $this->passwordC) {
         try{
             if (!$this->validateName($this->name)) {
-                return '<span style="color: red;">Nombre de Compañia debe tener entre 6 y 16 caracteres</span>';
+                return 'Nombre de Compañia debe tener entre 6 y 16 caracteres';
               }
 
             if (!$this->validatePassword($this->password)) {
-                return '<span style="color: red;">Contraseña debe tener entre 8 y 16 caracteres</span>';
+                return 'Contraseña debe tener entre 8 y 16 caracteres';
             }
 
             $sqlCheck = 'SELECT COUNT(*) as count FROM company WHERE CompanyName = :name OR companyEmail = :email';
@@ -55,7 +55,7 @@ class Company extends Conexion
             $result = $stmtCheck->fetch();
 
             if ($result['count'] > 0) {
-            return '<span style="color: red;">Nombre de Usuario o Email ya registrado</span>';
+            return 'Nombre de Usuario o Email ya registrado';
             }
 
             $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
@@ -78,7 +78,7 @@ class Company extends Conexion
         $pdo = null;
       }
     } else {
-      return '<span style="color: red;">Las contraseñas no coinciden</span>';
+      return 'Las contraseñas no coinciden';
     }
   }
 
@@ -98,15 +98,27 @@ class Company extends Conexion
               $_SESSION['company_name'] = $company['companyName'];
               return 'success';
           } else {
-              return '<p class="error-msg">Nombre de compañia o contraseña incorrectos</p>';
+              return 'Nombre de compañia o contraseña incorrectos';
           }
       } catch (\Throwable $th) {
-          return '<p class="error-msg">Ocurrió un error durante el inicio de sesión</p>';
+          return 'Ocurrió un error durante el inicio de sesión';
       } finally {
           $pdo = null;
       }
   }
-  
+
+  public function getAllCompany()
+  {
+      try {
+          $pdo = $this->getConexion()->getPdo();
+          $query = "SELECT * FROM company";
+          $stmt = $pdo->query($query);
+          $company = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          return $company;
+      } catch (PDOException $e) {
+          return false; // Error
+      }
+  }
 
 
 }

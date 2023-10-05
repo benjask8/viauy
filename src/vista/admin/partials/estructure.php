@@ -10,11 +10,12 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="public/css/dashboardd.css">
     <link rel="stylesheet" href="public/css/pre2.css">
     <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <title>Dashboard</title>
 </head>
 <body>
@@ -55,7 +56,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
         </span>
     </button>
     <div class="dashboard-header-profile">
-        <p><?= $_SESSION['user_name']?></p>
+        <a title="Perfil de Usuario" href="?c=user&m=mainProfile"><span class="material-symbols-outlined">account_circle</span>   <?= $_SESSION['user_name']?></a>
     </div>
 </header>
 <div class="dashboard-body">
@@ -63,37 +64,8 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0){
 
 
 <aside class="dashboard-aside" id="dashboard-aside">
-    <!-- <ul class="aside-links">
-        <p class="aside-links-subtitle">Inicio</p>
-        <li class="aside-links-li">
-            <ul class="aside-links-li-ul">
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-            </ul>
-        </li>
-        <p class="aside-links-subtitle">Usuarios</p>
-        <li class="aside-links-li">
-            <ul class="aside-links-li-ul">
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-users"></i>Clientes</a></li>
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-sharp fa-solid fa-gears"></i>Administradores</a></li>
-            </ul>
-        </li>
-        <p class="aside-links-subtitle">Base de Datos</p>
-        <li class="aside-links-li">
-            <ul class="aside-links-li-ul">
-            <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-bus"></i>Buses</a></li>
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-route"></i>Rutas</a></li>
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-ticket"></i>Boletos</a></li>
-            </ul>
-        </li>
-        <p class="aside-links-subtitle">Contenidos</p>
-        <li class="aside-links-li">
-            <ul class="aside-links-li-ul">
-            <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-home"></i>Inicio</a></li>
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-tag"></i>Ofertas</a></li>
-                    <li class="aside-links-li-ul-li"><a href="" class="aside-links-li-ul-li-a"><i class="fa-solid fa-circle-info"></i>Ayuda</a></li>
-            </ul>
-        </li> -->
 
+        <a href="?" class="aside-links-title">ViaUy</a>
         <p class="aside-links-subtitle">Empresas</p>
         <li class="aside-links-li">
             <ul class="aside-links-li-ul">

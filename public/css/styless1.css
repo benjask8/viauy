@@ -96,6 +96,13 @@ button{
     z-index: 1000; /* Asegura que el header esté en la parte superior */
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 .header-logo{
     display: flex;
     margin:0px 20px;

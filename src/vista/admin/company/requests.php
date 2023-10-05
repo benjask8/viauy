@@ -32,22 +32,31 @@
     <?php foreach ($datos['companyRequests'] as $request) : ?>
         <?php if($request['status'] == "Pending"): ?>
             <div class="request-card request-pending">
+                <span class="material-symbols-outlined status-icon status-icon-pending">schedule</span>
         <?php endif?>
         <?php if($request['status'] == "Rejected"): ?>
             <div class="request-card request-rejected">
+                <span class="material-symbols-outlined status-icon status-icon-rejected">cancel</span>
         <?php endif?>
         <?php if($request['status'] == "Approved"): ?>
             <div class="request-card request-approved">
+            <span class="material-symbols-outlined status-icon status-icon-approved">check_circle</span>
         <?php endif?>
             <h2 class="request-title"><?= $request['companyName'] ?></h2>
-            <p><strong>Contact Name:</strong> <?= $request['contactName'] ?></p>
-            <p><strong>Contact Email:</strong> <?= $request['contactEmail'] ?></p>
-            <p><strong>Contact Phone:</strong> <?= $request['contactPhone'] ?></p>
-            <p><strong>Token:</strong> <?= $request['token'] ?></p>
-            <pre><strong>Message:</strong>
-<?= $request['message'] ?></pre>
-            <p><strong>Request ID:</strong> <?= $request['id'] ?></p>
-            <p><strong>Request Status:</strong> <?= $request['status'] ?></p>
+            <strong><span class="material-symbols-outlined">badge</span> Contact Name </strong>
+            <p><?= $request['contactName'] ?></p> 
+            <strong><span class="material-symbols-outlined">mail</span> Contact Email</strong>
+            <p><?= $request['contactEmail'] ?></p> 
+            <strong><span class="material-symbols-outlined">phone</span> Contact Phone</strong>
+            <p><?= $request['contactPhone'] ?></p> 
+            <strong><span class="material-symbols-outlined">password</span> Token</strong>
+            <p><?= $request['token'] ?></p> 
+            <strong><span class="material-symbols-outlined">key</span> Request ID</strong>
+            <p><?= $request['id'] ?></p> 
+            <strong><span class="material-symbols-outlined">military_tech</span> Request Status</strong>
+            <p><?= $request['status'] ?></p> 
+            <strong><span class="material-symbols-outlined">chat</span> Message</strong>
+            <pre> <?= $request['message'] ?></pre>
 
             <form action="index.php?c=admin&m=dashboardOptionRequest" method="post" class="request-form">
                 <input type="hidden" name="id" value="<?= $request['id'] ?>">

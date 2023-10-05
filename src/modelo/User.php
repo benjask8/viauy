@@ -43,11 +43,11 @@ class User extends Conexion
     if ($this->password === $this->passwordC) {
       try {
         if (!$this->validateUsername($this->username)) {
-          return '<span style="color: red;">Nombre de Usuario debe tener entre 6 y 16 caracteres</span>';
+          return 'Nombre de Usuario debe tener entre 6 y 16 caracteres';
         }
 
         if (!$this->validatePassword($this->password)) {
-          return '<span style="color: red;">Contraseña debe tener entre 8 y 16 caracteres</span>';
+          return 'Contraseña debe tener entre 8 y 16 caracteres';
         }
 
         // Verificar si el nombre de usuario o el correo electrónico ya están registrados
@@ -59,8 +59,13 @@ class User extends Conexion
         $result = $stmtCheck->fetch();
 
         if ($result['count'] > 0) {
-          return '<span style="color: red;">Nombre de Usuario o Email ya registrado</span>';
+          return 'Nombre de Usuario o Email ya registrado';
         }
+
+        if (!preg_match('/^[a-zA-Z0-9._-]{6,16}$/', $this->username)) {
+          return 'Nombre de Usuario debe tener entre 6 y 16 caracteres y solo puede contener letras mayúsculas y minúsculas, números, puntos y guiones bajos';
+      }
+      
 
         // Si no están registrados, proceder con el registro
         $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
@@ -72,7 +77,7 @@ class User extends Conexion
         $stmtInsert->bindParam(':password', $hashPassword);
 
         if ($stmtInsert->execute()) {
-          $msg = '<span style="color: green;">Usuario registrado con éxito</span>';
+          $msg = 'Usuario registrado con éxito';
         }
 
         return $msg;
@@ -82,7 +87,7 @@ class User extends Conexion
         $pdo = null;
       }
     } else {
-      return '<span style="color: red;">Las contraseñas no coinciden</span>';
+      return 'Las contraseñas no coinciden';
     }
   }
   public function loginUser()
@@ -104,10 +109,10 @@ class User extends Conexion
   
               return 'success'; // Devolver un indicador de inicio de sesión exitoso
           } else {
-              return '<p class="error-msg">Nombre de usuario o contraseña incorrectos</p>';
+              return 'Nombre de usuario o contraseña incorrectos';
           }
       } catch (\Throwable $th) {
-          return '<p class="error-msg">Ocurrió un error durante el inicio de sesión</p>';
+          return 'Ocurrió un error durante el inicio de sesión';
       } finally {
           $pdo = null;
       }

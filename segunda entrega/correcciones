@@ -1,0 +1,48 @@
+Aquí están las correcciones que tu profesor de programación sugirió para tu programa:
+
+1. Cambiar el nombre de la función `SaveUser()` a `save()` para que sea más descriptivo y se entienda que guarda un usuario. 
+
+2. <!--*-->No generar HTML en la clase de usuario ni en el modelo. La generación de HTML debe realizarse en la vista.
+
+3. <!--!-->La función debe retornar un string y este valor debe ser capturado en el modelo.
+
+4. <!--!-->En el controlador `Admin`, la función `getAllUsers()` debe ser de clase.
+
+5. <!--!-->Utilizar constructores para agregar nuevas entidades y validar las propiedades en el constructor. Deberías lanzar excepciones si las propiedades tienen errores.
+
+6. <!--*-->En los modelos, no se debe generar HTML.
+
+7. En la función `loginCompany()`, relanzar la excepción en lugar de atraparla.
+
+8. Considerar cambiar el nombre de la función `loginCompany()` a simplemente `login`, ya que la clase se llama `Login`.
+
+9. Cambiar `Conexion::getConexion()->getPdo();` a `Conexion::getConexion()->getPdo();` para corregir la llamada.
+
+10. En lugar de generar un token único en `Peticion`, considerar utilizar JWT (JSON Web Tokens) para manejar tokens de manera más segura.
+
+11. Si se necesita un ID único, PHP tiene una función incorporada para generarlo.
+
+12. En los controladores, utiliza excepciones en lugar de controlar errores con try-catch. Además, hay un error de sintaxis en la comparación `$rol"!=admin`. Debería ser `$rol != "admin"`.
+
+Aquí está el código corregido para la parte del controlador:
+
+```php
+try {
+    $estalog = $_SESSION['estalog'] ?? false;
+    $rol = $_SESSION['rol'] ?? "defecto";
+
+    if (!$estalog) {
+        throw new Excepcion("Debe ingresar al sistema");
+    }
+
+    if ($rol != "admin") {
+        throw new Excepcion("No tiene permiso para ingresar");
+    }
+
+    // Resto del código
+} catch (\Throwable $e) {
+    // Manejo de excepciones
+}
+```
+
+Ten en cuenta que estas correcciones son sugerencias basadas en las mejores prácticas de programación y pueden variar según el contexto y los requisitos específicos de tu proyecto. Asegúrate de comprender y aplicar estas correcciones adecuadamente en tu código.

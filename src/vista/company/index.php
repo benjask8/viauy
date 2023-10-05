@@ -4,10 +4,15 @@ require 'src/vista/partials/head.php';
 
 <main class="company-container">
   <h1 class="page-title">Compañías de Ómnibus</h1>
-  <p class="page-description">Encuentra aquí información sobre las compañías de ómnibus asociadas a ViaUy.</p>
-</main>
+  
+  <?php foreach ($datos['companys'] as $company) : ?>
+    <div class="request-card">
+      <h2 class="request-title"><?= $company['companyName'] ?> <span class="material-symbols-outlined">new_releases</span></h2>
+    </div>
+    <?php endforeach; ?>
+  </main>
 
-<script>
+    <script>
   cambiarTitulo("ViaUy | Compañías");
 </script>
 

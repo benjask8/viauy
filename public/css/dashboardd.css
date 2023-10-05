@@ -26,6 +26,15 @@
     --body-bg: linear-gradient(173deg, var(--main-bg-color) 50%, var(--main-bg-color2) 100%);
     
 }
+
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
 *{
     font-family: var(--font1);
     padding: 0;
@@ -135,6 +144,18 @@ body{
     padding: 10px 20px;
     font-weight: 900;
 }
+.aside-links-title:hover{
+   color: rgba(0, 0, 0, 0.541);
+}
+
+.aside-links-title{
+    transition: all var(--time);
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.267);
+    font-size: 1.2em;
+    padding: 10px 20px;
+    font-weight: 900;
+}
 .aside-links-li{
     transition: all var(--time);
 }
@@ -214,16 +235,17 @@ body{
     color: var(--color9);
 }
 
+.dashboard-header-profile a{
+    display: flex;
+    justify-content: center;
+    color: var(--color9);
+}
 .dashboard-header-profile{
 
 }
 
 .username-span{
     color: var(--color8);
-}
-
-.dashboard-header-profile p{
-    color: var(--color9);
 }
 
 
@@ -257,20 +279,40 @@ body{
     background-color: rgb(222, 225, 255);
 }
 .request-card {
+    position: relative;
     padding: 25px;
     width: 100%;
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: var(--shadow);
 }
+.request-card-admin{
+    background-color: rgb(186, 219, 250);
+}
 
-.request-card p,
-.request-card pre {
+.status-icon{
+    color: rgba(2, 0, 0, 0.226);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.request-card strong{
+    color: rgba(0, 0, 0, 0.63) ;
     word-break: break-all;
+    padding: 5px 0px;
     width: 100%;
     white-space: pre-wrap; /* Esto permite que los espacios en blanco y los saltos de línea se respeten */
     overflow-wrap: break-word; /* Esto ayuda a evitar que las palabras se desborden */
     overflow: hidden; /* Esto oculta el contenido que se desborda del ancho */
+}
+
+.request-card p,
+.request-card pre {
+    color: rgba(0, 0, 0, 0.829) ;
+    display: flex;
+    padding-left: 20px;
+    padding-bottom: 10px;
 }
 
 

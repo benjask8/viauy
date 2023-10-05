@@ -4,10 +4,11 @@
 <h1>User Show</h1>
 <div class="page-container">
 <?php foreach ($datos['users'] as $user) : ?>
+    <?php if($user['is_admin'] == 0) :?>
         <div class="request-card">
-            <?php if($user['is_admin'] == 0) :?>
-                <?php else :?>
-                <h2 class="request-title-admin"><span class="material-symbols-outlined">admin_panel_settings </span> ADMINISTRADOR</h2>
+            <?php else :?>
+                <div class="request-card request-card-admin">
+                <span class="material-symbols-outlined status-icon status-icon-pending">admin_panel_settings</span>
                 <?php endif ?>   
                 <h2 class="request-title"><?= $user['username'] ?></h2>
                 

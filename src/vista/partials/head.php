@@ -7,13 +7,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/styless.css">
+  <link rel="stylesheet" href="public/css/styless1.css">
   <link rel="stylesheet" href="public/css/pre2.css">
   <link rel="stylesheet" href="public/css/responsives.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
 </head>
 
 <body>
@@ -94,8 +95,8 @@ menu
     </nav>
 
     <section class="header-btns">
-      <form class="header-search-form" id="header-search-form" action="index.php?c=actions&m=buscar" method="GET">
-        <input placeholder="Buscar..." type="search" name="search" class="header-search-input" id="header-search-input">
+      <form class="header-search-form" id="header-search-form" action="?c=actions&m=buscar" method="post">
+        <input placeholder="Buscar..." type="search" name="searchTerm" class="header-search-input" id="header-search-input">
         <button type="submit" class="header-search-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>

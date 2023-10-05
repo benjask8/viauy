@@ -14,7 +14,12 @@ class Company_Controller extends Controlador
   }
   public function index()
   {
-    $this->cargarVista("company/index");
+    $company = new Company("","","","");
+    $companys = $company->getAllCompany();
+    $data = [
+      'companys' => $companys
+    ];
+    $this->cargarVista("company/index", $data);
   }
   public function newPetition()
   {
@@ -119,7 +124,7 @@ class Company_Controller extends Controlador
       }
     }
     else{
-      $msg = '<span style="color: red;">Token NO existe o no aprovado';
+      $msg = 'Token NO existe o no aprovado';
     }
 
     $this->cargarVista("company/signup", $msg);
