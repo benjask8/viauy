@@ -2,14 +2,14 @@ CREATE DATABASE viauy;
 USE viauy;
 
 CREATE TABLE user (
-    username VARCHAR(255) PRIMARY KEY ,
+    username VARCHAR(255) PRIMARY KEY,
     email VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     is_admin BOOLEAN DEFAULT 0
 );
 
 CREATE TABLE administrator (
-    idAdministrator INT AUTO_INCREMENT PRIMARY KEY,
+    idAdministrator INT PRIMARY KEY,
     username VARCHAR(255),
     phone INT(9),
     email VARCHAR(255) UNIQUE,
@@ -17,7 +17,7 @@ CREATE TABLE administrator (
 );
 
 CREATE TABLE passenger (
-    idPassenger INT AUTO_INCREMENT PRIMARY KEY,
+    idPassenger INT PRIMARY KEY,
     username VARCHAR(255),
     phone INT(9),
     email VARCHAR(255) UNIQUE,
@@ -31,7 +31,7 @@ CREATE TABLE company (
 );
 
 CREATE TABLE companyAdmin (
-    idCompanyAdmin INT AUTO_INCREMENT PRIMARY KEY,
+    idCompanyAdmin INT PRIMARY KEY,
     companyName VARCHAR(255),
     username VARCHAR(255),
     phone INT(9),
@@ -41,7 +41,7 @@ CREATE TABLE companyAdmin (
 );
 
 CREATE TABLE route (
-    idRoute INT AUTO_INCREMENT PRIMARY KEY,
+    idRoute INT PRIMARY KEY,
     origin VARCHAR(255),
     destination VARCHAR(255),
     departureTime TIME,
@@ -49,23 +49,26 @@ CREATE TABLE route (
 );
 
 CREATE TABLE routeStreets (
-    idRoute INT AUTO_INCREMENT PRIMARY KEY,
+    idRoute INT PRIMARY KEY,
     street VARCHAR(255),
     FOREIGN KEY (idRoute) REFERENCES route(idRoute)
 );
 
 CREATE TABLE routeStops (
-    idRoute INT AUTO_INCREMENT PRIMARY KEY,
+    idRoute INT PRIMARY KEY,
     stop VARCHAR(255),
     FOREIGN KEY (idRoute) REFERENCES route(idRoute)
 );
 
 CREATE TABLE bus (
-    idBus INT AUTO_INCREMENT PRIMARY KEY
+    idBus VARCHAR(255) PRIMARY KEY,
+    model VARCHAR(255),
+    maximum_capacity VARCHAR(255),
+    last_maintenance_date DATE
 );
 
 CREATE TABLE busFeatures (
-    idBus INT AUTO_INCREMENT,
+    idBus VARCHAR(255),
     feature VARCHAR(255),
     PRIMARY KEY (idBus, feature),
     FOREIGN KEY (idBus) REFERENCES bus(idBus)
@@ -73,7 +76,7 @@ CREATE TABLE busFeatures (
 
 CREATE TABLE travels (
     idRoute INT,
-    idBus INT,
+    idBus VARCHAR(255),
     PRIMARY KEY (idRoute, idBus),
     FOREIGN KEY (idRoute) REFERENCES route(idRoute),
     FOREIGN KEY (idBus) REFERENCES bus(idBus)
@@ -83,8 +86,8 @@ CREATE TABLE reservations (
     email VARCHAR(255),
     idPassenger INT,
     idRoute INT,
-    idBus INT,
-    idReservation INT AUTO_INCREMENT PRIMARY KEY,
+    idBus VARCHAR(255),
+    idReservation INT PRIMARY KEY,
     seat VARCHAR(255),
     details VARCHAR(255),
     FOREIGN KEY (email) REFERENCES passenger(email),
@@ -95,7 +98,7 @@ CREATE TABLE reservations (
 
 CREATE TABLE manages (
     idRoute INT,
-    idBus INT,
+    idBus VARCHAR(255),
     idCompanyAdmin INT,
     FOREIGN KEY (idCompanyAdmin) REFERENCES companyAdmin(idCompanyAdmin),
     FOREIGN KEY (idBus) REFERENCES bus(idBus),
@@ -103,11 +106,12 @@ CREATE TABLE manages (
 );
 
 CREATE TABLE companyrequest (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT PRIMARY KEY,
     companyName VARCHAR(255),
     contactName VARCHAR(255),
     contactEmail VARCHAR(255),
     contactPhone VARCHAR(20),
+    token VARCHAR(255),
     message TEXT,
     status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
     submissionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
   <link rel="stylesheet" href="public/css/styless1.css">
-  <link rel="stylesheet" href="public/css/pre2.css">
+  <link rel="stylesheet" href="public/css/pre.css">
   <link rel="stylesheet" href="public/css/responsives.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
@@ -18,19 +18,19 @@
 </head>
 
 <body>
-<?php if (isset($_GET['msg'])) : ?>
-  <div class="floating-msg">
-        <div class="message"><?= $_GET['msg']; ?></div>
-        <b class="close-btn" onclick="closeMessage()"><i class="fa-solid fa-xmark"></i></b>
-  </div>
-<?php endif; ?>
+  <?php if (isset($_GET['msg'])) : ?>
+    <div class="floating-msg">
+      <div class="message"><?= $_GET['msg']; ?></div>
+      <b class="close-btn" onclick="closeMessage()"><i class="fa-solid fa-xmark"></i></b>
+    </div>
+  <?php endif; ?>
 
   <header class="header">
-      <button class="header-bars" id="header-bars">
+    <button class="header-bars" id="header-bars">
       <span class="material-symbols-outlined">
-menu
-</span>
-      </button>
+        menu
+      </span>
+    </button>
     <nav class="header-logo-bar">
       <h1 class="header-logo">
         <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> viaUy</a>
@@ -43,9 +43,9 @@ menu
     </nav>
     <nav class="header-links" id="header-links">
       <button class="header-links-bar" id="header-links-bar">
-      <span class="material-symbols-outlined">
-      close
-      </span>
+        <span class="material-symbols-outlined">
+          close
+        </span>
       </button>
       <ul class="header-links-ul">
         <h1 class="header-links-logo">
@@ -54,7 +54,8 @@ menu
         <li class="header-links-li header-links-li-m header-links-li-title">Opciones</a></li>
         <li class="header-links-li"><a href="/viauy/"><i class="fa-solid fa-house"></i>Inicio</a></li>
         <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-        <li class="header-links-li"><a href="index.php?c=index&m=help"><i class="fa-solid fa-circle-info"></i>Ayuda</a></li>
+        <li class="header-links-li"><a href="index.php?c=index&m=help"><i class="fa-solid fa-circle-info"></i>Ayuda</a>
+        </li>
         <li class="header-links-li header-links-li-m header-links-li-title">Viajes</a></li>
 
         <li class="header-links-li"><a href=""><i class="fa-solid fa-bus"></i>Buses</a></li>
@@ -62,25 +63,26 @@ menu
         <li class="header-links-li"><a href=""><i class="fa-solid fa-route"></i>Rutas</a></li>
         <li class="header-links-li header-links-li-m header-links-li-title">Ususario</a></li>
         <?php if (isset($_SESSION['user_name'])) : ?>
-          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['user_name']?></a></li>
+          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['user_name'] ?></a></li>
           <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
           <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
-          
-          <?php if ($_SESSION['is_admin'] === 1): ?>
+
+          <?php if ($_SESSION['is_admin'] === 1) : ?>
             <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-            <li class="header-links-li header-links-li-m"><a href="index.php?c=admin&m=dashboard" title="">Dashboard</a></li>
+            <li class="header-links-li header-links-li-m"><a href="index.php?c=admin&m=dashboard" title="">Dashboard</a>
+            </li>
           <?php endif; ?>
         <?php else : ?>
-        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
-        <?php endif;?>
+          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
+        <?php endif; ?>
 
         <?php if (isset($_SESSION['company_name'])) : ?>
-            
-            <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['company_name']?></a></li>
-            <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-            <li class="header-links-li header-links-li-m"><a href="index.php?c=company&m=logout">Cerrar Sesion</a></li>
-        <?php endif;?>
-            
+
+          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['company_name'] ?></a></li>
+          <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+          <li class="header-links-li header-links-li-m"><a href="index.php?c=company&m=logout">Cerrar Sesion</a></li>
+        <?php endif; ?>
+
       </ul>
       <ul class="header-links-social">
         <li class="header-links-li"><a href="">www.viauy.com</a></li>
@@ -101,7 +103,7 @@ menu
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-      <a href="index.php?c=index&m=help"class="header-btns-button">
+      <a href="index.php?c=index&m=help" class="header-btns-button">
         Ayuda
       </a>
       <button class="header-btns-button header-btns-search" id="header-btns-search">
@@ -109,26 +111,27 @@ menu
       </button>
       <?php if (isset($_SESSION['user_name'])) : ?>
         <button class="header-btns-button header-btns-btn" id="open-user-options">
-          Usuario 
+          Usuario
         </button>
-        <?php else : ?>
+      <?php else : ?>
         <button class="header-btns-button header-btns-btn" id="open-user-options">
-          iniciar sesion 
+          iniciar sesion
         </button>
       <?php endif; ?>
 
       <nav class="user-options" id="user-options">
         <?php if (isset($_SESSION['user_name'])) : ?>
-          <?php if ($_SESSION['is_admin'] === 1): ?>
+          <?php if ($_SESSION['is_admin'] === 1) : ?>
             <a href="index.php?c=admin&m=dashboard" title=""> <span class="material-symbols-outlined">dashboard</span>Dashboard</a> <br>
           <?php endif; ?>
-          <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a> <br>
+          <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a>
+          <br>
           <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
         <?php else : ?>
           <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
           <a href="index.php?c=user&m=signup"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
         <?php endif; ?>
-        
+
         <?php if (isset($_SESSION['company_name'])) : ?><br><br>
           <p>Empresa</p>
           <a href="index.php?c=company&m=mainProfile" title="<?= $_SESSION['company_name'] ?>"><i class="fa-solid fa-building"></i> @<?= $_SESSION['company_name'] ?></a> <br>
@@ -137,35 +140,33 @@ menu
       </nav>
 
     </section>
-    
+
   </header>
 
 
   <script>
+    function cambiarTitulo(nuevoTitulo) {
+      document.title = nuevoTitulo;
+    }
 
-  function cambiarTitulo(nuevoTitulo) {
-    document.title = nuevoTitulo;
-  }
+    const floatingMsg = document.querySelector(".floating-msg");
 
-  const floatingMsg = document.querySelector(".floating-msg");
-  
-  <?php if (isset($_GET['msg'])) : ?>
-  setTimeout(function () {
-    floatingMsg.style.opacity = "0";
-    floatingMsg.style.transition = "opacity 1s ease-in-out";
-    setTimeout(function () {
-      floatingMsg.style.display = "none";
-    }, 1000); // Tiempo de espera para que se complete la animación
-  }, 5000);
-  const closeBtn = document.querySelector(".close-btn");
-  closeBtn.addEventListener("click", function () {
-    floatingMsg.style.opacity = "0";
-    floatingMsg.style.transition = "opacity 1s ease-in-out";
-    setTimeout(function () {
-      floatingMsg.style.display = "none";
-    }, 1000);
-  });
-<?php endif; ?>
-
+    <?php if (isset($_GET['msg'])) : ?>
+      setTimeout(function() {
+        floatingMsg.style.opacity = "0";
+        floatingMsg.style.transition = "opacity 1s ease-in-out";
+        setTimeout(function() {
+          floatingMsg.style.display = "none";
+        }, 1000); // Tiempo de espera para que se complete la animación
+      }, 5000);
+      const closeBtn = document.querySelector(".close-btn");
+      closeBtn.addEventListener("click", function() {
+        floatingMsg.style.opacity = "0";
+        floatingMsg.style.transition = "opacity 1s ease-in-out";
+        setTimeout(function() {
+          floatingMsg.style.display = "none";
+        }, 1000);
+      });
+    <?php endif; ?>
   </script>
   <section class="container-fluid">
