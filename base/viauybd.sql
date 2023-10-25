@@ -26,7 +26,8 @@ CREATE TABLE passenger (
 
 CREATE TABLE company (
     companyName VARCHAR(255) PRIMARY KEY,
-    phone INT(9)
+    companyEmail VARCHAR(255),
+    password VARCHAR(255)
 );
 
 CREATE TABLE companyAdmin (
