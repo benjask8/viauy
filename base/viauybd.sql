@@ -64,7 +64,7 @@ CREATE TABLE bus (
     idBus VARCHAR(255) PRIMARY KEY,
     model VARCHAR(255),
     maximum_capacity VARCHAR(255),
-    last_maintenance_date DATE
+    ownerBus VARCHAR(255)
 );
 
 CREATE TABLE busFeatures (

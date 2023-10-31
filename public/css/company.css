@@ -1,0 +1,171 @@
+/* Estilos modernos para los mensajes de éxito y error */
+.msg_success,
+.msg_error {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.msg_success {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.msg_error {
+  background-color: #f44336;
+  color: #fff;
+}
+
+/* Estilo general para el cuerpo de la página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  transition: background-color 0.3s;
+}
+
+.title{
+  padding-top: 20px;
+}
+.title,
+.sub-title{
+  text-align: center;
+}
+/* Estilo para el menú de la compañía con animaciones modernas */
+
+/* Estilo para el botón de alternancia del menú */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Estilo para el menú de la compañía */
+.company-menu {
+  background-color: #333;
+  color: #fff;
+  width: 200px;
+  /* Inicialmente oculto */
+  position: fixed;
+  top: 0;
+  left: -1000px;
+  height: 100%;
+  overflow: hidden;
+  transition: left 0.3s;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+}
+
+/* Ajusta la posición del contenido principal al abrir el menú */
+.menu-open {
+  left: 0px;
+  /* O el ancho que desees */
+}
+/* Animación al hacer hover sobre el menú */
+.company-menu:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.company-menu h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.company-menu a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+/* Animación al hacer hover sobre los enlaces del menú */
+.company-menu a:hover {
+  background-color: #555;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Estilo para el contenido principal con animaciones modernas */
+.main-content {
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+/* Animación al hacer hover sobre el contenido principal */
+.main-content:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para los títulos de las páginas */
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Estilo para el formulario de agregar un nuevo bus con animaciones modernas */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+}
+
+/* Animación al hacer hover sobre el formulario */
+.login-container:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-form-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.login-input {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  margin-top: 4px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+/* Animación al hacer focus en los campos de entrada */
+.login-input:focus {
+  box-shadow: 0 0 10px #00000033;
+}
+
+.login-input[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.login-input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
