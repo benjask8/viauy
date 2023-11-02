@@ -1,8 +1,8 @@
 <?php
 
 if (!isset($_SESSION['company_name'])) {
-    header('Location: /viauy');
-    exit();
+  header('Location: /viauy');
+  exit();
 }
 ?>
 
@@ -12,11 +12,9 @@ if (!isset($_SESSION['company_name'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-  <link rel="stylesheet" href="public/css/company.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+  <link rel="stylesheet" href="public/css/company1.css">
   <title>Dashboard Compañia</title>
 </head>
 
@@ -32,8 +30,8 @@ if (!isset($_SESSION['company_name'])) {
 
 
   <script>
-  function toggleMenu() {
-    var menu = document.querySelector('.company-menu');
-    menu.classList.toggle('menu-open');
-  }
+    function toggleMenu() {
+      var menu = document.querySelector('.company-menu');
+      menu.classList.toggle('menu-open');
+    }
   </script>

@@ -20,105 +20,114 @@ class Company extends Conexion
     $this->passwordC = $passwordC;
   }
 
-  public function validateName($name){
+  public function validateName($name)
+  {
     $minLength = 6;
     $maxLength = 16;
     $length = strlen($name);
     return ($length >= $minLength && $length <= $maxLength);
   }
 
-  public function validatePassword($password){
+  public function validatePassword($password)
+  {
     $minLength = 8;
     $maxLength = 16;
     $length = strlen($password);
     return ($length >= $minLength && $length <= $maxLength);
   }
 
-  public function saveCompany(){
-    $pdo = Conexion::getConexion()->getPdo();
+  public function saveCompany()
+  {
+    $pdo = $this->getConexion()->getPdo();
 
+    $data = [];
     if ($this->password === $this->passwordC) {
-        try{
-            if (!$this->validateName($this->name)) {
-                return 'Nombre de Compañia debe tener entre 6 y 16 caracteres';
-              }
+      try {
+        if (!$this->validateName($this->name)) {
+          $data["msg"] = "Nombre de Compañia debe tener entre 6 y 16 caracteres";
+          $data["status"] = false;
+          return $data;
+        }
 
-            if (!$this->validatePassword($this->password)) {
-                return 'Contraseña debe tener entre 8 y 16 caracteres';
-            }
+        if (!$this->validatePassword($this->password)) {
+          $data["msg"] = "Contraseña debe tener entre 8 y 16 caracteres";
+          $data["status"] = false;
+          return $data;
+        }
 
-            $sqlCheck = 'SELECT COUNT(*) as count FROM company WHERE CompanyName = :name OR companyEmail = :email';
-            $stmtCheck = $pdo->prepare($sqlCheck);
-            $stmtCheck->bindParam(':name', $this->name);
-            $stmtCheck->bindParam(':email', $this->email);
-            $stmtCheck->execute();
-            $result = $stmtCheck->fetch();
+        $sqlCheck = 'SELECT COUNT(*) as count FROM company WHERE CompanyName = :name OR companyEmail = :email';
+        $stmtCheck = $pdo->prepare($sqlCheck);
+        $stmtCheck->bindParam(':name', $this->name);
+        $stmtCheck->bindParam(':email', $this->email);
+        $stmtCheck->execute();
+        $result = $stmtCheck->fetch();
 
-            if ($result['count'] > 0) {
-            return 'Nombre de Usuario o Email ya registrado';
-            }
+        if ($result['count'] > 0) {
+          $data["msg"] = "Nombre de Usuario o Email ya registrado";
+          $data["status"] = false;
+          return $data;
+        }
 
-            $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
+        $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sqlInsert = 'INSERT INTO company (CompanyName, CompanyEmail, password) VALUES (:name, :email, :password)';
-            $stmtInsert = $pdo->prepare($sqlInsert);
-            $stmtInsert->bindParam(':name', $this->name);
-            $stmtInsert->bindParam(':email', $this->email);
-            $stmtInsert->bindParam(':password', $hashPassword);
+        $sqlInsert = 'INSERT INTO company (CompanyName, CompanyEmail, password) VALUES (:name, :email, :password)';
+        $stmtInsert = $pdo->prepare($sqlInsert);
+        $stmtInsert->bindParam(':name', $this->name);
+        $stmtInsert->bindParam(':email', $this->email);
+        $stmtInsert->bindParam(':password', $hashPassword);
 
-            if ($stmtInsert->execute()) {
-                return true;
-            }
-
-
-
-        } catch (\Throwable $th) {
-            throw $th;
+        if ($stmtInsert->execute()) {
+          $data["msg"] = "Compañia Registrada Exitosamente";
+          $data["status"] = true;
+          return $data;
+        }
+      } catch (\Throwable $th) {
+        throw $th;
       } finally {
         $pdo = null;
       }
     } else {
-      return 'Las contraseñas no coinciden';
+      $data["msg"] = "Las contraseñas no coinciden";
+      $data["status"] = false;
+      return $data;
     }
   }
 
-  
+
   public function loginCompany()
   {
-      $pdo = $this->getConexion()->getPdo();
-  
-      try {
-          $sql = 'SELECT * FROM company WHERE companyName = :name';
-          $stmt = $pdo->prepare($sql);
-          $stmt->bindParam(':name', $this->name);
-          $stmt->execute();
-          $company = $stmt->fetch(\PDO::FETCH_ASSOC);
-  
-          if ($company && password_verify($this->password, $company['password'])) {
-              $_SESSION['company_name'] = $company['companyName'];
-              return 'success';
-          } else {
-              return 'Nombre de compañia o contraseña incorrectos';
-          }
-      } catch (\Throwable $th) {
-          return 'Ocurrió un error durante el inicio de sesión';
-      } finally {
-          $pdo = null;
+    $pdo = $this->getConexion()->getPdo();
+
+    try {
+      $sql = 'SELECT * FROM company WHERE companyName = :name';
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':name', $this->name);
+      $stmt->execute();
+      $company = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+      if ($company && password_verify($this->password, $company['password'])) {
+        $_SESSION['company_name'] = $company['companyName'];
+        return 'success';
+      } else {
+        return 'Nombre de compañia o contraseña incorrectos';
       }
+    } catch (\Throwable $th) {
+      return 'Ocurrió un error durante el inicio de sesión';
+    } finally {
+      $pdo = null;
+    }
   }
 
   public function getAllCompany()
   {
-      try {
-          $pdo = $this->getConexion()->getPdo();
-          $query = "SELECT * FROM company";
-          $stmt = $pdo->query($query);
-          $company = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-          return $company;
-      } catch (PDOException $e) {
-          return false; // Error
-      }
+    try {
+      $pdo = $this->getConexion()->getPdo();
+      $query = "SELECT * FROM company";
+      $stmt = $pdo->query($query);
+      $company = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+      return $company;
+    } catch (PDOException $e) {
+      return false; // Error
+    }
   }
-
-
 }

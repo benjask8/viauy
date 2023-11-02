@@ -60,4 +60,34 @@ class Bus extends Conexion
       $pdo = null;
     }
   }
+
+  public function getOwnBuses()
+  {
+    try {
+      $pdo = $this->getConexion()->getPdo();
+      $query = "SELECT * FROM bus WHERE ownerBus = ?";
+      $stmt = $pdo->prepare($query);
+      $stmt->execute([$_SESSION['company_name']]);
+      $buses = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+      return $buses; // Devuelve un array, incluso si está vacío
+    } catch (PDO $e) {
+      return false; // Devuelve false en caso de error
+    }
+  }
+
+  public function dropBus($idBus)
+  {
+    $pdo = $this->getConexion()->getPdo();
+
+    try {
+      $query = "DELETE FROM bus WHERE idBus = ?";
+      $stmt = $pdo->prepare($query);
+      $stmt->execute([$idBus]);
+
+      return true; // Devolver true si la eliminación fue exitosa
+    } catch (PDO $e) {
+      return false; // Devolver false si hubo un error
+    }
+  }
 }

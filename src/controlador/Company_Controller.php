@@ -3,6 +3,7 @@
 
 use Octobyte\viauy\modelo\Petition;
 use Octobyte\viauy\modelo\Company;
+use Octobyte\viauy\modelo\Bus;
 use Octobyte\viauy\libs\Controlador;
 
 
@@ -33,8 +34,7 @@ class Company_Controller extends Controlador
       $petition = new Petition($companyName, $contactName, $contactEmail, $contactPhone, $message);
 
       if ($petition->petitionExists($contactEmail)) {
-        header("Location: index.php?c=company&m=petitionExists");
-        return;
+        $this->cargarVista("company/petition_exists");
       }
       $token = $petition->savePetition();
       if ($token) {
@@ -89,7 +89,13 @@ class Company_Controller extends Controlador
   //buses
   public function mainProfile_Buses()
   {
-    $this->cargarVista("company/profile/buses/main");
+
+    $bus = new Bus("", "", "", "");
+    $buses = $bus->getOwnBuses();
+    $data = [
+      'buses' => $buses
+    ];
+    $this->cargarVista("company/profile/buses/main", $data);
   }
 
   public function mainProfile_BusesAdd()
@@ -140,11 +146,13 @@ class Company_Controller extends Controlador
 
     if ($isConfirmed) {
       $company = new Company($name, $email, $password, $passwordC);
-      $msg = $company->saveCompany();
-
-      if ($msg == true) {
-        $msg = "Registrado con exito";
+      $data = $company->saveCompany();
+      if ($data["status"] == true) {
+        $msg = $data["msg"];
         $petition->dropPetition($token);
+      } else {
+        $msg = $data["msg"];
+        $this->cargarVista("company/signup", $msg);
       }
     } else {
       $msg = 'Token NO existe o no aprovado';

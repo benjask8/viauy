@@ -12,6 +12,16 @@
 button{
     border: none;
 }
+.msg-error{
+    color: red !important;
+}
+
+.msg-success {
+    color: rgb(11, 167, 76) !important; 
+}
+.campo-vacio{
+    border: 1px solid rgb(207, 131, 131) !important;
+}
 .title{
     text-align: center;
     font-size: 2em;

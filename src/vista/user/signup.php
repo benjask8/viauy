@@ -8,21 +8,21 @@ require 'src/vista/partials/head.php';
 
 ?>
 <style>
-  .header,
-  .footer{
-    display:none;
-  }
+.header,
+.footer {
+  display: none;
+}
 </style>
 <section class="login-container">
-  <form action="index.php?c=user&m=doSignup" class="login-form" method="POST" autocomplete="off">
-  <a href="/viauy"class="login-form-exit">
-  <span class="material-symbols-outlined">
-  close
-  </span>
-  </a>  
+  <form id="signup-form" action="index.php?c=company&m=doSignup" class="login-form" method="POST" autocomplete="off">
+    <a href="/viauy" class="login-form-exit">
+      <span class="material-symbols-outlined">
+        close
+      </span>
+    </a>
     <h2 class="login-form-title">Registrarte</h2>
 
-    <p><?= $this->datos; ?></p>
+    <p id="data-msg"><?= $this->datos; ?></p>
 
     <label for="login-input-mail">Email</label>
     <input type="email" name="email" class="login-input" id="login-input-mail" autocomplete="off"
@@ -37,7 +37,7 @@ require 'src/vista/partials/head.php';
       placeholder="Introduce tu Contraseña">
 
     <label for="login-input-password">Confirmar Contraseña</label>
-    <input type="password" name="passwordC" class="login-input" id="login-input-password" autocomplete="off"
+    <input type="password" name="passwordC" class="login-input" id="login-input-password-confirm" autocomplete="off"
       placeholder="Confirma tu Contraseña">
 
     <input type="submit" value="Registrarse">
@@ -49,6 +49,8 @@ require 'src/vista/partials/head.php';
 <script>
 cambiarTitulo("ViaUy | Registrarse")
 </script>
+<script src="public/js/user/signup.js"></script>
+
 <?php
 require 'src/vista/partials/footer.php';
 ?>
