@@ -8,10 +8,10 @@ require 'src/vista/partials/head.php';
 
 ?>
 <style>
-.header,
-.footer {
-  display: none;
-}
+  .header,
+  .footer {
+    display: none;
+  }
 </style>
 <section class="login-container">
   <form id="signup-form" action="index.php?c=company&m=doSignup" class="login-form" method="POST" autocomplete="off">
@@ -25,20 +25,16 @@ require 'src/vista/partials/head.php';
     <p id="data-msg"><?= $this->datos; ?></p>
 
     <label for="login-input-mail">Email</label>
-    <input type="email" name="email" class="login-input" id="login-input-mail" autocomplete="off"
-      placeholder="Introduce tu Email">
+    <input type="email" name="email" class="login-input" id="login-input-mail" autocomplete="off" placeholder="Introduce tu Email">
 
     <label for="login-input-username">Nombre de usuario</label>
-    <input type="text" name="username" class="login-input" id="login-input-username" autocomplete="off"
-      placeholder="Introduce tu Nombre de usuario">
+    <input type="text" name="username" class="login-input" id="login-input-username" autocomplete="off" placeholder="Introduce tu Nombre de usuario">
 
     <label for="login-input-password">Contraseña</label>
-    <input type="password" name="password" class="login-input" id="login-input-password" autocomplete="off"
-      placeholder="Introduce tu Contraseña">
+    <input type="password" name="password" class="login-input" id="login-input-password" autocomplete="off" placeholder="Introduce tu Contraseña">
 
     <label for="login-input-password">Confirmar Contraseña</label>
-    <input type="password" name="passwordC" class="login-input" id="login-input-password-confirm" autocomplete="off"
-      placeholder="Confirma tu Contraseña">
+    <input type="password" name="passwordC" class="login-input" id="login-input-password-confirm" autocomplete="off" placeholder="Confirma tu Contraseña">
 
     <input type="submit" value="Registrarse">
   </form>
@@ -47,9 +43,9 @@ require 'src/vista/partials/head.php';
 
 
 <script>
-cambiarTitulo("ViaUy | Registrarse")
+  cambiarTitulo("ViaUy | Registrarse")
 </script>
-<script src="public/js/user/signup.js"></script>
+<script src="fetch/user/signup.js"></script>
 
 <?php
 require 'src/vista/partials/footer.php';

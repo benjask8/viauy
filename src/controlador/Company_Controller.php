@@ -34,21 +34,22 @@ class Company_Controller extends Controlador
       $petition = new Petition($companyName, $contactName, $contactEmail, $contactPhone, $message);
 
       if ($petition->petitionExists($contactEmail)) {
-        $this->cargarVista("company/petition_exists");
-      }
-      $token = $petition->savePetition();
-      if ($token) {
-        // Success: Petition saved
-        $this->cargarVista("company/petition_success", $token);
+        $data = [
+          'message' => 'Petición ya existe', // Cambia el mensaje según tus necesidades
+          'status' => 'error'
+        ];
       } else {
-        // Error: Petition not saved
-        $this->cargarVista("company/petition_error");
+        $token = $petition->savePetition();
+        $data = [
+          'message' => $token, // Cambia el mensaje según tus necesidades
+          'status' => 'error'
+        ];
       }
-    } else {
-      // Display petition form
-      $this->cargarVista("company/petition");
+
+      echo json_encode($data);
     }
   }
+
 
   public function petitionExists()
   {

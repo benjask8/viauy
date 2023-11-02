@@ -1,4 +1,5 @@
 <?php
+
 namespace Octobyte\viauy\modelo;
 
 use PDOException;
@@ -12,7 +13,8 @@ class Petition extends Conexion
     private $contactPhone;
     private $message;
 
-    public function __construct($companyName, $contactName, $contactEmail, $contactPhone, $message) {
+    public function __construct($companyName, $contactName, $contactEmail, $contactPhone, $message)
+    {
         $this->companyName = $companyName;
         $this->contactName = $contactName;
         $this->contactEmail = $contactEmail;
@@ -23,32 +25,43 @@ class Petition extends Conexion
     public function savePetition()
     {
         $pdo = $this->getConexion()->getPdo();
-    
+
         try {
-            $query = "INSERT INTO companyrequest (companyName, contactName, contactEmail, contactPhone, message, token)
-                      VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $pdo->prepare($query);
-            $token = $this->generateUniqueToken(); // Llamada a la función de generación de tokens
-            $stmt->execute([$this->companyName, $this->contactName, $this->contactEmail, $this->contactPhone, $this->message, $token]);
-            return $token; // Éxito
+            $token = $this->generateUniqueToken(10);
+            $query = "INSERT INTO companyrequest (companyName, contactName, contactEmail, contactPhone, message, token) VALUES (:companyName, :contactName, :contactEmail, :contactPhone, :message, :token)";
+            $stmtInsert = $pdo->prepare($query);
+            $stmtInsert->bindParam(':companyName', $this->companyName);
+            $stmtInsert->bindParam(':contactName', $this->contactName);
+            $stmtInsert->bindParam(':contactEmail', $this->contactEmail);
+            $stmtInsert->bindParam(':contactPhone', $this->contactPhone);
+            $stmtInsert->bindParam(':message', $this->message);
+            $stmtInsert->bindParam(':token', $token);
+            $stmtInsert->execute();
+
+            return $token;
         } catch (PDOException $e) {
-            return false; // Error
+            return
+                'Error al guardar la solicitud: ' . $e->getMessage(); // Error
         }
     }
-    
+
     // Función para generar un token único similar a la función en SQL
-    private function generateUniqueToken()
+    private function generateUniqueToken($length = 10)
     {
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-0123456789';
-        $token = '';
-        while (strlen($token) < 8) {
-            $token .= $characters[rand(0, strlen($characters) - 1)];
+        if (function_exists('random_bytes')) {
+            $token = bin2hex(random_bytes($length));
+        } elseif (function_exists('openssl_random_pseudo_bytes')) {
+            $token = bin2hex(openssl_random_pseudo_bytes($length));
+        } else {
+            // Si no se dispone de una fuente segura, se puede usar esta opción (menos segura)
+            $token = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', $length)), 0, $length);
         }
+
         return $token;
     }
-    
 
-        public function petitionExists($contactEmail)
+
+    public function petitionExists($contactEmail)
     {
         $pdo = $this->getConexion()->getPdo();
 
@@ -91,31 +104,32 @@ class Petition extends Conexion
         }
     }
 
-    public function filterByStatus($filter){
+    public function filterByStatus($filter)
+    {
         try {
             $pdo = $this->getConexion()->getPdo();
-            
+
             if ($filter === 'all') {
                 $query = "SELECT * FROM companyrequest";
             } else {
                 $query = "SELECT * FROM companyrequest WHERE status = ?";
             }
-            
+
             $stmt = $pdo->prepare($query);
-    
+
             if ($filter !== 'all') {
                 $stmt->bindParam(1, $filter);
             }
-    
+
             $stmt->execute();
-    
+
             $filteredRequests = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $filteredRequests; // Devolver los registros filtrados en caso de éxito
         } catch (PDOException $e) {
             return []; // Devolver un array vacío en caso de error
         }
     }
-    
+
 
     public function confirmToken($token, $email)
     {
@@ -127,7 +141,7 @@ class Petition extends Conexion
             $stmt->execute([$token, $email]);
             $count = $stmt->fetchColumn();
 
-            return $count === 1; 
+            return $count === 1;
         } catch (PDOException $e) {
             return false;
         }
@@ -147,6 +161,4 @@ class Petition extends Conexion
             return false; // Devolver false si hubo un error
         }
     }
-
-    
 }

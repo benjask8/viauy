@@ -9,10 +9,10 @@ require 'src/vista/partials/head.php';
 
 ?>
 <style>
-.header,
-.footer {
-  display: none;
-}
+  .header,
+  .footer {
+    display: none;
+  }
 </style>
 
 <section class="login-container">
@@ -26,19 +26,17 @@ require 'src/vista/partials/head.php';
     <p id="data-msg"><?= $this->datos; ?></p>
     <i>o</i>
     <label for="login-input-mail">Nombre de Usuario</label>
-    <input type="text" name="username" class="login-input" id="login-input-mail" autocomplete="off"
-      placeholder="Introduce tu Email o Nombre de Usuario">
+    <input type="text" name="username" class="login-input" id="login-input-mail" autocomplete="off" placeholder="Introduce tu Email o Nombre de Usuario">
     <label for="login-input-password">Contraseña</label>
-    <input type="password" name="password" class="login-input login-input-password" id="login-input-password"
-      autocomplete="off" placeholder="Introduce tu Contraseña">
+    <input type="password" name="password" class="login-input login-input-password" id="login-input-password" autocomplete="off" placeholder="Introduce tu Contraseña">
     <input type="submit" value="Iniciar Sesión">
   </form>
   <p>¿No tienes una cuenta? <a href="index.php?c=user&m=signup">Regístrate</a></p>
 </section>
 <script>
-cambiarTitulo("ViaUy | Iniciar Sesión");
+  cambiarTitulo("ViaUy | Iniciar Sesión");
 </script>
-<script src="public/js/user/login.js"></script>
+<script src="fetch/user/login.js"></script>
 
 <?php
 require 'src/vista/partials/footer.php';

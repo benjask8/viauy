@@ -25,22 +25,17 @@ class Bus_Controller extends Controlador
       if ($bus->idExists()) {
         $data['status'] = 'error';
         $data['msg'] = 'Matrícula ya registrada';
-        $this->cargarVista("company/profile/buses/add", $data);
       } else {
         // El ID no está registrado, puedes guardar el nuevo registro
         if ($bus->saveBus()) {
           $data['msg'] = 'Bus Guardado con exito';
           $data['status'] = 'success';
-
-          $this->cargarVista("company/profile/buses/add", $data);
         } else {
           $data['status'] = 'error';
           $data['msg'] = 'Error al guardar el bus';
-          $this->cargarVista("company/profile/buses/add", $data);
         }
       }
-    } else {
-      $this->cargarVista("company/profile/buses/add", $data);
+      echo json_encode($data);
     }
   }
   public function deleteBus()

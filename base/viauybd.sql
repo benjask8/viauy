@@ -106,7 +106,7 @@ CREATE TABLE manages (
 );
 
 CREATE TABLE companyrequest (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     companyName VARCHAR(255),
     contactName VARCHAR(255),
     contactEmail VARCHAR(255),
@@ -116,3 +116,4 @@ CREATE TABLE companyrequest (
     status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
     submissionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
