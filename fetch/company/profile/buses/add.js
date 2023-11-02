@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
           dataMsg.classList.remove("msg_error");
           dataMsg.classList.add("msg_success");
         }
-        dataMsg.style.animation = "pop 0.4s linear .2s";
+        dataMsg.classList.toggle = "pop";
       })
       .catch((error) => {
         console.error("Error:", error);

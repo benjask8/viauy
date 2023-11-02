@@ -190,6 +190,80 @@ body {
 }
 
 /* Estilos generales para la tabla */
+.bus-options{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.buses-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.buses-search-input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.buses-search input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.buses-search input[type="submit"] {
+  background-color: #0074E4;
+  /* Color de fondo */
+  color: #fff;
+  /* Color del texto */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* Transición suave para el color de fondo */
+}
+
+.buses-search input[type="submit"]:hover {
+  background-color: #0056b3;
+  /* Cambio de color al pasar el ratón */
+}
+.add-bus-btn span{
+  font-weight: 900;
+}
+.add-bus-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  background-color: #0074E4;
+  border: 2px solid #0074E4;
+  border-radius: 25px;
+  padding: 15px 25px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.2s, border 0.2s, transform 0.2s;
+
+}
+
+.add-bus-btn:hover {
+  background-color: #0056b3;
+  /* Cambio de color al pasar el ratón */
+  border: 2px solid #0056b3;
+  /* Cambio de borde al pasar el ratón */
+  transform: scale(1.05);
+  /* Efecto de escala al pasar el ratón */
+}
 .bus-table {
   width: 100%;
   border-collapse: collapse;

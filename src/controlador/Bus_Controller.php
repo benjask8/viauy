@@ -61,4 +61,27 @@ class Bus_Controller extends Controlador
       }
     }
   }
+  public function searchBuses()
+  {
+    $data = [
+      'msg' => '',
+      'status' => '',
+      'buses' => [] // Inicializa la matriz de resultados de autobuses
+    ];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $searchTerm = $_POST['searchTerm']; // Obtén el término de búsqueda del formulario
+
+      // Realiza la búsqueda de autobuses en el modelo
+      $bus = new Bus("", "", "", "");
+      $data['buses'] = $bus->searchBuses($searchTerm);
+
+      if (empty($data['buses'])) {
+        $data['msg'] = 'No se encontraron resultados para la búsqueda.';
+        $data['status'] = 'info';
+      }
+    }
+
+    echo json_encode($data);
+  }
 }

@@ -90,4 +90,23 @@ class Bus extends Conexion
       return false; // Devolver false si hubo un error
     }
   }
+
+  public function searchBuses($searchTerm)
+  {
+    try {
+      $pdo = $this->getConexion()->getPdo();
+      $query = "SELECT * FROM bus WHERE ownerBus = :ownerBus AND (idBus LIKE :searchTerm OR model REGEXP :regexp)";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindValue(':ownerBus', $_SESSION['company_name']);
+      $stmt->bindValue(':searchTerm', "%$searchTerm%");
+      $stmt->bindValue(':regexp', $searchTerm);
+
+      $stmt->execute();
+      $buses = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+      return $buses;
+    } catch (\PDOException $e) {
+      return false; // Devuelve false en caso de error
+    }
+  }
 }
