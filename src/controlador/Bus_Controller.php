@@ -118,4 +118,35 @@ class Bus_Controller extends Controlador
       echo json_encode($data);
     }
   }
+
+  public function editBus()
+  {
+    $data = [
+      'msg' => '',
+      'status' => ''
+    ];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $busId = $_POST['busId'];
+      $model = $_POST['model'];
+      $maxCapacity = $_POST['maxCapacity'];
+
+      // Obtén el valor de las características del autobús desde el formulario
+      $hasToilet = isset($_POST['hasToilet']) ? 1 : 0;
+      $hasWiFi = isset($_POST['hasWiFi']) ? 1 : 0;
+      $hasAC = isset($_POST['hasAC']) ? 1 : 0;
+
+      $bus = new Bus($busId, $model, $maxCapacity, '', $hasToilet, $hasWiFi, $hasAC); // Modifica el constructor según tus necesidades
+
+      if ($bus->editBus()) {
+        $data['msg'] = 'Bus editado con éxito';
+        $data['status'] = 'success';
+      } else {
+        $data['status'] = 'error';
+        $data['msg'] = 'Error al editar el bus';
+      }
+
+      echo json_encode($data);
+    }
+  }
 }

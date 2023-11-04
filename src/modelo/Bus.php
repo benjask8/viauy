@@ -124,12 +124,36 @@ class Bus extends Conexion
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlSelect = 'SELECT * FROM bus WHERE idBus = :idBus';
+
+      $sqlSelect = 'SELECT * FROM bus WHERE ownerBus = :ownerBus AND idBus = :idBus;';
       $stmtSelect = $pdo->prepare($sqlSelect);
       $stmtSelect->bindParam(':idBus', $idBus);
+      $stmtSelect->bindParam(':ownerBus', $_SESSION['company_name']);
       $stmtSelect->execute();
 
       return $stmtSelect->fetch(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
+    }
+  }
+
+  public function editBus()
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    try {
+      $sqlUpdate = 'UPDATE bus SET model = :model, maximum_capacity = :maximum_capacity, hasToilet = :hasToilet, hasWiFi = :hasWiFi, hasAC = :hasAC WHERE idBus = :idBus';
+      $stmtUpdate = $pdo->prepare($sqlUpdate);
+      $stmtUpdate->bindParam(':idBus', $this->idBus);
+      $stmtUpdate->bindParam(':model', $this->model);
+      $stmtUpdate->bindParam(':maximum_capacity', $this->maximum_capacity);
+      $stmtUpdate->bindParam(':hasToilet', $this->hasToilet);
+      $stmtUpdate->bindParam(':hasWiFi', $this->hasWiFi);
+      $stmtUpdate->bindParam(':hasAC', $this->hasAC);
+
+      return $stmtUpdate->execute();
     } catch (\Throwable $th) {
       throw $th;
     } finally {
