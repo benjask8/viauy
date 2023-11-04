@@ -3,7 +3,7 @@ require 'src/vista/company/profile/partials/estructure.php';
 ?>
 
 <h1 class="title">Buses</h1>
-<h2 class="sub-title">Agregar Nuevo Bus</h2>
+<h2 class="sub-title">Editar Un Bus</h2>
 <section class="login-container">
   <form action="index.php?c=bus&m=newBus" class="login-form" method="POST" autocomplete="off">
     <a href="?c=company&m=mainProfile_buses" class="login-form-exit">
@@ -11,7 +11,7 @@ require 'src/vista/company/profile/partials/estructure.php';
         close
       </span>
     </a>
-    <h2 class="login-form-title">Agregar Bus</h2>
+    <h2 class="login-form-title">Editar Bus</h2>
     <p id="data-msg"></p>
 
     <label for="modelo">Modelo del Bus:</label>
@@ -24,17 +24,21 @@ require 'src/vista/company/profile/partials/estructure.php';
     <label for="matricula">Matrícula del Bus:</label>
     <input type="text" name="busId" class="login-input" id="matricula" required
       placeholder="Introduce la matrícula del Bus" oninput="validateInput(this)">
+
+
     <!-- Casilla de verificación para baño -->
-    <input type="checkbox" name="hasToilet" id="baño" value="1">
+    <input type="checkbox" name="hasToilet" class="hasToilet" value="1" id="baño">
     <label for="baño">¿Tiene baño?</label><br>
 
     <!-- Casilla de verificación para wifi -->
-    <input type="checkbox" name="hasWiFi" id="wifi" value="1">
+    <input type="checkbox" name="hasWiFi" class="hasWifi" value="1" id="wifi">
     <label for="wifi">¿Tiene WiFi?</label><br>
 
     <!-- Casilla de verificación para aire acondicionado -->
-    <input type="checkbox" name="hasAC" id="ac" value="1">
+    <input type="checkbox" name="hasAC" class="hasAc" value="1" id="ac">
     <label for="ac">¿Tiene Aire Acondicionado?</label><br>
+
+
     <input class="login-input" type="submit" value="Agregar Bus">
   </form>
 </section>
@@ -56,4 +60,4 @@ function validateInput(input) {
 }
 </script>
 
-<script src="fetch/company/profile/buses/add.js"></script>
+<script src="fetch/company/profile/buses/edit.js"></script>

@@ -41,8 +41,8 @@ class Company_Controller extends Controlador
       } else {
         $token = $petition->savePetition();
         $data = [
-          'message' => $token, // Cambia el mensaje según tus necesidades
-          'status' => 'error'
+          'message' => "Token: <b>" . $token . "</b>", // Cambia el mensaje según tus necesidades
+          'status' => 'success'
         ];
       }
 
@@ -91,7 +91,7 @@ class Company_Controller extends Controlador
   public function mainProfile_Buses()
   {
 
-    $bus = new Bus("", "", "", "");
+    $bus = new Bus("", "", "", "", "", "", "");
     $buses = $bus->getOwnBuses();
     $data = [
       'buses' => $buses
@@ -102,6 +102,12 @@ class Company_Controller extends Controlador
   public function mainProfile_BusesAdd()
   {
     $this->cargarVista("company/profile/buses/add");
+  }
+
+  public function mainProfile_BusesEdit()
+  {
+    $id = $_GET['id'] ?? "";
+    $this->cargarVista("company/profile/buses/edit");
   }
 
 

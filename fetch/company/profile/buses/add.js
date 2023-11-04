@@ -2,6 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const busForm = document.querySelector(".login-form");
   const dataMsg = document.getElementById("data-msg");
 
+  function validateInput(input) {
+    // Expresión regular para permitir solo números y letras (mayúsculas y minúsculas)
+    var pattern = /^[A-Za-z0-9]*$/;
+
+    if (!pattern.test(input.value)) {
+      // Si la entrada no cumple con la expresión regular, elimina los caracteres no permitidos
+      input.value = input.value.replace(/[^A-Za-z0-9]/g, "");
+    }
+  }
+
   busForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Evitar el envío automático del formulario
 
@@ -9,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const busId = document.getElementById("matricula").value.trim();
     const model = document.getElementById("modelo").value.trim();
     const maxCapacity = document.getElementById("capacidad").value.trim();
+
+    // Obtener los valores de las casillas de verificación
+    const hasToilet = document.getElementById("baño").checked ? 1 : 0;
+    const hasWiFi = document.getElementById("wifi").checked ? 1 : 0;
+    const hasAC = document.getElementById("ac").checked ? 1 : 0;
 
     // Validar campos (puedes agregar más validaciones si es necesario)
     if (!busId || !model || !maxCapacity) {
@@ -22,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("busId", busId);
     formData.append("model", model);
     formData.append("maxCapacity", maxCapacity);
+    formData.append("hasToilet", hasToilet);
+    formData.append("hasWiFi", hasWiFi);
+    formData.append("hasAC", hasAC);
 
     // Realizar una solicitud POST
     fetch("index.php?c=bus&m=newBus", {

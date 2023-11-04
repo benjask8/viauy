@@ -24,13 +24,13 @@ require 'src/vista/partials/head.php';
 
   <input type="submit" value="Submit Petition" class="form-submit">
 </form>
-
+<p style="text-align: center;" id="token-msg"></p>
 
 <script>
-cambiarTitulo("ViaUy | Solicitud De Empresa");
+  cambiarTitulo("ViaUy | Solicitud De Empresa");
 </script>
 
-<script src="fetch/company/petition.js
+<script src="fetch/company/petition1.js
 "></script>
 <?php
 require 'src/vista/partials/footer.php';

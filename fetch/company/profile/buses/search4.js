@@ -35,10 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
           row.innerHTML = `
             <td>${bus.model}</td>
             <td>${bus.idBus}</td>
-            <td>${bus.maxCapacity}</td>
+            <td>${bus.maximum_capacity}</td>
             <td>
               <a href="?c=bus&m=deleteBus&id=${bus.idBus}" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar el bus de matrícula ${bus.idBus}?')">
                 <span class="material-symbols-outlined">delete</span>
+              </a>
+              <a  href="?c=company&m=mainProfile_busesEdit&id=${bus.idBus}" class="delete-button" >
+                <span class="material-symbols-outlined">edit</span>
               </a>
             </td>
           `;

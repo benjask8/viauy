@@ -28,7 +28,7 @@ require 'src/vista/company/profile/partials/estructure.php';
       <tr>
         <td><?= $bus['model'] ?></td>
         <td><?= $bus['idBus'] ?></td>
-        <td><?= $bus['maxCapacity'] ?></td>
+        <td><?= $bus['maximum_capacity'] ?></td>
         <td>
           <a href="?c=bus&m=deleteBus&id=<?= $bus['idBus'] ?>" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar el bus de matricula <?= $bus['idBus'] ?>?')">
             <span class="material-symbols-outlined">delete</span>
@@ -46,4 +46,4 @@ require 'src/vista/company/profile/partials/estructure.php';
 require 'src/vista/company/profile/partials/endEstructure.php';
 ?>
 
-<script src="fetch/company/profile/buses/search.js"></script>
+<script src="fetch/company/profile/buses/search4.js"></script>

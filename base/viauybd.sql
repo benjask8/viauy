@@ -63,8 +63,11 @@ CREATE TABLE routeStops (
 CREATE TABLE bus (
     idBus VARCHAR(255) PRIMARY KEY,
     model VARCHAR(255),
-    maximum_capacity VARCHAR(255),
-    ownerBus VARCHAR(255)
+    maximum_capacity INT,  -- Cambiado a INT para almacenar números enteros
+    ownerBus VARCHAR(255),
+    hasToilet TINYINT(1),  -- 1 si tiene baño, 0 si no
+    hasWiFi TINYINT(1),    -- 1 si tiene WiFi, 0 si no
+    hasAC TINYINT(1)       -- 1 si tiene aire acondicionado, 0 si no
 );
 
 CREATE TABLE busFeatures (

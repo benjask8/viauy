@@ -9,15 +9,21 @@ class Bus extends Conexion
 {
   private $idBus;
   private $model;
-  private $maxCapacity;
+  private $maximum_capacity;
   private $ownerBus;
+  private $hasToilet;
+  private $hasWiFi;
+  private $hasAC;
 
-  public function __construct($idBus, $model, $maxCapacity, $ownerBus)
+  public function __construct($idBus, $model, $maximum_capacity, $ownerBus, $hasToilet, $hasWiFi, $hasAC)
   {
     $this->idBus = $idBus;
     $this->model = $model;
-    $this->maxCapacity = $maxCapacity;
+    $this->maximum_capacity = $maximum_capacity;
     $this->ownerBus = $ownerBus;
+    $this->hasToilet = $hasToilet;
+    $this->hasWiFi = $hasWiFi;
+    $this->hasAC = $hasAC;
   }
 
   public function idExists()
@@ -38,18 +44,21 @@ class Bus extends Conexion
     }
   }
 
-  //guardar un bus
+  // Guardar un bus
   public function saveBus()
   {
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlInsert = 'INSERT INTO bus (idBus, model, maxCapacity, ownerBus) VALUES (:idBus, :model, :maxCapacity, :ownerBus)';
+      $sqlInsert = 'INSERT INTO bus (idBus, model, maximum_capacity, ownerBus, hasToilet, hasWiFi, hasAC) VALUES (:idBus, :model, :maximum_capacity, :ownerBus, :hasToilet, :hasWiFi, :hasAC)';
       $stmtInsert = $pdo->prepare($sqlInsert);
       $stmtInsert->bindParam(':idBus', $this->idBus);
       $stmtInsert->bindParam(':model', $this->model);
-      $stmtInsert->bindParam(':maxCapacity', $this->maxCapacity);
+      $stmtInsert->bindParam(':maximum_capacity', $this->maximum_capacity);
       $stmtInsert->bindParam(':ownerBus', $this->ownerBus);
+      $stmtInsert->bindParam(':hasToilet', $this->hasToilet);
+      $stmtInsert->bindParam(':hasWiFi', $this->hasWiFi);
+      $stmtInsert->bindParam(':hasAC', $this->hasAC);
 
       if ($stmtInsert->execute()) {
         return true;
@@ -107,6 +116,24 @@ class Bus extends Conexion
       return $buses;
     } catch (\PDOException $e) {
       return false; // Devuelve false en caso de error
+    }
+  }
+
+  public function getBusDataById($idBus)
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    try {
+      $sqlSelect = 'SELECT * FROM bus WHERE idBus = :idBus';
+      $stmtSelect = $pdo->prepare($sqlSelect);
+      $stmtSelect->bindParam(':idBus', $idBus);
+      $stmtSelect->execute();
+
+      return $stmtSelect->fetch(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
     }
   }
 }

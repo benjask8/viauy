@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const petitionForm = document.querySelector(".company-container");
   const dataMsg = document.getElementById("data-msg");
+  const tokenMsg = document.getElementById("token-msg");
 
   petitionForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Evitar el envío automático del formulario
@@ -46,8 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         // Manejar la respuesta del controlador PHP aquí
-        if (data.message === "success") {
+        if (data.status === "success") {
           dataMsg.innerHTML = "Petición enviada con éxito";
+          tokenMsg.innerHTML = data.message;
           dataMsg.classList.remove("msg-error");
           dataMsg.classList.add("msg-success");
         } else {
@@ -61,4 +63,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-  
