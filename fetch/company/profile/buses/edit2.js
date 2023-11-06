@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
           document.querySelector(".hasAc").checked =
             busData.hasAC == "1" ? true : false;
         } else {
-          dataMsg.innerHTML = "Error al obtener los datos del bus.";
+          dataMsg.classList.add("msg_error");
+          dataMsg.classList.remove("msg_success");
+          dataMsg.innerHTML = "Bus NO Existe";
         }
       })
       .catch((error) => {

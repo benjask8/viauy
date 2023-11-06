@@ -33,7 +33,7 @@ class User extends Conexion
         $stmtCheck->execute();
         $result = $stmtCheck->fetch();
 
-        if ($result['count'] > 0) {
+        if ($result['count'] > 0) { 
           return 'Nombre de Usuario o Email ya registrado';
         }
         // Si no están registrados, proceder con el registro

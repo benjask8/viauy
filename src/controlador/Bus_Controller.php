@@ -129,12 +129,12 @@ class Bus_Controller extends Controlador
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $busId = $_POST['busId'];
       $model = $_POST['model'];
-      $maxCapacity = $_POST['maxCapacity'];
+      $maxCapacity = $_POST['maximum_capacity'];
 
       // Obtén el valor de las características del autobús desde el formulario
-      $hasToilet = isset($_POST['hasToilet']) ? 1 : 0;
-      $hasWiFi = isset($_POST['hasWiFi']) ? 1 : 0;
-      $hasAC = isset($_POST['hasAC']) ? 1 : 0;
+      $hasToilet = $_POST['hasToilet'];
+      $hasWiFi = $_POST['hasWiFi'];
+      $hasAC = $_POST['hasAC'];
 
       $bus = new Bus($busId, $model, $maxCapacity, '', $hasToilet, $hasWiFi, $hasAC); // Modifica el constructor según tus necesidades
 

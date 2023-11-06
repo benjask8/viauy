@@ -21,8 +21,7 @@ require 'src/vista/company/profile/partials/estructure.php';
     <input type="number" name="maxCapacity" class="login-input" id="capacidad" required
       placeholder="Introduce la capacidad del Bus" inputmode="numeric" pattern="[0-9]*" title="Ingrese solo números">
 
-    <label for="matricula">Matrícula del Bus:</label>
-    <input type="text" name="busId" class="login-input" id="matricula" required
+    <input type="hidden" name="busId" class="login-input" id="matricula" required
       placeholder="Introduce la matrícula del Bus" oninput="validateInput(this)">
 
 
@@ -39,7 +38,7 @@ require 'src/vista/company/profile/partials/estructure.php';
     <label for="ac">¿Tiene Aire Acondicionado?</label><br>
 
 
-    <input class="login-input" type="submit" value="Agregar Bus">
+    <input class="login-input" type="submit" value="Editar Bus">
   </form>
 </section>
 
@@ -60,4 +59,4 @@ function validateInput(input) {
 }
 </script>
 
-<script src="fetch/company/profile/buses/edit.js"></script>
+<script src="fetch/company/profile/buses/edit2.js"></script>
