@@ -161,4 +161,22 @@ class Petition extends Conexion
             return false; // Devolver false si hubo un error
         }
     }
+
+
+    public function searchCompanyRequests($searchTerm)
+    {
+        $pdo = $this->getConexion()->getPdo();
+        try {
+            $query = "SELECT * FROM companyrequest WHERE companyName LIKE :searchTerm";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindValue(':searchTerm', "%$searchTerm%");
+
+            $stmt->execute();
+            $companyRequests = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            return $companyRequests;
+        } catch (\PDOException $e) {
+            return false; // Devuelve false en caso de error
+        }
+    }
 }

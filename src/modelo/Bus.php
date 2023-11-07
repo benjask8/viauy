@@ -14,8 +14,9 @@ class Bus extends Conexion
   private $hasToilet;
   private $hasWiFi;
   private $hasAC;
+  private $seatLayout;
 
-  public function __construct($idBus, $model, $maximum_capacity, $ownerBus, $hasToilet, $hasWiFi, $hasAC)
+  public function __construct($idBus, $model, $maximum_capacity, $ownerBus, $hasToilet, $hasWiFi, $hasAC, $seatLayout)
   {
     $this->idBus = $idBus;
     $this->model = $model;
@@ -24,6 +25,7 @@ class Bus extends Conexion
     $this->hasToilet = $hasToilet;
     $this->hasWiFi = $hasWiFi;
     $this->hasAC = $hasAC;
+    $this->seatLayout = $seatLayout;
   }
 
   public function idExists()
@@ -50,7 +52,7 @@ class Bus extends Conexion
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlInsert = 'INSERT INTO bus (idBus, model, maximum_capacity, ownerBus, hasToilet, hasWiFi, hasAC) VALUES (:idBus, :model, :maximum_capacity, :ownerBus, :hasToilet, :hasWiFi, :hasAC)';
+      $sqlInsert = 'INSERT INTO bus (idBus, model, maximum_capacity, ownerBus, hasToilet, hasWiFi, hasAC, seatLayout) VALUES (:idBus, :model, :maximum_capacity, :ownerBus, :hasToilet, :hasWiFi, :hasAC, :seatLayout)';
       $stmtInsert = $pdo->prepare($sqlInsert);
       $stmtInsert->bindParam(':idBus', $this->idBus);
       $stmtInsert->bindParam(':model', $this->model);
@@ -59,6 +61,7 @@ class Bus extends Conexion
       $stmtInsert->bindParam(':hasToilet', $this->hasToilet);
       $stmtInsert->bindParam(':hasWiFi', $this->hasWiFi);
       $stmtInsert->bindParam(':hasAC', $this->hasAC);
+      $stmtInsert->bindParam(':seatLayout', $this->seatLayout);
 
       if ($stmtInsert->execute()) {
         return true;
@@ -90,15 +93,23 @@ class Bus extends Conexion
     $pdo = $this->getConexion()->getPdo();
 
     try {
-      $query = "DELETE FROM bus WHERE idBus = ?";
-      $stmt = $pdo->prepare($query);
-      $stmt->execute([$idBus]);
+      // Verificar si el bus existe antes de eliminarlo
+      $busData = $this->getBusDataById($idBus);
 
-      return true; // Devolver true si la eliminación fue exitosa
-    } catch (PDO $e) {
+      if ($busData) {
+        $query = "DELETE FROM bus WHERE idBus = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$idBus]);
+
+        return true; // Devolver true si la eliminación fue exitosa
+      } else {
+        return false; // Devolver false si el bus no existe
+      }
+    } catch (\PDOException $e) {
       return false; // Devolver false si hubo un error
     }
   }
+
 
   public function searchBuses($searchTerm)
   {
@@ -144,7 +155,7 @@ class Bus extends Conexion
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlUpdate = 'UPDATE bus SET model = :model, maximum_capacity = :maximum_capacity, hasToilet = :hasToilet, hasWiFi = :hasWiFi, hasAC = :hasAC WHERE idBus = :idBus';
+      $sqlUpdate = 'UPDATE bus SET  model = :model, maximum_capacity = :maximum_capacity, hasToilet = :hasToilet, hasWiFi = :hasWiFi, hasAC = :hasAC, seatLayout = :seatLayout WHERE idBus = :idBus';
       $stmtUpdate = $pdo->prepare($sqlUpdate);
       $stmtUpdate->bindParam(':idBus', $this->idBus);
       $stmtUpdate->bindParam(':model', $this->model);
@@ -152,6 +163,7 @@ class Bus extends Conexion
       $stmtUpdate->bindParam(':hasToilet', $this->hasToilet);
       $stmtUpdate->bindParam(':hasWiFi', $this->hasWiFi);
       $stmtUpdate->bindParam(':hasAC', $this->hasAC);
+      $stmtUpdate->bindParam(':seatLayout', $this->seatLayout);
 
       return $stmtUpdate->execute();
     } catch (\Throwable $th) {

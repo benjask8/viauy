@@ -24,6 +24,11 @@ require 'src/vista/company/profile/partials/estructure.php';
     <label for="matricula">Matrícula del Bus:</label>
     <input type="text" name="busId" class="login-input" id="matricula" required
       placeholder="Introduce la matrícula del Bus" oninput="validateInput(this)">
+
+    <label for="asientos">Disposición de los Asientos (Ejemplo: 2,4,2):</label>
+    <input type="text" name="seatLayout" class="login-input" id="seatLayout" required
+      placeholder="Introduce la disposición de los asientos">
+
     <!-- Casilla de verificación para baño -->
     <input type="checkbox" name="hasToilet" id="baño" value="1">
     <label for="baño">¿Tiene baño?</label><br>
@@ -37,7 +42,14 @@ require 'src/vista/company/profile/partials/estructure.php';
     <label for="ac">¿Tiene Aire Acondicionado?</label><br>
     <input class="login-input" type="submit" value="Agregar Bus">
   </form>
+  <div id="seat-status">
+    Asientos disponibles: <span id="available-seats">0</span><br>
+  </div>
+
+  <p class="title">Vista previa Asientos</p>
+  <div class="seat-preview" id="seat-preview"></div>
 </section>
+
 
 <?php
 require 'src/vista/company/profile/partials/endEstructure.php';
@@ -57,3 +69,4 @@ function validateInput(input) {
 </script>
 
 <script src="fetch/company/profile/buses/add.js"></script>
+<script src="fetch/company/profile/buses/seatLayout.js"></script>

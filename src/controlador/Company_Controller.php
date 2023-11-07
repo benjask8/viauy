@@ -91,7 +91,7 @@ class Company_Controller extends Controlador
   public function mainProfile_Buses()
   {
 
-    $bus = new Bus("", "", "", "", "", "", "");
+    $bus = new Bus("", "", "", "", "", "", "", "");
     $buses = $bus->getOwnBuses();
     $data = [
       'buses' => $buses

@@ -327,3 +327,17 @@ body {
 .delete-button:hover {
   background-color: #CC0000;
 }
+
+
+/* asientos */
+.seat{
+  background-color: red;
+  margin: 2px;
+  padding: 4px;
+  border-radius: 5px;
+
+}
+.seat-preview{
+  display: flex;
+  justify-content: center;
+}

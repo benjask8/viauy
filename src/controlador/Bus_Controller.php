@@ -24,8 +24,9 @@ class Bus_Controller extends Controlador
       $hasToilet = isset($_POST['hasToilet']) ? 1 : 0;
       $hasWiFi = isset($_POST['hasWiFi']) ? 1 : 0;
       $hasAC = isset($_POST['hasAC']) ? 1 : 0;
+      $seatLayout = $_POST['seatLayout'];
 
-      $bus = new Bus($busId, $model, $maxCapacity, $ownerBus, $hasToilet, $hasWiFi, $hasAC);
+      $bus = new Bus($busId, $model, $maxCapacity, $ownerBus, $hasToilet, $hasWiFi, $hasAC, $seatLayout);
 
       if ($bus->idExists()) {
         $data['status'] = 'error';
@@ -47,17 +48,17 @@ class Bus_Controller extends Controlador
   {
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
       $idBus = $_GET['id'];
-      $busModel = new Bus("", "", "", "", "", "", ""); // Reemplaza 'Bus' con el nombre de tu clase de modelo
+      $busModel = new Bus("", "", "", "", "", "", "", ""); // Reemplaza 'Bus' con el nombre de tu clase de modelo
 
       if ($busModel->dropBus($idBus)) {
-        $bus = new Bus("", "", "", "", "", "", "");
+        $bus = new Bus("", "", "", "", "", "", "", "");
         $buses = $bus->getOwnBuses();
         $data['buses'] = $buses;
 
         $data['msg'] = 'Bus Eliminado Con Exito';
         $this->cargarVista("company/profile/buses/main", $data);
       } else {
-        $bus = new Bus("", "", "", "", "", "", "");
+        $bus = new Bus("", "", "", "", "", "", "", "");
         $buses = $bus->getOwnBuses();
         $data['buses'] = $buses;
 
@@ -78,7 +79,7 @@ class Bus_Controller extends Controlador
       $searchTerm = $_POST['searchTerm']; // Obtén el término de búsqueda del formulario
 
       // Realiza la búsqueda de autobuses en el modelo
-      $bus = new Bus("", "", "", "", "", "", "");
+      $bus = new Bus("", "", "", "", "", "", "", "");
       $data['buses'] = $bus->searchBuses($searchTerm);
 
       if (empty($data['buses'])) {
@@ -95,7 +96,7 @@ class Bus_Controller extends Controlador
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
       $idBus = $_GET['id'];
-      $busModel = new Bus("", "", "", "", "", "", ""); // Reemplaza 'Bus_Model' con el nombre de tu modelo
+      $busModel = new Bus("", "", "", "", "", "", "", ""); // Reemplaza 'Bus_Model' con el nombre de tu modelo
 
       $busData = $busModel->getBusDataById($idBus);
 
@@ -135,8 +136,9 @@ class Bus_Controller extends Controlador
       $hasToilet = $_POST['hasToilet'];
       $hasWiFi = $_POST['hasWiFi'];
       $hasAC = $_POST['hasAC'];
+      $seatLayout = $_POST['seatLayout'];
 
-      $bus = new Bus($busId, $model, $maxCapacity, '', $hasToilet, $hasWiFi, $hasAC); // Modifica el constructor según tus necesidades
+      $bus = new Bus($busId, $model, $maxCapacity, '', $hasToilet, $hasWiFi, $hasAC, $seatLayout); // Modifica el constructor según tus necesidades
 
       if ($bus->editBus()) {
         $data['msg'] = 'Bus editado con éxito';

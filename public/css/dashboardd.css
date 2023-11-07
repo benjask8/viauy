@@ -2,7 +2,7 @@
 /* font-family: 'Poppins', sans-serif; */
 :root{
     --aside-w:190px;
-    --header-h:45px;
+    --header-h:75px;
     --color1: rgb(37, 137, 197); /* Tonos de azul más brillante */
     --color2: rgb(58, 168, 242);
     --color3: rgb(102, 122, 158); /* Azul-grisáceo */
@@ -12,9 +12,9 @@
     --color7: rgb(240, 240, 240);
     --color8: rgb(117, 135, 163);
     --color9: rgb(74, 81, 95);
-    --main-bg-color: rgb(238, 243, 248); /* Fondo principal más claro */
-    --main-bg-color2: rgb(165, 193, 242); /* Fondo secundario más suave */
-    --main-bg-color3: rgb(37, 137, 197); 
+    --main-bg-color: rgb(37, 37, 37); /* Fondo principal más claro */
+    --main-bg-color2: rgb(255, 255, 255); /* Fondo secundario más suave */
+    --main-bg-color3: rgb(255, 255, 255); 
 
 
     --time:.2s;
@@ -27,7 +27,9 @@
     
 }
 
-
+.title{
+    text-align: center;
+}
 .material-symbols-outlined {
     font-variation-settings:
     'FILL' 1,
@@ -128,6 +130,7 @@ body{
     width: max-content;
     margin: 10px 20px;
     background-color: transparent;
+    border: none;
     color: #fff;
 }
   
@@ -140,28 +143,36 @@ body{
 .aside-links-subtitle{
     text-transform: uppercase;
     color: var(--main-bg-color2);
-    font-size: .7em;
+    font-size: 1.1em;
     padding: 10px 20px;
     font-weight: 900;
 }
 .aside-links-title:hover{
-   color: rgba(0, 0, 0, 0.541);
+   color: rgb(73, 31, 187);
 }
 
 .aside-links-title{
     transition: all var(--time);
     text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.267);
-    font-size: 1.2em;
+    color: #fff;
+    font-size: 2.2em;
     padding: 10px 20px;
     font-weight: 900;
 }
+.aside-links-title img{
+    width: 200px;
+    transition: all .2s;
+}
+.aside-links-title img:hover{
+    transform: scale(1.1);
+}
+
 .aside-links-li{
     transition: all var(--time);
 }
 .aside-links-li-ul-li-a:hover{
     background-color: var(--main-bg-color3);
-    color: #fff;
+    color: var(--main-bg-color1);
 }
 .aside-links-li-ul-li{
     width: 100%;
@@ -171,11 +182,11 @@ body{
     width: 100%;
     display: inline-block;
     padding: 10px 20px;
-    border-radius: var(--radius);
+    border-radius: 4px;
     transition: all var(--time);
     font-weight: 900;
-    color: var(--main-bg-color3);
-    font-size: .8em;
+    color:#fff;
+    font-size: 1.2em;
 }
 
 .aside-links-li-ul-li-a i{
@@ -185,9 +196,15 @@ body{
 
 .aside-menu{
     background-color: transparent;
+    border: none;
+    color: #fff;
     cursor: pointer;
 }
 
+.aside-menu span{
+    font-size: 3em;
+
+}
 .dashboard-header{
     background-color: var(--main-bg-color);
     border-bottom: var(--normal-border);
@@ -238,27 +255,116 @@ body{
 .dashboard-header-profile a{
     display: flex;
     justify-content: center;
-    color: var(--color9);
-}
-.dashboard-header-profile{
-
-}
-
-.username-span{
-    color: var(--color8);
+    align-items: center;
+    color:#fff;
+    font-size: 1.5em;
 }
 
+/* Estilos para la tabla de solicitudes */
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
+.request-table th {
+    background-color: var(--main-bg-color);
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+}
+
+.request-table th,
+.request-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.request-table tbody tr{
+}
+.request-table tbody tr:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.request-table tbody td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilos para los botones de acción */
+.request-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-select {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.submit-button {
+    padding: 6px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para mensajes */
+#data-msg {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Estilos para el formulario de búsqueda */
+.search-form {
+    margin: 20px 0;
+    text-align: right;
+}
+
+
+.search-form input[type="search"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
 
 /* Estilos generales */
 .cards-container{
-    height: 90vh;
-    overflow-y: scroll;
-    padding: 20px;
-
+    width: 100%;
 }
 .page-container {
-    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -270,7 +376,7 @@ body{
 
 /* Estilos para cada tarjeta de solicitud */
 .request-approved{
-    background-color: rgb(225, 253, 227) ;
+    background-color: rgb(225, 253, 227);
 }
 .request-rejected{
     background-color: rgb(252, 209, 209);
@@ -296,39 +402,44 @@ body{
     top: 20px;
     right: 20px;
 }
+.request-card {
+    background-color: #f5f5f5;
+    /* Fondo de la tarjeta */
+    border: 1px solid #ccc;
+    /* Borde de la tarjeta */
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+    /* Espacio entre tarjetas */
+}
 
-.request-card strong{
-    color: rgba(0, 0, 0, 0.63) ;
-    word-break: break-all;
-    padding: 5px 0px;
+.request-table {
     width: 100%;
-    white-space: pre-wrap; /* Esto permite que los espacios en blanco y los saltos de línea se respeten */
-    overflow-wrap: break-word; /* Esto ayuda a evitar que las palabras se desborden */
-    overflow: hidden; /* Esto oculta el contenido que se desborda del ancho */
+    /* Tabla ocupa todo el ancho de la tarjeta */
+    border-collapse: collapse;
+    /* Fusionar bordes de celdas */
 }
 
-.request-card p,
-.request-card pre {
-    color: rgba(0, 0, 0, 0.829) ;
-    display: flex;
-    padding-left: 20px;
-    padding-bottom: 10px;
+.request-table tr {
+    border-bottom: 1px solid #ccc;
+    /* Borde inferior de cada fila */
 }
 
+.request-table td {
+    padding: 10px;
+    vertical-align: top;
+    /* Alinear contenido superior de celda */
+}
 
-.request-title {
-    font-size: 20px;
-    margin-bottom: 10px;
+.request-table td:first-child {
+    font-weight: bold;
+    /* Estilo en negrita para la primera celda */
 }
-.request-title-admin{
-    display: flex;
-    align-items: center;
-    color: rgb(54, 122, 248);
-}
-.request-form {
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
+
+.action-select,
+.submit-button {
+    margin-top: 10px;
+    /* Espacio entre el formulario y el contenido de la solicitud */
 }
 
 .action-select {
@@ -350,12 +461,6 @@ body{
 
 .submit-button:hover {
     background-color: #0056b3;
-}
-
-/* Estilos para el formulario */
-.request-form label {
-    font-weight: bold;
-    margin-right: 10px;
 }
 /* ... Rest of your styles ... */
 

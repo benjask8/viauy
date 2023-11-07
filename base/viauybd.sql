@@ -67,7 +67,8 @@ CREATE TABLE bus (
     ownerBus VARCHAR(255),
     hasToilet TINYINT(1),  -- 1 si tiene baño, 0 si no
     hasWiFi TINYINT(1),    -- 1 si tiene WiFi, 0 si no
-    hasAC TINYINT(1)       -- 1 si tiene aire acondicionado, 0 si no
+    hasAC TINYINT(1),       -- 1 si tiene aire acondicionado, 0 si no
+    seatLayout VARCHAR(255)
 );
 
 CREATE TABLE busFeatures (
