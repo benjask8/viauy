@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
           document.getElementById("modelo").value = busData.model;
           document.getElementById("capacidad").value = busData.maximum_capacity;
           document.getElementById("matricula").value = busData.idBus;
+          document.getElementById("seatLayout").value = busData.seatLayout;
 
           // Actualiza las casillas de verificación de comodidades
           document.querySelector(".hasToilet").checked =
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const busId = document.getElementById("matricula").value.trim();
     const model = document.getElementById("modelo").value.trim();
     const maxCapacity = document.getElementById("capacidad").value.trim();
+    const seatLayout = document.getElementById("seatLayout").value; // Obtener seatLayout
 
     // Obtener los valores de las casillas de verificación
     const hasToilet = document.getElementById("baño").checked ? 1 : 0;
@@ -50,9 +52,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const hasAC = document.getElementById("ac").checked ? 1 : 0;
 
     // Validar campos (puedes agregar más validaciones si es necesario)
-    if (!busId || !model || !maxCapacity) {
-      dataMsg.innerHTML = "Complete todos los campos.";
+    if (!busId || !model || !maxCapacity || !validateSeatLayout(seatLayout)) {
+      dataMsg.innerHTML =
+        "Complete todos los campos y asegúrese de que la disposición de asientos sea válida.";
       addPopAnimation(); // Aplicar animación "pop" aquí
+      return;
+    }
+
+    // Validar seatLayout similar a validateSeatLayout en add.js
+    const layoutString = seatLayout;
+    const maxCapacityValue = parseInt(maxCapacity, 10);
+    const seatArray = layoutString.split(",").map(Number);
+    const totalSeats = seatArray.reduce((a, b) => a + b, 0);
+    const availableSeats = maxCapacityValue - totalSeats;
+    const isValid =
+      seatArray.every((num) => num <= 8) && totalSeats == maxCapacityValue;
+
+    if (!isValid) {
+      dataMsg.innerHTML =
+        "La disposición de asientos no es válida. Verifique que ningún número supere 8 y que la suma no exceda la capacidad del bus.";
+      addPopAnimation();
       return;
     }
 
@@ -64,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("hasToilet", hasToilet);
     formData.append("hasWiFi", hasWiFi);
     formData.append("hasAC", hasAC);
+    formData.append("seatLayout", seatLayout);
 
     // Realizar una solicitud POST
     fetch(`index.php?c=bus&m=editBus&id=${busId}`, {

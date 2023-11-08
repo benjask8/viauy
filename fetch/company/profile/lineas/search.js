@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const busForm = document.querySelector(".buses-search");
+  const lineForm = document.querySelector(".buses-search");
   const searchInput = document.querySelector(".buses-search-input");
   const dataMsg = document.getElementById("data-msg");
   const searchButton = document.querySelector(
@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const performSearch = () => {
     const searchTerm = searchInput.value.trim();
 
-    // Realizar una solicitud POST para buscar autobuses
-    fetch("index.php?c=bus&m=searchBuses", {
+    // Realizar una solicitud POST para buscar líneas
+    fetch("index.php?c=line&m=searchLines", {
       method: "POST",
       body: new URLSearchParams({ searchTerm }),
     })
@@ -30,21 +30,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const tableBody = document.querySelector(".bus-table tbody");
         tableBody.innerHTML = "";
 
-        data.buses.forEach((bus) => {
+        data.lines.forEach((line) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${bus.model}</td>
-            <td>${bus.idBus}</td>
-            <td>${bus.maximum_capacity}</td>
-            <td>
-              <a href="?c=bus&m=deleteBus&id=${bus.idBus}" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar el bus de matrícula ${bus.idBus}?')">
-                <span class="material-symbols-outlined">delete</span>
-              </a>
-              <a  href="?c=company&m=mainProfile_busesEdit&id=${bus.idBus}" class="delete-button" >
-                <span class="material-symbols-outlined">edit</span>
-              </a>
-            </td>
-          `;
+        <td>${line.origin}</td>
+        <td>${line.destination}</td>
+        <td>${line.departureTime}</td>
+        <td>${line.arrivalTime}</td>
+        <td>${line.idBus}</td>
+        <td>
+          <a href="?c=bus&m=deleteLine&id=${line.idLine}" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar la línea?')">
+            <span class="material-symbols-outlined">delete</span>
+          </a>
+          <a href="?c=bus&m=editLine&id=${line.idLine}" class="edit-button">
+            <span class="material-symbols-outlined">edit</span>
+          </a>
+        </td>
+      `;
+
           tableBody.appendChild(row);
         });
       })

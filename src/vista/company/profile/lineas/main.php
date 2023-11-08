@@ -18,26 +18,16 @@ require 'src/vista/company/profile/partials/estructure.php';
 <table class="bus-table">
   <thead>
     <tr>
-      <th>Modelo</th>
-      <th>Matrícula</th>
-      <th>Capacidad Máxima</th>
+      <th>Origen</th>
+      <th>Destino</th>
+      <th>Ida</th>
+      <th>Vuelta</th>
+      <th>Bus</th>
       <th>Opciones</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($datos['buses'] as $bus) : ?>
-    <tr>
-      <td><?= $bus['model'] ?></td>
-      <td><?= $bus['idBus'] ?></td>
-      <td><?= $bus['maxCapacity'] ?></td>
-      <td>
-        <a href="?c=bus&m=deleteBus&id=<?= $bus['idBus'] ?>" class="delete-button"
-          onclick="return confirm('¿Estás seguro de eliminar el bus de matricula <?= $bus['idBus'] ?>?')">
-          <span class="material-symbols-outlined">delete</span>
-        </a>
-      </td>
-    </tr>
-    <?php endforeach; ?>
+
 
   </tbody>
 </table>
@@ -47,4 +37,4 @@ require 'src/vista/company/profile/partials/estructure.php';
 require 'src/vista/company/profile/partials/endEstructure.php';
 ?>
 
-<script src="fetch/company/profile/buses/search.js"></script>
+<script src="fetch/company/profile/lineas/search.js"></script>

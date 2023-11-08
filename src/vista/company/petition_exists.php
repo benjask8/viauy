@@ -1,1 +1,0 @@
-<h1>Compañia que ya registro una solicutid</h1>

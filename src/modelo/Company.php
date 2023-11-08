@@ -3,6 +3,7 @@
 namespace Octobyte\viauy\modelo;
 
 use PDOException;
+use PDO;
 use Octobyte\viauy\libs\Conexion;
 
 class Company extends Conexion
@@ -128,6 +129,25 @@ class Company extends Conexion
       return $company;
     } catch (PDOException $e) {
       return false; // Error
+    }
+  }
+
+  public function getCompanyDataByName($name)
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    try {
+
+      $sqlSelect = 'SELECT * FROM company WHERE companyName = :name;';
+      $stmtSelect = $pdo->prepare($sqlSelect);
+      $stmtSelect->bindParam(':name', $name);
+      $stmtSelect->execute();
+
+      return $stmtSelect->fetch(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
     }
   }
 }

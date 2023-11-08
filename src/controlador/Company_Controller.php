@@ -113,6 +113,10 @@ class Company_Controller extends Controlador
 
 
   //lineas
+  public function profile()
+  {
+    $this->cargarVista("company/profile");
+  }
   public function mainProfile_Lineas()
   {
     $this->cargarVista("company/profile/lineas/main");
@@ -133,7 +137,7 @@ class Company_Controller extends Controlador
 
     if ($loginResult === 'success') {
       // Inicio de sesión exitoso, redirigir a una página de bienvenida
-      header("Location: index.php?c=company&m=welcome&msg=bienvenido");
+      header("Location: index.php?c=company&m=mainProfile");
       exit;
     } else {
       $this->cargarVista("company/login", $loginResult);
@@ -166,5 +170,34 @@ class Company_Controller extends Controlador
     }
 
     $this->cargarVista("company/signup", $msg);
+  }
+
+  public function getCompanyData()
+  {
+    $data = [];
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['name'])) {
+      $name = $_GET['name'];
+      $company = new Company("", "", "", "", "", "", "", ""); // Reemplaza 'Bus_Model' con el nombre de tu modelo
+
+      $companyData = $company->getCompanyDataByName($name);
+
+      $data = [
+        'company' => $companyData
+      ];
+
+      if ($companyData) {
+        $data['status'] = 'success';
+        $data['msg'] = 'Todo Salio Bien.';
+        echo json_encode($data);
+      } else {
+        $data['status'] = 'error';
+        $data['msg'] = 'Compania No Encontrado';
+        echo json_encode($data);
+      }
+    } else {
+      $data['status'] = 'error';
+      $data['msg'] = 'solicitud Incorrecta';
+      echo json_encode($data);
+    }
   }
 }

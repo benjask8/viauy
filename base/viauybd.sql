@@ -48,6 +48,17 @@ CREATE TABLE route (
     arrivalTime TIME
 );
 
+
+CREATE TABLE busLine (
+    idLine INT AUTO_INCREMENT PRIMARY KEY,
+    origin VARCHAR(255),
+    destination VARCHAR(255),
+    departureTime TIME,
+    arrivalTime TIME,
+    idBus VARCHAR(255),
+    ownerLine VARCHAR(255)
+);
+
 CREATE TABLE routeStreets (
     idRoute INT PRIMARY KEY,
     street VARCHAR(255),

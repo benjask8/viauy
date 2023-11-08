@@ -20,42 +20,42 @@ class User extends Conexion
     $this->passwordC = $passwordC;
   }
 
-    public function saveUser()
-    {
-      $pdo = Conexion::getConexion()->getPdo();
+  public function saveUser()
+  {
+    $pdo = Conexion::getConexion()->getPdo();
 
-      try {
-        // Verificar si el nombre de usuario o el correo electrónico ya están registrados
-        $sqlCheck = 'SELECT COUNT(*) as count FROM user WHERE userName = :username OR email = :email';
-        $stmtCheck = $pdo->prepare($sqlCheck);
-        $stmtCheck->bindParam(':username', $this->username);
-        $stmtCheck->bindParam(':email', $this->email);
-        $stmtCheck->execute();
-        $result = $stmtCheck->fetch();
+    try {
+      // Verificar si el nombre de usuario o el correo electrónico ya están registrados
+      $sqlCheck = 'SELECT COUNT(*) as count FROM user WHERE userName = :username OR email = :email';
+      $stmtCheck = $pdo->prepare($sqlCheck);
+      $stmtCheck->bindParam(':username', $this->username);
+      $stmtCheck->bindParam(':email', $this->email);
+      $stmtCheck->execute();
+      $result = $stmtCheck->fetch();
 
-        if ($result['count'] > 0) { 
-          return 'Nombre de Usuario o Email ya registrado';
-        }
-        // Si no están registrados, proceder con el registro
-        $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
-
-        $sqlInsert = 'INSERT INTO user (userName, email, password) VALUES (:username, :email, :password)';
-        $stmtInsert = $pdo->prepare($sqlInsert);
-        $stmtInsert->bindParam(':username', $this->username);
-        $stmtInsert->bindParam(':email', $this->email);
-        $stmtInsert->bindParam(':password', $hashPassword);
-
-        if ($stmtInsert->execute()) {
-          $msg = 'Usuario registrado con éxito';
-        }
-
-        return $msg;
-      } catch (\Throwable $th) {
-        throw $th;
-      } finally {
-        $pdo = null;
+      if ($result['count'] > 0) {
+        return 'Nombre de Usuario o Email ya registrado';
       }
+      // Si no están registrados, proceder con el registro
+      $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
+
+      $sqlInsert = 'INSERT INTO user (userName, email, password) VALUES (:username, :email, :password)';
+      $stmtInsert = $pdo->prepare($sqlInsert);
+      $stmtInsert->bindParam(':username', $this->username);
+      $stmtInsert->bindParam(':email', $this->email);
+      $stmtInsert->bindParam(':password', $hashPassword);
+
+      if ($stmtInsert->execute()) {
+        $msg = 'Usuario registrado con éxito';
+      }
+
+      return $msg;
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
     }
+  }
 
 
   public function loginUser()
@@ -71,6 +71,7 @@ class User extends Conexion
 
       if ($user && password_verify($this->password, $user['password'])) {
         $_SESSION['user_name'] = $user['username'];
+        $_SESSION['user_email'] = $user['email'];
         $_SESSION['is_admin'] = $user['is_admin'];
         // Verificar si el usuario es administrador y establecer $_SESSION['esAdmin']
         // Aquí realizarías la lógica necesaria para determinar si es administrador o no

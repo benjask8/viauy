@@ -16,7 +16,7 @@ if (!isset($_SESSION['company_name'])) {
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-  <link rel="stylesheet" href="public/css/company123.css">
+  <link rel="stylesheet" href="public/css/company.css">
   <title>Dashboard Compañia</title>
 </head>
 
@@ -38,6 +38,10 @@ if (!isset($_SESSION['company_name'])) {
         class="material-symbols-outlined">library_books</span>Blog</a>
   </section>
 
+  <!-- Header con el logo de la empresa -->
+  <header class="header">
+    <a href="/viauy"><img src="public/images/logo.png" alt="Logo de la Empresa"></a>
+  </header>
 
   <script>
   function toggleMenu() {

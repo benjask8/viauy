@@ -120,6 +120,7 @@ class Bus_Controller extends Controlador
     }
   }
 
+
   public function editBus()
   {
     $data = [
@@ -128,6 +129,7 @@ class Bus_Controller extends Controlador
     ];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // Obtén los valores de los campos del formulario
       $busId = $_POST['busId'];
       $model = $_POST['model'];
       $maxCapacity = $_POST['maximum_capacity'];
@@ -138,17 +140,29 @@ class Bus_Controller extends Controlador
       $hasAC = $_POST['hasAC'];
       $seatLayout = $_POST['seatLayout'];
 
-      $bus = new Bus($busId, $model, $maxCapacity, '', $hasToilet, $hasWiFi, $hasAC, $seatLayout); // Modifica el constructor según tus necesidades
-
-      if ($bus->editBus()) {
-        $data['msg'] = 'Bus editado con éxito';
-        $data['status'] = 'success';
-      } else {
+      // Validaciones en el lado del servidor
+      if (empty($busId) || empty($model) || empty($maxCapacity) || !is_numeric($maxCapacity) || !$this->isValidSeatLayout($seatLayout)) {
         $data['status'] = 'error';
-        $data['msg'] = 'Error al editar el bus';
+        $data['msg'] = 'Datos de entrada no válidos.';
+      } else {
+        $bus = new Bus($busId, $model, $maxCapacity, '', $hasToilet, $hasWiFi, $hasAC, $seatLayout); // Modifica el constructor según tus necesidades
+
+        if ($bus->editBus()) {
+          $data['msg'] = 'Bus editado con éxito';
+          $data['status'] = 'success';
+        } else {
+          $data['status'] = 'error';
+          $data['msg'] = 'Error al editar el bus';
+        }
       }
 
       echo json_encode($data);
     }
+  }
+
+  public function isValidSeatLayout($layout)
+  {
+    $pattern = '/^\d+(,\d{1,8})*$/';
+    return preg_match($pattern, $layout);
   }
 }

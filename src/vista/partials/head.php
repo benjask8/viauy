@@ -13,16 +13,18 @@
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
 </head>
 
 <body>
   <?php if (isset($_GET['msg'])) : ?>
-    <div class="floating-msg">
-      <div class="message"><?= $_GET['msg']; ?></div>
-      <b class="close-btn" onclick="closeMessage()"><i class="fa-solid fa-xmark"></i></b>
-    </div>
+  <div class="floating-msg">
+    <div class="message"><?= $_GET['msg']; ?></div>
+    <b class="close-btn" onclick="closeMessage()"><i class="fa-solid fa-xmark"></i></b>
+  </div>
   <?php endif; ?>
 
   <header class="header">
@@ -33,7 +35,7 @@
     </button>
     <nav class="header-logo-bar">
       <h1 class="header-logo">
-        <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> viaUy</a>
+        <a href="/viauy" class="header-logo-a"><img src="public/images/logo.png" alt=""></a>
       </h1>
     </nav>
     <nav class="header-actions">
@@ -49,7 +51,8 @@
       </button>
       <ul class="header-links-ul">
         <h1 class="header-links-logo">
-          <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin" style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> viaUy</a>
+          <a href="/viauy" class="header-logo-a"><i class="fa-solid fa-location-pin"
+              style="font-size:.9em;color:hsl(44, 100%, 50%);"></i> viaUy</a>
         </h1>
         <li class="header-links-li header-links-li-m header-links-li-title">Opciones</a></li>
         <li class="header-links-li"><a href="/viauy/"><i class="fa-solid fa-house"></i>Inicio</a></li>
@@ -63,24 +66,27 @@
         <li class="header-links-li"><a href=""><i class="fa-solid fa-route"></i>Rutas</a></li>
         <li class="header-links-li header-links-li-m header-links-li-title">Ususario</a></li>
         <?php if (isset($_SESSION['user_name'])) : ?>
-          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['user_name'] ?></a></li>
-          <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
+        <li class="header-links-li header-links-li-m"><a
+            href="index.php?c=user&m=profile">@<?= $_SESSION['user_name'] ?></a></li>
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=logout">Cerrar Sesion</a></li>
 
-          <?php if ($_SESSION['is_admin'] === 1) : ?>
-            <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-            <li class="header-links-li header-links-li-m"><a href="index.php?c=admin&m=dashboard" title="">Dashboard</a>
-            </li>
-          <?php endif; ?>
+        <?php if ($_SESSION['is_admin'] === 1) : ?>
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=admin&m=dashboard" title="">Dashboard</a>
+        </li>
+        <?php endif; ?>
         <?php else : ?>
-          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=login"><i
+              class="fa-solid fa-user"></i>Iniciar Sesion</a></li>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['company_name'])) : ?>
 
-          <li class="header-links-li header-links-li-m"><a href="index.php?c=user&m=profile">@<?= $_SESSION['company_name'] ?></a></li>
-          <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
-          <li class="header-links-li header-links-li-m"><a href="index.php?c=company&m=logout">Cerrar Sesion</a></li>
+        <li class="header-links-li header-links-li-m"><a
+            href="index.php?c=user&m=profile">@<?= $_SESSION['company_name'] ?></a></li>
+        <li class="header-links-li header-links-li-m header-links-li-space"></a></li>
+        <li class="header-links-li header-links-li-m"><a href="index.php?c=company&m=logout">Cerrar Sesion</a></li>
         <?php endif; ?>
 
       </ul>
@@ -98,7 +104,8 @@
 
     <section class="header-btns">
       <form class="header-search-form" id="header-search-form" action="?c=actions&m=buscar" method="post">
-        <input placeholder="Buscar..." type="search" name="searchTerm" class="header-search-input" id="header-search-input">
+        <input placeholder="Buscar..." type="search" name="searchTerm" class="header-search-input"
+          id="header-search-input">
         <button type="submit" class="header-search-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -110,32 +117,51 @@
         buscar
       </button>
       <?php if (isset($_SESSION['user_name'])) : ?>
-        <button class="header-btns-button header-btns-btn" id="open-user-options">
-          Usuario
-        </button>
+      <button class="header-btns-button header-btns-btn" id="open-user-options">
+        Usuario
+      </button>
       <?php else : ?>
-        <button class="header-btns-button header-btns-btn" id="open-user-options">
-          iniciar sesion
-        </button>
+      <button class="header-btns-button header-btns-btn" id="open-user-options">
+        iniciar sesion
+      </button>
       <?php endif; ?>
 
       <nav class="user-options" id="user-options">
-        <?php if (isset($_SESSION['user_name'])) : ?>
-          <?php if ($_SESSION['is_admin'] === 1) : ?>
-            <a href="index.php?c=admin&m=dashboard" title=""> <span class="material-symbols-outlined">dashboard</span>Dashboard</a> <br>
-          <?php endif; ?>
-          <a href="index.php?c=user&m=profile" title="<?= $_SESSION['user_name'] ?>"><?= $_SESSION['user_name'] ?></a>
-          <br>
-          <a href="index.php?c=user&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
-        <?php else : ?>
-          <a href="index.php?c=user&m=login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
-          <a href="index.php?c=user&m=signup"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
-        <?php endif; ?>
+        <div class="user-options-user">
+          <p class="company-label">Ususario</p>
 
-        <?php if (isset($_SESSION['company_name'])) : ?><br><br>
-          <p>Empresa</p>
-          <a href="index.php?c=company&m=mainProfile" title="<?= $_SESSION['company_name'] ?>"><i class="fa-solid fa-building"></i> @<?= $_SESSION['company_name'] ?></a> <br>
-          <a href="index.php?c=company&m=logout"><i class="fa-solid fa-sign-out"></i> Cerrar Sesión</a>
+          <?php if (isset($_SESSION['user_name'])) : ?>
+          <?php if ($_SESSION['is_admin'] === 1) : ?>
+          <a href="index.php?c=admin&m=dashboard" title="Dashboard">
+            <i class="fas fa-cogs"></i> Dashboard
+          </a>
+          <?php endif; ?>
+          <a href="index.php?c=user&m=mainProfile" title="<?= $_SESSION['user_name'] ?>">
+            <i class="fas fa-user"></i> <?= $_SESSION['user_name'] ?>
+          </a>
+          <a href="index.php?c=user&m=logout">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </a>
+          <?php else : ?>
+          <a href="index.php?c=user&m=login">
+            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+          </a>
+          <a href="index.php?c=user&m=signup">
+            <i class="fas fa-user-plus"></i> Registrarse
+          </a>
+          <?php endif; ?>
+
+        </div>
+        <?php if (isset($_SESSION['company_name'])) : ?>
+        <div class="company-options">
+          <p class="company-label">Empresa</p>
+          <a href="index.php?c=company&m=mainProfile" title="<?= $_SESSION['company_name'] ?>">
+            <i class="fas fa-building"></i> <?= $_SESSION['company_name'] ?>
+          </a>
+          <a href="index.php?c=company&m=logout">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </a>
+        </div>
         <?php endif; ?>
       </nav>
 
@@ -145,28 +171,28 @@
 
 
   <script>
-    function cambiarTitulo(nuevoTitulo) {
-      document.title = nuevoTitulo;
-    }
+  function cambiarTitulo(nuevoTitulo) {
+    document.title = nuevoTitulo;
+  }
 
-    const floatingMsg = document.querySelector(".floating-msg");
+  const floatingMsg = document.querySelector(".floating-msg");
 
-    <?php if (isset($_GET['msg'])) : ?>
-      setTimeout(function() {
-        floatingMsg.style.opacity = "0";
-        floatingMsg.style.transition = "opacity 1s ease-in-out";
-        setTimeout(function() {
-          floatingMsg.style.display = "none";
-        }, 1000); // Tiempo de espera para que se complete la animación
-      }, 5000);
-      const closeBtn = document.querySelector(".close-btn");
-      closeBtn.addEventListener("click", function() {
-        floatingMsg.style.opacity = "0";
-        floatingMsg.style.transition = "opacity 1s ease-in-out";
-        setTimeout(function() {
-          floatingMsg.style.display = "none";
-        }, 1000);
-      });
-    <?php endif; ?>
+  <?php if (isset($_GET['msg'])) : ?>
+  setTimeout(function() {
+    floatingMsg.style.opacity = "0";
+    floatingMsg.style.transition = "opacity 1s ease-in-out";
+    setTimeout(function() {
+      floatingMsg.style.display = "none";
+    }, 1000); // Tiempo de espera para que se complete la animación
+  }, 5000);
+  const closeBtn = document.querySelector(".close-btn");
+  closeBtn.addEventListener("click", function() {
+    floatingMsg.style.opacity = "0";
+    floatingMsg.style.transition = "opacity 1s ease-in-out";
+    setTimeout(function() {
+      floatingMsg.style.display = "none";
+    }, 1000);
+  });
+  <?php endif; ?>
   </script>
   <section class="container-fluid">

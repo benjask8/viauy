@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalSeats = seatArray.reduce((a, b) => a + b, 0);
     const availableSeats = maxCapacityValue - totalSeats;
     const isValid =
-      seatArray.every((num) => num <= 8) && totalSeats <= maxCapacityValue;
+      seatArray.every((num) => num <= 8) && totalSeats == maxCapacityValue;
 
     if (!isValid) {
       dataMsg.innerHTML =

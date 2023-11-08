@@ -20,6 +20,12 @@ class User_Controller extends Controlador
   }
 
 
+  public function editProfile()
+  {
+    $this->cargarVista("user/editProfile");
+  }
+
+
   //do
   public function logout()
   {
