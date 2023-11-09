@@ -33,16 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
         data.lines.forEach((line) => {
           const row = document.createElement("tr");
           row.innerHTML = `
+        <td>${line.lineName}</td>
         <td>${line.origin}</td>
         <td>${line.destination}</td>
         <td>${line.departureTime}</td>
         <td>${line.arrivalTime}</td>
         <td>${line.idBus}</td>
         <td>
-          <a href="?c=bus&m=deleteLine&id=${line.idLine}" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar la línea?')">
+          <a href="?c=line&m=deleteLine&id=${line.idLine}" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar la línea?')">
             <span class="material-symbols-outlined">delete</span>
           </a>
-          <a href="?c=bus&m=editLine&id=${line.idLine}" class="edit-button">
+          <a href="?c=line&m=editLine&id=${line.idLine}" class="edit-button">
             <span class="material-symbols-outlined">edit</span>
           </a>
         </td>

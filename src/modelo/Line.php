@@ -14,8 +14,9 @@ class Line extends Conexion
   private $arrivalTime;
   private $idBus;
   private $ownerLine;
+  private $lineName; // Nuevo atributo 'lineName'
 
-  public function __construct($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine)
+  public function __construct($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName)
   {
     $this->idLine = $idLine;
     $this->origin = $origin;
@@ -24,6 +25,7 @@ class Line extends Conexion
     $this->arrivalTime = $arrivalTime;
     $this->idBus = $idBus;
     $this->ownerLine = $ownerLine;
+    $this->lineName = $lineName; // Nuevo atributo 'lineName'
   }
 
   public function saveLine()
@@ -31,7 +33,7 @@ class Line extends Conexion
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlInsert = 'INSERT INTO busLine (origin, destination, departureTime, arrivalTime, idBus, ownerLine) VALUES (:origin, :destination, :departureTime, :arrivalTime, :idBus, :ownerLine)';
+      $sqlInsert = 'INSERT INTO busLine (origin, destination, departureTime, arrivalTime, idBus, ownerLine, lineName) VALUES (:origin, :destination, :departureTime, :arrivalTime, :idBus, :ownerLine, :lineName)';
       $stmtInsert = $pdo->prepare($sqlInsert);
       $stmtInsert->bindParam(':origin', $this->origin);
       $stmtInsert->bindParam(':destination', $this->destination);
@@ -39,6 +41,7 @@ class Line extends Conexion
       $stmtInsert->bindParam(':arrivalTime', $this->arrivalTime);
       $stmtInsert->bindParam(':idBus', $this->idBus);
       $stmtInsert->bindParam(':ownerLine', $this->ownerLine);
+      $stmtInsert->bindParam(':lineName', $this->lineName);
 
       if ($stmtInsert->execute()) {
         return true;
@@ -49,6 +52,28 @@ class Line extends Conexion
       $pdo = null;
     }
   }
+
+  public function isBusValid($idBus)
+  {
+    $pdo = $this->getConexion()->getPdo();
+
+    try {
+      $sql = 'SELECT ownerBus FROM bus WHERE idBus = :idBus';
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':idBus', $idBus);
+      $stmt->execute();
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($result) {
+        return $result['ownerBus'] === $_SESSION['company_name'];
+      } else {
+        return false;
+      }
+    } catch (\PDOException $e) {
+      return false;
+    }
+  }
+
 
   public function getOwnLines()
   {
@@ -91,7 +116,7 @@ class Line extends Conexion
   {
     try {
       $pdo = $this->getConexion()->getPdo();
-      $query = "SELECT * FROM busLine WHERE ownerLine = :ownerLine AND (origin LIKE :searchTerm)";
+      $query = "SELECT * FROM busLine WHERE ownerLine = :ownerLine AND (lineName LIKE :searchTerm)";
       $stmt = $pdo->prepare($query);
       $stmt->bindValue(':ownerLine', $_SESSION['company_name']);
       $stmt->bindValue(':searchTerm', "%$searchTerm%");
@@ -142,6 +167,23 @@ class Line extends Conexion
       throw $th;
     } finally {
       $pdo = null;
+    }
+  }
+  public function searchLinesByData($origin, $destination, $departureTime)
+  {
+    $pdo = $this->getConexion()->getPdo();
+
+    try {
+      $query = "SELECT * FROM busLine WHERE origin = :origin AND destination = :destination AND departureTime = :departureTime";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(':origin', $origin);
+      $stmt->bindParam(':destination', $destination);
+      $stmt->bindParam(':departureTime', $departureTime);
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\PDOException $e) {
+      return false; // Devuelve false en caso de error
     }
   }
 }

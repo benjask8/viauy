@@ -18,6 +18,7 @@ require 'src/vista/company/profile/partials/estructure.php';
 <table class="bus-table">
   <thead>
     <tr>
+      <th>Nombre</th>
       <th>Origen</th>
       <th>Destino</th>
       <th>Ida</th>
