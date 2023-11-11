@@ -15,8 +15,9 @@ class Line extends Conexion
   private $idBus;
   private $ownerLine;
   private $lineName; // Nuevo atributo 'lineName'
+  private $departureDate;
 
-  public function __construct($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName)
+  public function __construct($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName, $departureDate)
   {
     $this->idLine = $idLine;
     $this->origin = $origin;
@@ -26,6 +27,7 @@ class Line extends Conexion
     $this->idBus = $idBus;
     $this->ownerLine = $ownerLine;
     $this->lineName = $lineName; // Nuevo atributo 'lineName'
+    $this->departureDate = $departureDate;
   }
 
   public function saveLine()
@@ -33,7 +35,7 @@ class Line extends Conexion
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlInsert = 'INSERT INTO busLine (origin, destination, departureTime, arrivalTime, idBus, ownerLine, lineName) VALUES (:origin, :destination, :departureTime, :arrivalTime, :idBus, :ownerLine, :lineName)';
+      $sqlInsert = 'INSERT INTO busLine (origin, destination, departureTime, arrivalTime, idBus, ownerLine, lineName, departureDate) VALUES (:origin, :destination, :departureTime, :arrivalTime, :idBus, :ownerLine, :lineName, :departureDate)';
       $stmtInsert = $pdo->prepare($sqlInsert);
       $stmtInsert->bindParam(':origin', $this->origin);
       $stmtInsert->bindParam(':destination', $this->destination);
@@ -42,6 +44,7 @@ class Line extends Conexion
       $stmtInsert->bindParam(':idBus', $this->idBus);
       $stmtInsert->bindParam(':ownerLine', $this->ownerLine);
       $stmtInsert->bindParam(':lineName', $this->lineName);
+      $stmtInsert->bindParam(':departureDate', $this->departureDate);
 
       if ($stmtInsert->execute()) {
         return true;
@@ -134,10 +137,9 @@ class Line extends Conexion
     $pdo = $this->getConexion()->getPdo();
 
     try {
-      $sqlSelect = 'SELECT * FROM busLine WHERE idLine = :idLine AND idBus = :idBus';
+      $sqlSelect = 'SELECT * FROM busLine WHERE idLine = :idLine';
       $stmtSelect = $pdo->prepare($sqlSelect);
       $stmtSelect->bindParam(':idLine', $idLine);
-      $stmtSelect->bindParam(':idBus', $this->idBus); // Reemplaza $this->idBus con el identificador del autobús actual
       $stmtSelect->execute();
 
       return $stmtSelect->fetch(PDO::FETCH_ASSOC);
@@ -147,6 +149,7 @@ class Line extends Conexion
       $pdo = null;
     }
   }
+
 
   public function editLine($idLine, $origin, $destination, $departureTime, $arrivalTime)
   {
@@ -169,21 +172,38 @@ class Line extends Conexion
       $pdo = null;
     }
   }
-  public function searchLinesByData($origin, $destination, $departureTime)
+  public function searchLinesByData($origin, $destination, $departureDate)
   {
     $pdo = $this->getConexion()->getPdo();
+    $lines = [];
 
     try {
-      $query = "SELECT * FROM busLine WHERE origin = :origin AND destination = :destination AND departureTime = :departureTime";
-      $stmt = $pdo->prepare($query);
-      $stmt->bindParam(':origin', $origin);
-      $stmt->bindParam(':destination', $destination);
-      $stmt->bindParam(':departureTime', $departureTime);
-      $stmt->execute();
+      $sqlSelect = 'SELECT * FROM busLine WHERE origin = :origin AND destination = :destination AND departureDate = :departureDate';
+      $stmtSelect = $pdo->prepare($sqlSelect);
+      $stmtSelect->bindParam(':origin', $origin);
+      $stmtSelect->bindParam(':destination', $destination);
+      $stmtSelect->bindParam(':departureDate', $departureDate);
+      $stmtSelect->execute();
 
-      return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (\PDOException $e) {
-      return false; // Devuelve false en caso de error
+      $lines = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+
+      // Obtener información de buses asociados a las líneas
+      $buses = [];
+      $busModel = new Bus("", "", "", "", "", "", "", ""); // Ajusta esto según tu constructor
+
+      foreach ($lines as $line) {
+        $busId = $line['idBus'];
+        $busInfo = $busModel->getBusById($busId);
+        if ($busInfo) {
+          $buses[] = $busInfo;
+        }
+      }
+
+      return ['lines' => $lines, 'buses' => $buses];
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
     }
   }
 }

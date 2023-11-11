@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap');
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 /* Estilos modernos para los mensajes de éxito y error */
 .msg_success,
 .msg_error {
@@ -35,7 +39,6 @@
 
 /* Estilo general para el cuerpo de la página */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -56,11 +59,18 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 900;
   font-size: 24px;
   cursor: pointer;
   z-index: 2;
+  transition: all .3s;
 }
-
+.menu-toggle:hover{
+ transform: scale(1.05);
+}
 /* Estilo para el menú de la compañía */
 .company-menu {
   background-color: #333;
@@ -470,9 +480,32 @@ body {
   /* Fondo oscuro para el encabezado */
   text-align: center;
   padding: 20px 0;
+  display: flex;
 }
 
-.header a{
+.header-company {
+  border: none;
+  position: absolute;
+  right: 10px;
+  background-color: transparent;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.3s, color 0.3s;
+  top: 15px;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.header-company:hover {
+  background-color: #297fb93b;
+  transform: scale(1.05);
+}
+.header-logo{
   display: block;
   margin: 0 auto;
   width: max-content;
@@ -486,4 +519,53 @@ body {
   /* Ajusta el ancho máximo de la imagen del logo */
   height: auto;
   /* Centra la imagen horizontalmente */
+}
+.header-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  border-radius: 10px;
+  width: 300px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.header-menu-open {
+  display: flex;
+}
+
+.menu-info img {
+  width: 80px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-info{
+  border-bottom: 1px solid rgb(223, 222, 222);
+}
+.menu-options {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.menu-options a {
+  text-decoration: none;
+  color: #3498db;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.menu-options a:hover {
+  color: #2980b9;
 }

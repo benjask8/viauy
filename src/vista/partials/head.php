@@ -7,7 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ViaUy</title>
-  <link rel="stylesheet" href="public/css/styless1.css">
+  <link rel="icon" href="public/images/minlogo.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="public/css/styles.css">
   <link rel="stylesheet" href="public/css/presets1.css">
   <link rel="stylesheet" href="public/css/responsives.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>

@@ -150,6 +150,26 @@ class Bus extends Conexion
     }
   }
 
+  public function getBusById($idBus)
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    try {
+      $sqlSelect = 'SELECT * FROM bus WHERE idBus = :idBus';
+      $stmtSelect = $pdo->prepare($sqlSelect);
+      $stmtSelect->bindParam(':idBus', $idBus);
+      $stmtSelect->execute();
+
+      return $stmtSelect->fetch(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
+    }
+  }
+
+
+
   public function editBus()
   {
     $pdo = Conexion::getConexion()->getPdo();

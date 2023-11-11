@@ -2,6 +2,8 @@ const spanTxt = $("#hero-txt-span");
 const heroBtn = document.getElementById("hero-btn");
 const linesBtn = document.getElementById("lines-btn");
 const linesContainer = document.getElementById("lines-container");
+const heroTxt = document.querySelector(".hero-txt");
+const idaVueltaIcon = document.querySelector(".ida-vuelta-icon");
 
 const words = [
   "Eficiente",
@@ -31,10 +33,17 @@ const animationSpanTxt = () => {
 };
 
 const openLinesContainer = () => {
-  linesContainer.classList.toggle("lines-container-open");
+  linesContainer.classList.add("lines-container-open");
+  heroTxt.innerHTML = "";
+};
+
+const changeIdaVuelta = () => {
+  ida = document.querySelector(".ida-input").value;
+  vuelta = document.querySelector(".vuelta-input").value;
+  document.querySelector(".ida-input").value = vuelta;
+  document.querySelector(".vuelta-input").value = ida;
 };
 
 setInterval(animationSpanTxt, 7000);
 
-heroBtn.addEventListener("click", openLinesContainer);
-linesBtn.addEventListener("click", openLinesContainer);
+idaVueltaIcon.addEventListener("click", changeIdaVuelta);

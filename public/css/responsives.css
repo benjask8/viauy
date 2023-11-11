@@ -89,12 +89,32 @@
   
     .hero-form {
       flex-direction: column;
-      padding: 30px 10px;
+      padding: 0px 0px;
+      position: relative;
+      background-color: transparent;
+      box-shadow: none;
+      overflow: visible;
     }
     .hero-form-group{
-      width:100%;
+      background-color: var(--main-color);
+      width: 100%;
+      border: none;
     }
-  
+    .hero-form-group:first-child {
+      border-bottom: 2px solid hsl(207, 43%, 92%);
+      border-radius: 10px 10px 0px 0px;
+    }
+    
+    .hero-form-group:nth-child(3){
+      border-radius: 0px 0px 10px 10px;
+      margin-bottom: 20px !important;
+    }
+    .hero-form-group:nth-child(4) {
+      border-radius: 10px 10px 0px 0px;
+    }
+  .hero-form-group:nth-child(5) {
+    border-radius: 0px 0px 10px 10px;
+  }
     .hero-label {
       margin-bottom: 3px;
     }
@@ -109,10 +129,53 @@
   
     .hero-button {
       padding: 8px 14px;
-      width: 98%;
+      width: 100%;
+      margin-top: 20px;
       border-radius: 7px;
     }
-  }
+    
+    .ida-vuelta-icon{
+      position: absolute;
+      top: 90px;
+      right: 30px;
+      border-color:hsl(207, 43%, 92%);
+      background-color: var(--main-color);
+      transform: rotate(90deg);
+    }
+
+    .lines-container-box{
+      flex-direction: column;
+    }
+
+    .lines-container-lines{
+      width: 100%;
+      padding: 20px 10px;
+      }
+      .line-box{
+        width: 100%;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px 15px;
+      }
+      .line-box-info{
+        flex-direction: column;
+      }
+      .line-box-has{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      
+      .line-box-info-time-time{
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+      .line-box-info-box{
+        padding: 10px 0px;
+        justify-content: space-between;
+      }
+    }
   
 
   @media (max-width: 768px) {

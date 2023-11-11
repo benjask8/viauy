@@ -40,12 +40,37 @@ if (!isset($_SESSION['company_name'])) {
 
   <!-- Header con el logo de la empresa -->
   <header class="header">
-    <a href="/viauy"><img src="public/images/logo.png" alt="Logo de la Empresa"></a>
+    <a href="/viauy" class="header-logo"><img src="public/images/logo.png" alt="Logo de la Empresa"></a>
+    <button onclick="toggleHeaderMenu()" class="header-company"><span class="material-symbols-outlined">
+        directions_bus
+      </span><?= $_SESSION["company_name"]; ?></button>
+
+    <div class="header-menu">
+      <div class="menu-info">
+        <img src="public/images/user.png" alt="Logo de la compañía">
+        <h3><?php echo $_SESSION["company_name"]; ?></h3>
+        <p>¡Bienvenido!</p>
+      </div>
+
+      <ul class="menu-options">
+        <li><a href="?c=company&m=mainProfile">Inicio</a></li>
+        <li><a href="?c=company&m=mainProfile_buses">Buses</a></li>
+        <li><a href="?c=company&m=mainProfile_lineasAdd">Líneas</a></li>
+        <li><a href="?c=company&m=mainProfile_config">Configuración</a></li>
+        <li><a href="?c=company&m=logout">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+
   </header>
 
   <script>
   function toggleMenu() {
     var menu = document.querySelector('.company-menu');
     menu.classList.toggle('menu-open');
+  }
+
+  function toggleHeaderMenu() {
+    var menu = document.querySelector('.header-menu');
+    menu.classList.toggle('header-menu-open');
   }
   </script>

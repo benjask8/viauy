@@ -57,7 +57,10 @@ CREATE TABLE busLine (
     arrivalTime TIME,
     idBus VARCHAR(255),
     ownerLine VARCHAR(255),
-    name VARCHAR(255)
+    name VARCHAR(255),
+    departureDate DATE,
+    kmPrice INT,
+    km INT
 );
 
 CREATE TABLE routeStreets (

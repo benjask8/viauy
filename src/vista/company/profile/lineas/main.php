@@ -14,7 +14,6 @@ require 'src/vista/company/profile/partials/estructure.php';
   </form>
 </section>
 
-
 <table class="bus-table">
   <thead>
     <tr>

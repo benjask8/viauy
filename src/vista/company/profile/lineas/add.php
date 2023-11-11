@@ -25,6 +25,10 @@ require 'src/vista/company/profile/partials/estructure.php';
     <input type="text" name="destination" class="login-input" id="destination" required
       placeholder="Introduce el destino de la Línea">
 
+    <label for="departureDate" class="label">Dia de Salida:</label>
+    <input type="date" name="departureDate" class="login-input" id="departureDate" required
+      placeholder="Introduce el dia de salida de la Línea">
+
     <label for="departureTime" class="label">Hora de Salida:</label>
     <input type="time" name="departureTime" class="login-input" id="departureTime" required
       placeholder="Introduce la hora de salida de la Línea">

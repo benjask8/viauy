@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const origin = document.getElementById("origin").value.trim();
     const destination = document.getElementById("destination").value.trim();
     const departureTime = document.getElementById("departureTime").value.trim();
+    const departureDate = document.getElementById("departureDate").value.trim();
     const arrivalTime = document.getElementById("arrivalTime").value.trim();
     const idBus = document.getElementById("idBus").value.trim();
 
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       !lineName ||
       !origin ||
       !destination ||
+      !departureDate ||
       !departureTime ||
       !arrivalTime ||
       !idBus
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("origin", origin);
     formData.append("destination", destination);
     formData.append("departureTime", departureTime);
+    formData.append("departureDate", departureDate);
     formData.append("arrivalTime", arrivalTime);
     formData.append("idBus", idBus);
 

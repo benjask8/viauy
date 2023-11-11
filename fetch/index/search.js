@@ -2,12 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const lineForm = document.querySelector(".hero-form");
   const salidaInput = document.querySelector("#hero-salida");
   const destinoInput = document.querySelector("#hero-destino");
-  const horaInput = document.querySelector("#hero-hora");
+  const dateInput = document.querySelector("#hero-date");
   const dataMsg = document.getElementById("data-msg");
   const linesContainer = document.getElementById("lines-container-lines");
+  const headerP = document.querySelector(".results-p");
+  const heroBtn = document.getElementById("hero-btn");
 
   // Función para renderizar los resultados de búsqueda
-  const renderSearchResults = (lines) => {
+  const renderSearchResults = (lines, buses) => {
     linesContainer.innerHTML = ""; // Borra los resultados anteriores
 
     if (lines.length === 0) {
@@ -17,18 +19,95 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       dataMsg.innerHTML = "";
       dataMsg.classList.remove("msg_info");
-
+      var container = "";
+      var origin;
+      var destination;
       // Recorre los resultados y crea elementos HTML para mostrar cada línea
+      var a = 0;
       lines.forEach((line) => {
-        linesContainer.innerHTML += `
-        <div class="line-box">
-          <p>Origen: ${line.origin}</p>
-          <p>Compañia: ${line.ownerLine}</p>
-          <p>Destino: ${line.destination}</p>
-          <p>Salida: ${line.departureTime}</p>
-        </div>
-        `;
+        if (buses[a]) {
+          container += `
+            <div class="line-box">                                                                 
+              <div class="line-box-info">
+                <div class="line-box-info-owner">
+                  <p class="line-box-owner"> ${line.ownerLine}</p>
+                  <p class="line-box-name">${line.lineName}</p>
+                </div>
+                <div class="line-box-info-box">
+                <div class="line-box-info-time">
+                  <p class="line-box-info-time-time">${line.departureTime}</p>  
+                  <p class="line-box-info-time-origin">${line.origin}</p>
+                </div>
+                <span class="material-symbols-outlined">trending_flat</span>
+                <div class="line-box-info-time">
+                  <p class="line-box-info-time-time">${line.arrivalTime}</p>  
+                  <p class="line-box-info-time-origin">${line.destination}</p>
+                </div>
+                </div>
+                <div class="line-box-has">
+          `;
+
+          // Si tiene WiFi, agrega el ícono sin la clase "has-line"
+          if (buses[a].hasWiFi) {
+            container += `<p><i class="fa-solid fa-wifi"></i></p>`;
+          }
+          // Si tiene AC, agrega el ícono sin la clase "has-line"
+          if (buses[a].hasAC) {
+            container += `<p><i class="fa-solid fa-wind"></i></p>`;
+          }
+          // Si tiene baño, agrega el ícono sin la clase "has-line"
+          if (buses[a].hasToilet) {
+            container += `<p><i class="fa-solid fa-restroom"></i></p>`;
+          }
+
+          container += `
+                </div>
+              </div>
+              <div class="line-box-options">
+              <button class="line-price">$100</button>
+              </div>
+            </div>`;
+        } else {
+          container += `
+            <div class="line-box">                                                                 
+              <div class="line-box-info">
+                <div class="line-box-info-owner">
+                  <p class="line-box-owner"> ${line.ownerLine}</p>
+                  <p class="line-box-name">${line.lineName}</p>
+                </div>
+                <div class="line-box-info-box">
+                <div class="line-box-info-time">
+                  <p class="line-box-info-time-time">${line.departureTime}</p>  
+                  <p class="line-box-info-time-origin">${line.origin}</p>
+                </div>
+                <span class="material-symbols-outlined">trending_flat</span>
+                <div class="line-box-info-time">
+                  <p class="line-box-info-time-time">${line.arrivalTime}</p>  
+                  <p class="line-box-info-time-origin">${line.destination}</p>
+                </div>
+                </div>
+                <div class="line-box-has">
+                </div>
+              
+              </div>
+            <div class="line-box-options">
+              <button class="line-price">$100</button>
+              </div>
+              </div>`;
+        }
+
+        a++;
+        origin = line.origin;
+        destination = line.destination;
       });
+
+      linesContainer.innerHTML = `
+        <div class="line-info-box">
+          <p>Resultados desde ${origin}</p>
+        </div>
+      `;
+      headerP.innerHTML = `${lines.length} Resultados`;
+      linesContainer.innerHTML += container;
     }
   };
 
@@ -36,20 +115,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const performSearch = () => {
     const origin = salidaInput.value.trim();
     const destination = destinoInput.value.trim();
-    const departureTime = horaInput.value;
+    const departureDate = dateInput.value;
 
     // Realizar una solicitud POST para buscar líneas
     fetch("index.php?c=line&m=searchLineByData", {
       method: "POST",
-      body: new URLSearchParams({ origin, destination, departureTime }),
+      body: new URLSearchParams({ origin, destination, departureDate }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "info") {
-          renderSearchResults(data.lines);
+          openLinesContainer();
+          renderSearchResults(data.lines, data.buses);
         }
         if (data.status === "error") {
-          linesContainer.innerHTML = `<img src="public/images/hero/not-found.svg" class="not-found-image" alt=""></img>`;
+          openLinesContainer();
+          headerP.innerHTML = `No hay Resultados`;
+
+          linesContainer.innerHTML = `
+          <div class="no-results-box">
+          <img src="public/images/hero/not-found.svg" class="not-found-image" alt=""></img>
+          <p>No hemos podido encontrar viajes que coincidan con tus preferencias.</p>
+          <button>Restablecer Los Filtros</button>
+          </div>`;
           dataMsg.innerHTML = data.msg;
           dataMsg.classList.remove("msg_success");
           dataMsg.classList.add("msg_info");
