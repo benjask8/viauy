@@ -36,4 +36,31 @@ class Reservation_Controller extends Controlador
     }
     echo json_encode($data);
   }
+
+
+  public function getSeatAvailability()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+      $lineId = $_GET["lineId"];
+
+      $data = [];
+      // Crea una instancia de la clase Reservation
+      $reservation = new Reservation("", "", $lineId);
+ 
+      // Intenta obtener la disponibilidad de asientos
+      $seatAvailability = $reservation->getSeatAvailability();
+
+      if ($seatAvailability !== null) {
+        $data['status'] = "success";
+        $data['seatAvailability'] = $seatAvailability;
+      } else {
+        $data['status'] = "error";
+        $data['msg'] = "Error al obtener la disponibilidad de asientos";
+      }
+    } else {
+      $data['status'] = "error";
+      $data['msg'] = "Error en la solicitud";
+    }
+    echo json_encode($data);
+  }
 }

@@ -4,10 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const viewBackBtn = document.querySelector(".view-volver-btn");
   const buyForm = document.getElementById("buy-form");
   let actualUser = null;
+  let seatAvailability = []; // Almacena la disponibilidad de los asientos
 
   // Obtén el ID de la línea de la URL
   const urlParams = new URLSearchParams(window.location.search);
   const lineId = urlParams.get("lineid");
+
+  const fetchSeatAvailability = async () => {
+    try {
+      const response = await fetch(
+        `?c=reservation&m=getSeatAvailability&lineId=${lineId}`
+      );
+      const data = await response.json();
+
+      if (data.status === "success") {
+        seatAvailability = data.seatAvailability;
+        console.log("Disponibilidad de asientos:", seatAvailability);
+      } else {
+        console.error("Error al obtener la disponibilidad de asientos");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   const fetchLineData = () => {
     fetch(`?c=line&m=getLineData&lineid=${lineId}`)
@@ -24,8 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
           console.log(lineTime);
 
-          // Crea dinámicamente la cadena HTML para la información de pasaje
-          const passageInfoHTML = `
+          // Carga la disponibilidad de asientos antes de renderizar el diseño
+          fetchSeatAvailability().then(() => {
+            // Crea dinámicamente la cadena HTML para la información de pasaje
+            const passageInfoHTML = `
               <section class="line-data-box-form-box">
                 <p class="line-data-box-form-box-title">Informacion del Pasaje</p>
                 <form class="line-data-box-form" id="passage-form">
@@ -39,13 +60,17 @@ document.addEventListener("DOMContentLoaded", function () {
               </section>
             `;
 
-          // Crea dinámicamente la cadena HTML para el diseño de asientos
-          const seatLayoutHTML = generateSeatPreview(seatLayout);
-          lineDataBox.innerHTML = passageInfoHTML + seatLayoutHTML;
+            // Crea dinámicamente la cadena HTML para el diseño de asientos
+            const seatLayoutHTML = generateSeatPreview(
+              seatLayout,
+              seatAvailability
+            );
+            lineDataBox.innerHTML = passageInfoHTML + seatLayoutHTML;
 
-          // Asigna la cadena HTML al innerHTML de lineDataBox
+            // Asigna la cadena HTML al innerHTML de lineDataBox
 
-          // Actualiza otros elementos según sea necesario
+            // Actualiza otros elementos según sea necesario
+          });
         } else {
           // Manejar el caso de error
         }
@@ -54,8 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error:", error);
       });
   };
-
-  const generateSeatPreview = (seats) => {
+  const generateSeatPreview = (seats, seatsOccupied) => {
     let seatPreviewHTML = '<section class="seat-layout-section">';
     const labels = "abcdefghijklmnopqrstuvwxyz".split("");
 
@@ -63,17 +87,25 @@ document.addEventListener("DOMContentLoaded", function () {
       seatPreviewHTML += `<div class="seat-row">`;
 
       for (let i = 0; i < seatsInRow; i++) {
-        const isAvailable = true; // Cambia esto según la disponibilidad real del asiento
-        const seatId = `${labels[rowIndex]}-${i + 1}`;
+        const seatLetter = labels[rowIndex];
+        const isAvailable = !seatsOccupied.includes(`${seatLetter}-${i + 1}`);
+        const seatId = `${seatLetter}-${i + 1}`;
+
+        // Agrega una sección para cada letra de asiento
+        if (i === 0) {
+          seatPreviewHTML += `<div class="seat-section" data-section="${seatLetter}"></div>`;
+        }
 
         seatPreviewHTML += `
           <div class="seat ${
             isAvailable ? "seat-available" : "seat-unavailable"
           }">
-            <label for="seat-${seatId}" class="seat-label">${seatId}</label>
-            <input type="radio" id="seat-${seatId}" class="seat-radio" name="seat-group" ${
-          isAvailable ? "" : "disabled"
-        }>
+            <label for="seat-${seatId}" class="seat-label ${
+          isAvailable ? "" : "seat-label-disable"
+        }">${seatId}</label>
+            <input type="radio" id="seat-${seatId}" class="seat-radio ${
+          isAvailable ? "" : "seat-disabled"
+        }" name="seat-group" ${isAvailable ? "" : "disabled"}>
           </div>
         `;
       }
@@ -141,6 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Error:", error);
     }
+
+    fetchLineData();
   });
 
   fetchLineData();

@@ -1529,4 +1529,14 @@ button{
 
  /* buy */
  
+ .seat-label{
+    background-color: green;
+ }
+ .seat-label-disable{
+    background-color: red !important;
+ }
+
+ .seat-row{
+    display: flex;
+ }
  /* buy end */

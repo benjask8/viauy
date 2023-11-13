@@ -2,6 +2,7 @@
 
 namespace Octobyte\viauy\modelo;
 
+use PDO;
 use PDOException;
 use Octobyte\viauy\libs\Conexion;
 
@@ -47,6 +48,27 @@ class Reservation extends Conexion
       if ($stmtInsert->execute()) {
         return true;
       }
+    } catch (\Throwable $th) {
+      throw $th;
+    } finally {
+      $pdo = null;
+    }
+  }
+
+
+  public function getSeatAvailability()
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    try {
+      $sql = 'SELECT seat FROM reservation WHERE idLine = :idLine';
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':idLine', $this->idLine);
+      $stmt->execute();
+
+      $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+      return $result;
     } catch (\Throwable $th) {
       throw $th;
     } finally {
