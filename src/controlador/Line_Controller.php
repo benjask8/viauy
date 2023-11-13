@@ -24,8 +24,9 @@ class Line_Controller extends Controlador
       $ownerLine = $_SESSION['company_name'];
       $lineName = $_POST['lineName'];
       $departureDate = $_POST['departureDate'];
+      $linePrice = $_POST['price'];
 
-      $line = new Line("", $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName, $departureDate);
+      $line = new Line("", $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName, $departureDate, $linePrice);
 
       if ($line->isBusValid($idBus)) {
         if ($line->saveLine()) {
@@ -60,7 +61,7 @@ class Line_Controller extends Controlador
       $departureDate = $_POST['departureDate'];
 
       // Realiza la búsqueda de líneas en el modelo
-      $line = new Line("", "", "", "", "", "", "", "", "");
+      $line = new Line("", "", "", "", "", "", "", "", "", "");
       $data = $line->searchLinesByData($origin, $destination, $departureDate);
 
       if (empty($data['lines'])) {
@@ -74,37 +75,24 @@ class Line_Controller extends Controlador
 
     echo json_encode($data);
   }
-  public function calcularDiferenciaHoras($fechaInicio, $fechaFin)
-  {
-    // Convertir las fechas a timestamps
-    $timestampInicio = strtotime($fechaInicio);
-    $timestampFin = strtotime($fechaFin);
 
-    // Calcular la diferencia en segundos
-    $diferenciaSegundos = $timestampFin - $timestampInicio;
-
-    // Calcular la diferencia en horas
-    $diferenciaHoras = $diferenciaSegundos / 3600; // 1 hora = 3600 segundos
-
-    return $diferenciaHoras;
-  }
 
 
   public function deleteLine()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
       $idLine = $_GET['id'];
-      $lineModel = new Line("", "", "", "", "", "", "", "", ""); // Reemplaza 'Line' con el nombre de tu clase de modelo
+      $lineModel = new Line("", "", "", "", "", "", "", "", "", ""); // Reemplaza 'Line' con el nombre de tu clase de modelo
 
       if ($lineModel->dropLine($idLine)) {
-        $line = new Line("", "", "", "", "", "", "", "", "");
+        $line = new Line("", "", "", "", "", "", "", "", "", "");
         $lines = $line->getOwnLines();
         $data['lines'] = $lines;
 
         $data['msg'] = 'Línea Eliminada Con Éxito';
         $this->cargarVista("company/profile/lineas/main", $data);
       } else {
-        $line = new Line("", "", "", "", "", "", "", "", "");
+        $line = new Line("", "", "", "", "", "", "", "", "", "");
         $lines = $line->getOwnLines();
         $data['lines'] = $lines;
 
@@ -125,7 +113,7 @@ class Line_Controller extends Controlador
       $searchTerm = $_POST['searchTerm']; // Obtén el término de búsqueda del formulario
 
       // Realiza la búsqueda de líneas en el modelo
-      $line = new Line("", "", "", "", "", "", "", "", "");
+      $line = new Line("", "", "", "", "", "", "", "", "", "");
       $data['lines'] = $line->searchLines($searchTerm);
 
       if (empty($data['lines'])) {
@@ -135,5 +123,36 @@ class Line_Controller extends Controlador
     }
 
     echo json_encode($data);
+  }
+
+  public function getLineData()
+  {
+    $data = [];
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['lineid'])) {
+      $idLine = $_GET['lineid'];
+      $lineModel = new Line("", "", "", "", "", "", "", "", "", "");
+
+      $lineData = $lineModel->getLineDataById($idLine);
+
+      $data = [
+        'line' => $lineData["line"],
+        'bus' => $lineData['bus']
+      ];
+
+      if ($lineData) {
+        $data['lineTime'] = $lineModel->calcularDiferenciaHoras($lineData["line"]);
+        $data['status'] = 'success';
+        $data['msg'] = 'Todo Salio Bien.';
+        echo json_encode($data);
+      } else {
+        $data['status'] = 'error';
+        $data['msg'] = 'Linea No Encontrado';
+        echo json_encode($data);
+      }
+    } else {
+      $data['status'] = 'error';
+      $data['msg'] = 'solicitud Incorrecta';
+      echo json_encode($data);
+    }
   }
 }

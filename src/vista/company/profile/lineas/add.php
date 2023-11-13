@@ -40,6 +40,10 @@ require 'src/vista/company/profile/partials/estructure.php';
     <label for="idBus" class="label">ID del Autobús:</label>
     <input type="text" name="idBus" class="login-input" id="idBus" required placeholder="Introduce el ID del Autobús">
 
+    <label for="price" class="label">Precio del viaje:</label>
+    <input type="number" name="price" class="login-input" id="price" required
+      placeholder="Introduce el precio del viaje">
+
     <button class="login-input" type="submit">Agregar Línea</button>
   </form>
 </section>

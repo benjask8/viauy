@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lines.forEach((line) => {
         if (buses[a]) {
           container += `
-            <div class="line-box">                                                                 
+            <a href="?c=index&m=viewLine&lineid=${line.idLine}" class="line-box">                                                                 
               <div class="line-box-info">
                 <div class="line-box-info-owner">
                   <p class="line-box-owner"> ${line.ownerLine}</p>
@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="line-box-options">
               <button class="line-price">$100</button>
               </div>
-            </div>`;
+            </a>`;
         } else {
           container += `
-            <div class="line-box">                                                                 
+            <a href="?c=index&m=viewLine&lineid=${line.idLine}" class="line-box">                                                                 
               <div class="line-box-info">
                 <div class="line-box-info-owner">
                   <p class="line-box-owner"> ${line.ownerLine}</p>
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="line-box-options">
               <button class="line-price">$100</button>
               </div>
-              </div>`;
+              </a>`;
         }
 
         a++;

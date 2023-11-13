@@ -59,8 +59,7 @@ CREATE TABLE busLine (
     ownerLine VARCHAR(255),
     name VARCHAR(255),
     departureDate DATE,
-    kmPrice INT,
-    km INT
+    price INT
 );
 
 CREATE TABLE routeStreets (
@@ -101,19 +100,13 @@ CREATE TABLE travels (
     FOREIGN KEY (idBus) REFERENCES bus(idBus)
 );
 
-CREATE TABLE reservations (
-    email VARCHAR(255),
-    idPassenger INT,
-    idRoute INT,
-    idBus VARCHAR(255),
-    idReservation INT PRIMARY KEY,
+CREATE TABLE reservation (
+    idReservation INT AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(255),
     seat VARCHAR(255),
-    details VARCHAR(255),
-    FOREIGN KEY (email) REFERENCES passenger(email),
-    FOREIGN KEY (idPassenger) REFERENCES passenger(idPassenger),
-    FOREIGN KEY (idRoute) REFERENCES route(idRoute),
-    FOREIGN KEY (idBus) REFERENCES bus(idBus)
+    idLine VARCHAR(255)
 );
+
 
 CREATE TABLE manages (
     idRoute INT,

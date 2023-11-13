@@ -14,10 +14,11 @@ class Line extends Conexion
   private $arrivalTime;
   private $idBus;
   private $ownerLine;
-  private $lineName; // Nuevo atributo 'lineName'
+  private $lineName;
   private $departureDate;
+  private $linePrice; // Nuevo atributo 'linePrice'
 
-  public function __construct($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName, $departureDate)
+  public function __construct($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $ownerLine, $lineName, $departureDate, $linePrice)
   {
     $this->idLine = $idLine;
     $this->origin = $origin;
@@ -26,8 +27,9 @@ class Line extends Conexion
     $this->arrivalTime = $arrivalTime;
     $this->idBus = $idBus;
     $this->ownerLine = $ownerLine;
-    $this->lineName = $lineName; // Nuevo atributo 'lineName'
+    $this->lineName = $lineName;
     $this->departureDate = $departureDate;
+    $this->linePrice = $linePrice; // Nuevo atributo 'linePrice'
   }
 
   public function saveLine()
@@ -35,7 +37,7 @@ class Line extends Conexion
     $pdo = Conexion::getConexion()->getPdo();
 
     try {
-      $sqlInsert = 'INSERT INTO busLine (origin, destination, departureTime, arrivalTime, idBus, ownerLine, lineName, departureDate) VALUES (:origin, :destination, :departureTime, :arrivalTime, :idBus, :ownerLine, :lineName, :departureDate)';
+      $sqlInsert = 'INSERT INTO busLine (origin, destination, departureTime, arrivalTime, idBus, ownerLine, lineName, departureDate, linePrice) VALUES (:origin, :destination, :departureTime, :arrivalTime, :idBus, :ownerLine, :lineName, :departureDate, :linePrice)';
       $stmtInsert = $pdo->prepare($sqlInsert);
       $stmtInsert->bindParam(':origin', $this->origin);
       $stmtInsert->bindParam(':destination', $this->destination);
@@ -45,6 +47,7 @@ class Line extends Conexion
       $stmtInsert->bindParam(':ownerLine', $this->ownerLine);
       $stmtInsert->bindParam(':lineName', $this->lineName);
       $stmtInsert->bindParam(':departureDate', $this->departureDate);
+      $stmtInsert->bindParam(':linePrice', $this->linePrice);
 
       if ($stmtInsert->execute()) {
         return true;
@@ -132,6 +135,28 @@ class Line extends Conexion
     }
   }
 
+  public function calcularDiferenciaHoras($line)
+  {
+    // Convertir las cadenas de tiempo a objetos DateTime del espacio de nombres global
+    $departureTime = \DateTime::createFromFormat('H:i:s', $line["departureTime"]);
+    $arrivalTime = \DateTime::createFromFormat('H:i:s', $line["arrivalTime"]);
+
+    if ($departureTime && $arrivalTime) {
+      // Calcular la diferencia en segundos
+      $diferenciaSegundos = $arrivalTime->getTimestamp() - $departureTime->getTimestamp();
+
+      // Calcular la diferencia en horas y minutos
+      $diferenciaHoras = floor($diferenciaSegundos / 3600); // Horas completas
+      $diferenciaMinutos = floor(($diferenciaSegundos % 3600) / 60); // Minutos restantes
+
+      return ['horas' => $diferenciaHoras, 'minutos' => $diferenciaMinutos];
+    } else {
+      // Manejar el caso en el que la conversión falla
+      return $line["arrivalTime"];
+    }
+  }
+
+
   public function getLineDataById($idLine)
   {
     $pdo = $this->getConexion()->getPdo();
@@ -142,7 +167,13 @@ class Line extends Conexion
       $stmtSelect->bindParam(':idLine', $idLine);
       $stmtSelect->execute();
 
-      return $stmtSelect->fetch(PDO::FETCH_ASSOC);
+      $line = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+      $busModel = new Bus("", "", "", "", "", "", "", ""); // Ajusta esto según tu constructor
+
+      $busId = $line['idBus'];
+      $bus = $busModel->getBusById($busId);
+
+      return ['line' => $line, 'bus' => $bus];
     } catch (\Throwable $th) {
       throw $th;
     } finally {

@@ -21,4 +21,14 @@ class Index_Controller extends Controlador
   {
     $this->cargarVista("index/testimony");
   }
+
+  public function viewLine()
+  {
+    $this->cargarVista("index/line/view");
+  }
+
+  public function buyPassage()
+  {
+    $this->cargarVista("index/line/buy");
+  }
 }

@@ -82,4 +82,14 @@ class User_Controller extends Controlador
 
     $this->cargarVista("user/profile", ["user" => $newUser]);
   }
+
+  public function getActualUser()
+  {
+    $data = [
+      "user" => $_SESSION['user_name'],
+      "status" => "success"
+    ];
+
+    echo json_encode($data);
+  }
 }

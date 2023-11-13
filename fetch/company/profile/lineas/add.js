@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const departureDate = document.getElementById("departureDate").value.trim();
     const arrivalTime = document.getElementById("arrivalTime").value.trim();
     const idBus = document.getElementById("idBus").value.trim();
+    const price = document.getElementById("price").value.trim();
 
     if (
       !lineName ||
@@ -20,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
       !departureDate ||
       !departureTime ||
       !arrivalTime ||
-      !idBus
+      !idBus ||
+      !price
     ) {
       dataMsg.innerHTML = "Complete todos los campos.";
       return;
@@ -34,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("departureDate", departureDate);
     formData.append("arrivalTime", arrivalTime);
     formData.append("idBus", idBus);
+    formData.append("price", price);
 
     fetch("index.php?c=line&m=newLine", {
       method: "POST",
