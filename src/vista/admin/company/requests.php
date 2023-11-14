@@ -1,6 +1,6 @@
 <?php require_once 'src/vista/admin/partials/estructure.php'; ?>
 
-<div class="page-container">
+<section class="page-container">
   <h1 class="title">Peticiones</h1>
 
   <form action="" method="post" class="search-form">
@@ -8,7 +8,7 @@
     <input type="submit" value="Buscar">
   </form>
 
-  <div class="cards-container" id="requests-container">
+  <section class="cards-container" id="requests-container">
     <table class="request-table">
       <thead>
         <tr>
@@ -28,8 +28,8 @@
       </tbody>
     </table>
     <p id="data-msg"></p>
-  </div>
-</div>
+  </section>
+</section>
 
 <script src="fetch/admin/company/request.js"></script>
 <?php require_once 'src/vista/admin/partials/endEstructure.php'; ?>

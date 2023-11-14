@@ -10,7 +10,7 @@
   <link rel="icon" href="public/images/minlogo.png" type="image/x-icon">
 
   <link rel="stylesheet" href="public/css/styles.css">
-  <link rel="stylesheet" href="public/css/presets1.css">
+  <link rel="stylesheet" href="public/css/presets.css">
   <link rel="stylesheet" href="public/css/responsives.css">
   <script src="public/js/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/d1b7ca4fc4.js" crossorigin="anonymous"></script>

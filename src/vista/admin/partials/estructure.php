@@ -24,10 +24,10 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0) {
 
 <body>
   <?php if (isset($_GET['msg'])) : ?>
-  <div class="floating-msg">
-    <div class="message"><?= $_GET['msg']; ?></div>
+  <section class="floating-msg">
+    <section class="message"><?= $_GET['msg']; ?></section>
     <b class="close-btn" onclick="closeMessage()"><i class="fa-solid fa-xmark"></i></b>
-  </div>
+  </section>
   <?php endif; ?>
 
   <script>
@@ -59,12 +59,12 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === 0) {
         menu
       </span>
     </button>
-    <div class="dashboard-header-profile">
+    <section class="dashboard-header-profile">
       <a title="Perfil de Usuario" href="?c=user&m=mainProfile"><span
           class="material-symbols-outlined">account_circle</span> <?= $_SESSION['user_name'] ?></a>
-    </div>
+    </section>
   </header>
-  <div class="dashboard-body">
+  <section class="dashboard-body">
 
 
 

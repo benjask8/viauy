@@ -136,9 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="no-results-box">
           <img src="public/images/hero/not-found.svg" class="not-found-image" alt=""></img>
           <p>No hemos podido encontrar viajes que coincidan con tus preferencias.</p>
-          <button>Restablecer Los Filtros</button>
           </div>`;
-          dataMsg.innerHTML = data.msg;
           dataMsg.classList.remove("msg_success");
           dataMsg.classList.add("msg_info");
         } else {

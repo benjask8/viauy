@@ -42,11 +42,11 @@ require 'src/vista/company/profile/partials/estructure.php';
 
     <input class="login-input" type="submit" value="Editar Bus">
   </form>
-  <div id="seat-status">
+  <section id="seat-status">
     Asientos disponibles: <span id="available-seats">0</span><br>
-  </div>
+  </section>
   <p class="title">Vista previa Asientos</p>
-  <div class="seat-preview" id="seat-preview"></div>
+  <section class="seat-preview" id="seat-preview"></section>
 </section>
 
 <?php

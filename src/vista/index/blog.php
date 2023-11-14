@@ -28,14 +28,14 @@ require 'src/vista/partials/head.php';
 
   <!-- Agregar más artículos de blog según sea necesario -->
 
-  <div class="pagination-buttons">
+  <section class="pagination-buttons">
     <a href="#" class="pagination-button">Anterior</a>
     <a href="#" class="pagination-button">Siguiente</a>
-  </div>
+  </section>
 </main>
 
 <script>
-  cambiarTitulo("ViaUy | Blog");
+cambiarTitulo("ViaUy | Blog");
 </script>
 
 <?php

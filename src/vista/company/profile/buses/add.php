@@ -42,12 +42,12 @@ require 'src/vista/company/profile/partials/estructure.php';
     <label for="ac">¿Tiene Aire Acondicionado?</label><br>
     <input class="login-input" type="submit" value="Agregar Bus">
   </form>
-  <div id="seat-status">
+  <section id="seat-status">
     Asientos disponibles: <span id="available-seats">0</span><br>
-  </div>
+  </section>
 
   <p class="title">Vista previa Asientos</p>
-  <div class="seat-preview" id="seat-preview"></div>
+  <section class="seat-preview" id="seat-preview"></section>
 </section>
 
 

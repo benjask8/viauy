@@ -36,4 +36,8 @@ class Index_Controller extends Controlador
   {
     $this->cargarVista("index/about");
   }
+  public function team()
+  {
+    $this->cargarVista("index/team");
+  }
 }
