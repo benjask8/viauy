@@ -207,14 +207,27 @@ class Line_Controller extends Controlador
         $data['status'] = 'error';
         $data['msg'] = 'Datos de entrada no válidos.';
       } else {
-        $line = new Line($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, '', $lineName, $departureDate, $price); // Ajusta el constructor según tus necesidades
+        // Obtén la línea existente para verificar el propietario
+        $lineModel = new Line("", "", "", "", "", "", "", "", "", "");
+        $existingLineData = $lineModel->getOwnLineDataById($idLine);
+        $existingOwnerLine = $existingLineData['line']['ownerLine'];
 
-        if ($line->editLine()) {
-          $data['msg'] = 'Línea editada con éxito';
-          $data['status'] = 'success';
+        // Verifica si el propietario actual coincide con el propietario existente
+        if ($_SESSION['company_name'] === $existingOwnerLine) {
+          // Continuar con la edición solo si el propietario coincide
+          $line = new Line($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, $_SESSION['company_name'], $lineName, $departureDate, $price);
+
+          if ($line->isBusValid($idBus) && $line->editLine()) {
+            $data['msg'] = 'Línea editada con éxito';
+            $data['status'] = 'success';
+          } else {
+            $data['status'] = 'error';
+            $data['msg'] = 'Error al editar la línea o Bus no válido';
+          }
         } else {
+          // Si el propietario no coincide, muestra un mensaje de error
           $data['status'] = 'error';
-          $data['msg'] = 'Error al editar la línea';
+          $data['msg'] = 'No tiene permisos para editar esta línea.';
         }
       }
 

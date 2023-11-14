@@ -3,7 +3,7 @@ require 'src/vista/company/profile/partials/estructure.php';
 ?>
 
 <h1 class="title">Lineas</h1>
-<h2 class="sub-title">Agregar Nueva Línea</h2>
+<h2 class="sub-title">Editar Línea</h2>
 <section class="login-container">
   <form action="?c=company&m=procesar_linea" class="login-form" method="POST" autocomplete="off">
     <a href="?c=company&m=mainProfile_lineas" class="login-form-exit">
@@ -11,7 +11,7 @@ require 'src/vista/company/profile/partials/estructure.php';
         close
       </span>
     </a>
-    <h2 class="login-form-title">Agregar Línea</h2>
+    <h2 class="login-form-title">Editar Línea</h2>
     <p id="data-msg"></p>
     <label for="origin" class="label">Nombre:</label>
     <input type="text" name="lineName" class="login-input" id="lineName" required
@@ -44,7 +44,7 @@ require 'src/vista/company/profile/partials/estructure.php';
     <input type="number" name="price" class="login-input" id="price" required
       placeholder="Introduce el precio del viaje">
 
-    <button class="login-input" type="submit">Agregar Línea</button>
+    <button class="login-input" type="submit">Editar Línea</button>
   </form>
 </section>
 
