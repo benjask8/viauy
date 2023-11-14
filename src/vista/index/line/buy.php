@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_name'])) {
 require 'src/vista/partials/head.php';
 ?>
 <a href="/viauy" class="view-volver-btn"><span class="material-symbols-outlined">keyboard_arrow_left</span>Volver</a>
-<h1 id="data-msg"></h1>
 
 <section class="line-data-box" id="line-data-box">
   <section class="line-data-box-form-box">
@@ -21,10 +20,15 @@ require 'src/vista/partials/head.php';
       <p class="line-data-box-form-price"><i class="fa-solid fa-arrow-left"></i>00,00 UYU$</p>
     </form>
   </section>
+  <p class="sub-title">Elegir Asiento</p>
 </section>
+<h1 id="data-msg"></h1>
+
+
+<section class="render-factura" id="render-factura"></section>
 
 <form action="" class="" id="buy-form">
-  <input type="submit" value="Continuar">
+  <input type="submit" class="form-buy-btn" value="Comprar">
 </form>
 <script src="fetch/index/line/buy.js"></script>
 

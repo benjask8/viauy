@@ -12,9 +12,7 @@ require 'src/vista/partials/head.php';
     <h2 class="profile-username"><?= $_SESSION['user_name'] ?></h2>
     <p class="profile-info">Bienvenido a tu perfil de usuario. Aquí puedes ver y editar tu información personal.</p>
     <div class="profile-options">
-      <a href="index.php?c=user&m/viewFeatures" class="profile-option">Ver Características</a>
-      <a href="index.php?c=user&m/editProfile" class="profile-option">Editar Información Personal</a>
-      <a href="index.php?c=user&m/logout" class="profile-option">Cerrar Sesión</a>
+      <a href="index.php?c=user&m=logout" class="profile-option">Cerrar Sesión</a>
     </div>
   </div>
 </section>

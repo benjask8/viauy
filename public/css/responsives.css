@@ -44,6 +44,7 @@
   .user-options{
     position: absolute;
     top: 70px;
+    z-index: 10000;
   }
   .header-btns-help{
     display: none;
@@ -79,6 +80,8 @@
 @media (max-width: 768px) {
     .hero {
       flex-direction: column;
+      background-image: none;
+      background-color: var(--bg-color);
     }
   
     .hero-txt {
@@ -86,14 +89,19 @@
       margin: 10px auto;
     }
     
-  
+    .footer{
+      background-color: var(
+        --bg-color
+      );
+    }
+    
     .hero-form {
       flex-direction: column;
       padding: 0px 0px;
       position: relative;
-      background-color: transparent;
       box-shadow: none;
       overflow: visible;
+      background-color: transparent;
     }
     .hero-form-group{
       background-color: var(--main-color);
@@ -175,6 +183,23 @@
         padding: 10px 0px;
         justify-content: space-between;
       }
+
+
+      /* view */
+      .line-data-box{
+        padding: 20px;
+      }
+    .line-data-box-header {
+      flex-direction: column;
+    }
+    .line-data-box-header-options{
+      width: 100%;
+      padding: 10px 0px;
+    }
+    .line-data-box-header-price{
+      width: 100%;
+    }
+      /* view end */
     }
   
 

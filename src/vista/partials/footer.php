@@ -16,18 +16,17 @@
     <nav class="footer-links">
       <p class="footer-links-title">Servicios</p>
       <a href="index.php?c=company&m=petition" class="footer-links-a">Registro de Empresas de Ómnibus</a>
-      <a href="/gestion-rutas" class="footer-links-a">Gestión de Rutas</a>
+      <a href="index.php?c=index&m=help" class="footer-links-a">Ayuda</a>
       <a href="/flota-buses" class="footer-links-a">Flota de Buses</a>
     </nav>
     <nav class="footer-links">
-      <p class="footer-links-title">Recursos</p>
-      <a href="index.php?c=index&m=blog" class="footer-links-a">Blog</a>
-      <a href="/tutoriales" class="footer-links-a">Tutoriales</a>
-      <a href="/contacto" class="footer-links-a">Contacto</a>
+      <p class="footer-links-title">Usuario</p>
+      <a href="index.php?c=user&m=login" class="footer-links-a">Iniciar Sesion</a>
+      <a href="index.php?c=user&m=signup" class="footer-links-a">Registrarse</a>
     </nav>
     <nav class="footer-links">
       <p class="footer-links-title">Acerca de ViaUY</p>
-      <a href="/acerca" class="footer-links-a">Sobre Nosotros</a>
+      <a href="index.php?c=index&m=about" class="footer-links-a">Sobre Nosotros</a>
       <a href="/equipo" class="footer-links-a">Nuestro Equipo</a>
       <a href="index.php?c=index&m=testimony" class="footer-links-a">Testimonios</a>
     </nav>

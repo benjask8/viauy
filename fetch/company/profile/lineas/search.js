@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <a href="?c=line&m=deleteLine&id=${line.idLine}" class="delete-button" onclick="return confirm('¿Estás seguro de eliminar la línea?')">
             <span class="material-symbols-outlined">delete</span>
           </a>
-          <a href="?c=line&m=editLine&id=${line.idLine}" class="edit-button">
+          <a href="?c=company&m=mainProfile_lineasEdit&lineid=${line.idLine}" class="edit-button">
             <span class="material-symbols-outlined">edit</span>
           </a>
         </td>

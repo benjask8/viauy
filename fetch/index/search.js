@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
               </div>
               <div class="line-box-options">
-              <button class="line-price">$100</button>
+              <button class="line-price">$${line.linePrice}</button>
               </div>
             </a>`;
         } else {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
               
               </div>
             <div class="line-box-options">
-              <button class="line-price">$100</button>
+              <button class="line-price">$${line.linePrice}</button>
               </div>
               </a>`;
         }

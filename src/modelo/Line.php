@@ -180,29 +180,62 @@ class Line extends Conexion
       $pdo = null;
     }
   }
-
-
-  public function editLine($idLine, $origin, $destination, $departureTime, $arrivalTime)
+  public function getOwnLineDataById($idLine)
   {
     $pdo = $this->getConexion()->getPdo();
 
     try {
-      $sqlUpdate = 'UPDATE busLine SET origin = :origin, destination = :destination, departureTime = :departureTime, arrivalTime = :arrivalTime WHERE idLine = :idLine AND idBus = :idBus';
-      $stmtUpdate = $pdo->prepare($sqlUpdate);
-      $stmtUpdate->bindParam(':idLine', $idLine);
-      $stmtUpdate->bindParam(':idBus', $this->idBus); // Reemplaza $this->idBus con el identificador del autobús actual
-      $stmtUpdate->bindParam(':origin', $origin);
-      $stmtUpdate->bindParam(':destination', $destination);
-      $stmtUpdate->bindParam(':departureTime', $departureTime);
-      $stmtUpdate->bindParam(':arrivalTime', $arrivalTime);
+      // Agregar la condición WHERE para verificar si la sesión de la compañía tiene el mismo nombre que el propietario de la línea
+      $sqlSelect = 'SELECT * FROM busLine WHERE idLine = :idLine AND ownerLine = :companyName';
+      $stmtSelect = $pdo->prepare($sqlSelect);
+      $stmtSelect->bindParam(':idLine', $idLine);
+      $stmtSelect->bindParam(':companyName', $_SESSION['company_name']);
+      $stmtSelect->execute();
 
-      return $stmtUpdate->execute();
+      $line = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+
+      // Verificar si la línea pertenece a la compañía actual
+      if ($line) {
+        return ['line' => $line];
+      } else {
+        // Si la línea no pertenece a la compañía, puedes manejarlo de la manera que prefieras
+        return ['error' => 'No se encontro'];
+      }
     } catch (\Throwable $th) {
       throw $th;
     } finally {
       $pdo = null;
     }
   }
+
+
+
+  public function editLine()
+  {
+    $pdo = Conexion::getConexion()->getPdo();
+
+    try {
+      $sqlUpdate = 'UPDATE busLine SET lineName = :lineName, origin = :origin, destination = :destination, departureDate = :departureDate, departureTime = :departureTime, arrivalTime = :arrivalTime, idBus = :idBus, linePrice = :price WHERE idLine = :idLine';
+      $stmtUpdate = $pdo->prepare($sqlUpdate);
+      $stmtUpdate->bindParam(':idLine', $this->idLine);
+      $stmtUpdate->bindParam(':lineName', $this->lineName);
+      $stmtUpdate->bindParam(':origin', $this->origin);
+      $stmtUpdate->bindParam(':destination', $this->destination);
+      $stmtUpdate->bindParam(':departureDate', $this->departureDate);
+      $stmtUpdate->bindParam(':departureTime', $this->departureTime);
+      $stmtUpdate->bindParam(':arrivalTime', $this->arrivalTime);
+      $stmtUpdate->bindParam(':idBus', $this->idBus);
+      $stmtUpdate->bindParam(':price', $this->linePrice);
+
+      return $stmtUpdate->execute();
+    } catch (\Throwable $th) {
+      throw "error";
+    } finally {
+      $pdo = null;
+    }
+  }
+
+
   public function searchLinesByData($origin, $destination, $departureDate)
   {
     $pdo = $this->getConexion()->getPdo();

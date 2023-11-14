@@ -14,7 +14,7 @@ body {
     --main-a-h-color: #1b5f9e;
     --color1: #3093EE;
     --main-color-hover: rgb(40, 118, 207);
-    --body-bg: linear-gradient(281.45deg, #F0FFF7 0%, #E6F6FF 100%);
+    --body-bg: #E6F6FF;
     --main-btn-hover-color: #c3daf0;
     --border-color: hsla(205, 29%, 66%, 0.2);
 
@@ -40,7 +40,7 @@ body {
     padding: 10px;
 }
 body {
-    background-image: var(--body-bg);
+    background: var(--body-bg);
     margin: 0;
     padding: 0;
 }
@@ -342,6 +342,7 @@ button{
 .user-options{
     background-color: var(--main-color);
     top: 77px;
+    right: 20px;
     display: flex;
     flex-direction: column;
     height: 0px;
@@ -518,6 +519,11 @@ button{
     display: flex;
     flex-direction: column;
     height: max-content;
+    background-image: url(images/background.svg);
+    background-color: #fff;
+    background-size:100vw;
+    background-repeat: no-repeat !important;
+    padding-bottom: 200px;
 }
 
 .hero-txt{
@@ -560,6 +566,7 @@ button{
 }
 
 #data-msg{
+    background: #fff;
     text-align: center;
     color: rgb(252, 182, 182);
 }
@@ -656,7 +663,7 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 100%;
     height: 100%;
     overflow-y: scroll;
     padding: 30px 20px;
@@ -765,7 +772,7 @@ button{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--main-color);
+    background-color: #fff;
     border-radius: 5px;
     width: 95%;
     margin: 0 auto;
@@ -851,8 +858,7 @@ button{
 
 /* footer start */
 .footer {
-    background-color: var(--color4);
-    margin-top: 50px;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     color: var(--main-font-color);
@@ -1090,11 +1096,11 @@ button{
   }
   
   .blog-post {
+    background-color: #fff;
     margin-bottom: 30px;
-    border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.055);
   }
   
   .post-title {
@@ -1377,7 +1383,7 @@ button{
     font-size: .7em;
     color: hsl(206, 50%, 13%);
     width: max-content;
-    margin: 40px 200px;
+    margin: 10px 20px;
 }
 
 .view-volver-btn span{
@@ -1387,13 +1393,17 @@ button{
  .line-data-box{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.048)   ;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding: 20px 200px;
+    padding: 20px 0px;
     background-color: rgb(255, 255, 255);
  }
 
  .line-data-box-header{
     display: flex;
+    width: 100%;
+    max-width: 1000px;
     align-items: center;
     justify-content: space-between;
  }
@@ -1428,9 +1438,10 @@ button{
     font-weight: 900 !;
     color:hsl(206, 48%, 24%);
     padding-right: 20px;
-        font-family: 'Source Code Pro', monospace;
  }
 .line-data-box-info {
+    width: 100%;
+    max-width: 1000px;
     margin: 20px 0px;
     border-radius: 20px;
     border: 1px solid rgb(238, 238, 238);
@@ -1488,7 +1499,9 @@ button{
 
 
  .line-data-box-footer {
-     display: flex;
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
      align-items: center;
      justify-content: end;
  }
@@ -1510,6 +1523,8 @@ button{
      border-radius: 5px;
      font-size: .8em;
      font-weight: 600;
+     border: none;
+     cursor: pointer;
  }
 
  .line-data-box-footer-buy span {
@@ -1530,13 +1545,214 @@ button{
  /* buy */
  
  .seat-label{
-    background-color: green;
+    background-color: rgb(43, 90, 190);
+    font-size: .8em;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 2px;
+    display: block;
+    cursor: pointer;
+ }
+ .seat-label:hover{
+    filter: brightness(1.1);
  }
  .seat-label-disable{
-    background-color: red !important;
+    cursor: no-drop;
+    background-color: rgb(154, 176, 224) !important;
  }
-
+.seat-section{
+    width: 0px;
+    display: none;
+}
  .seat-row{
     display: flex;
+    justify-content: space-between;
+ }
+ .seat-radio{
+    display: none;
+ }
+
+ .line-data-box-form-box{
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 20px;
+    border: 1px solid hsl(200, 4%, 86%);
+ }
+ .line-data-box-form-box-title{
+    font-size: .8em;
+    color: hsl(206, 37%, 29%);
+    font-weight: 600;
+    border-bottom: 1px solid hsl(200, 4%, 86%);
+    padding: 20px;
+ }
+ .line-data-box-form{
+    padding: 20px;
+ }
+
+ .line-data-box-form-company{
+    font-weight: 600;
+    font-size: 1.3em !important;
+    padding: 0px !important;
+}
+ .line-data-box-form-departure-date{}
+ .line-data-box-form-price {
+    text-align: end;
+    font-size: 1.2em !important;
+    font-weight: 600;
+    color: hsl(206, 50%, 13%);
+ }
+ .line-data-box-form-route {
+    width: 2px;
+    background-color: rgb(240, 240, 240);
+    height: 70px;
+    margin-left: 7px;
+    display: flex;
+ }
+ .line-data-box-form p{
+    font-size: .8em;
+    padding: 10px 0px;
+    color: hsl(206, 50%, 13%);
+
+ }
+ .line-data-box-form p i{
+    color: hsl(206, 37%, 29%);
+ }
+
+#buy-form{
+    display: flex;
+    justify-content: end;
+    background-color: #fff;
+}
+
+ .form-buy-btn {
+    text-align: end;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: rgb(243, 99, 33);
+     color: #fff;
+     padding: 10px 20px;
+     border-radius: 5px;
+     font-size: .8em;
+     font-weight: 600;
+     border: none;
+     cursor: pointer;
+
+     margin: 20px;
+ }
+
+ .form-buy-btn span {
+     color: rgb(250, 165, 126);
+     padding-left: 10px;
+ }
+
+.render-factura{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+ .factura-header,
+ .factura-detalle,
+ .factura-total,
+ .factura-informacion,
+ .factura-pie {
+     width: 100%;
+     max-width: 1000px;
+     border-radius: 20px;
+     border: 1px solid hsl(200, 4%, 86%);
+     margin: 20px auto;
+     padding: 20px;
+ }
+
+ .factura-header h2,
+ .factura-detalle h3,
+ .factura-total h3,
+ .factura-informacion h3 {
+     font-size: 1.2em;
+     color: hsl(206, 37%, 29%);
+     font-weight: 600;
+     margin-bottom: 10px;
+ }
+
+ .factura-detalle p,
+ .factura-total p,
+ .factura-informacion p,
+ .factura-pie p {
+     font-size: 1em;
+     margin-bottom: 10px;
+ }
+
+ .factura-header p,
+ .factura-total strong {
+     font-size: 0.8em;
+     color: hsl(206, 37%, 29%);
+     font-weight: 600;
+     margin-bottom: 10px;
+     display: inline-block;
+ }
+
+ .factura-total strong {
+     margin-right: 5px;
+ }
+
+ .factura-pie {
+     text-align: center;
  }
  /* buy end */
+
+
+
+ /* about */
+ /* Estilos para la página Acerca de */
+ .about-container {
+     max-width: 800px;
+     margin: 50px auto;
+     padding: 20px;
+     background-color: #fff;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+ }
+
+ .about-container h1 {
+     color: #333;
+     font-size: 2em;
+     margin-bottom: 20px;
+ }
+
+ .about-container p {
+     color: #666;
+     font-size: 1.2em;
+     line-height: 1.6;
+ }
+
+ /* Agrega más estilos según necesites */
+ /* about end */
+
+
+
+
+
+ /* indexbox2 */
+ .index-box-2{
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    background-color: #fff;
+}
+
+.index-box-2-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 400px;
+}
+.index-box-2-box p{
+    width: 700px;
+    color: hsl(206, 50%, 13%);
+    font-size: .9em;
+}
+
+.index-box-2-box img {
+    max-width: 400px;
+    width: 50%;
+}

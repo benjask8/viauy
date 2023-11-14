@@ -31,4 +31,9 @@ class Index_Controller extends Controlador
   {
     $this->cargarVista("index/line/buy");
   }
+
+  public function about()
+  {
+    $this->cargarVista("index/about");
+  }
 }

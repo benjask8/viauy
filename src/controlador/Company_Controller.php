@@ -126,6 +126,12 @@ class Company_Controller extends Controlador
     $this->cargarVista("company/profile/lineas/add");
   }
 
+  public function mainProfile_LineasEdit()
+  {
+    $this->cargarVista("company/profile/lineas/edit");
+  }
+
+
 
   public function doLogin()
   {

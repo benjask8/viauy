@@ -43,11 +43,7 @@
         <a href="/viauy" class="header-logo-a"><img src="public/images/logo.png" alt=""></a>
       </h1>
     </nav>
-    <nav class="header-actions">
-      <a href="" class="header-actions-a"><i class="fa-solid fa-bus"></i>Buses</a>
-      <a href="" class="header-actions-a"><i class="fa-solid fa-route"></i>Rutas</a>
-      <a href="index.php?c=company&m=index" class="header-actions-a"><i class="fa-solid fa-building"></i>Compañias</a>
-    </nav>
+
     <nav class="header-links" id="header-links">
       <button class="header-links-bar" id="header-links-bar">
         <span class="material-symbols-outlined">
@@ -108,19 +104,10 @@
     </nav>
 
     <section class="header-btns">
-      <form class="header-search-form" id="header-search-form" action="?c=actions&m=buscar" method="post">
-        <input placeholder="Buscar..." type="search" name="searchTerm" class="header-search-input"
-          id="header-search-input">
-        <button type="submit" class="header-search-btn">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
       <a href="index.php?c=index&m=help" class="header-btns-button">
         Ayuda
       </a>
-      <button class="header-btns-button header-btns-search" id="header-btns-search">
-        buscar
-      </button>
+
       <?php if (isset($_SESSION['user_name'])) : ?>
       <button class="header-btns-button header-btns-btn" id="open-user-options">
         Usuario

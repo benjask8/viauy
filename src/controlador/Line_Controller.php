@@ -155,4 +155,70 @@ class Line_Controller extends Controlador
       echo json_encode($data);
     }
   }
+  public function getOwnLineData()
+  {
+    $data = [];
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['lineid'])) {
+      $idLine = $_GET['lineid'];
+      $lineModel = new Line("", "", "", "", "", "", "", "", "", "");
+
+      $lineData = $lineModel->getOwnLineDataById($idLine);
+
+      $data["line"] = $lineData["line"];
+
+      if (isset($lineData['line'])) {
+        $data['line'] = $lineData['line'];
+        $data['status'] = 'success';
+        $data['msg'] = 'Todo salió bien.';
+      } else {
+        $data['status'] = 'error';
+        $data['msg'] = 'Línea no encontrada o no pertenece a la compañía actual';
+      }
+
+      echo json_encode($data);
+    } else {
+      $data['status'] = 'error';
+      $data['msg'] = 'Solicitud incorrecta';
+      echo json_encode($data);
+    }
+  }
+
+  public function editLine()
+  {
+    $data = [
+      'msg' => '',
+      'status' => ''
+    ];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // Obtén los valores de los campos del formulario
+      $idLine = $_POST['idLine'];
+      $lineName = $_POST['lineName'];
+      $origin = $_POST['origin'];
+      $destination = $_POST['destination'];
+      $departureDate = $_POST['departureDate'];
+      $departureTime = $_POST['departureTime'];
+      $arrivalTime = $_POST['arrivalTime'];
+      $idBus = $_POST['idBus'];
+      $price = $_POST['price']; // Cambiado a 'price' en lugar de 'linePrice'
+
+      // Validaciones en el lado del servidor
+      if (empty($idLine) || empty($lineName) || empty($origin) || empty($destination) || empty($departureDate) || empty($departureTime) || empty($arrivalTime) || empty($idBus) || empty($price)) {
+        $data['status'] = 'error';
+        $data['msg'] = 'Datos de entrada no válidos.';
+      } else {
+        $line = new Line($idLine, $origin, $destination, $departureTime, $arrivalTime, $idBus, '', $lineName, $departureDate, $price); // Ajusta el constructor según tus necesidades
+
+        if ($line->editLine()) {
+          $data['msg'] = 'Línea editada con éxito';
+          $data['status'] = 'success';
+        } else {
+          $data['status'] = 'error';
+          $data['msg'] = 'Error al editar la línea';
+        }
+      }
+
+      echo json_encode($data);
+    }
+  }
 }

@@ -3,8 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const lineDataBox = document.getElementById("line-data-box");
   const viewBackBtn = document.querySelector(".view-volver-btn");
   const buyForm = document.getElementById("buy-form");
+  const renderFactura = document.getElementById("render-factura");
+
   let actualUser = null;
   let seatAvailability = []; // Almacena la disponibilidad de los asientos
+
+  var lineData = null;
+  var busData = null;
 
   // Obtén el ID de la línea de la URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -33,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          const lineData = data.line;
-          const busData = data.bus;
+          lineData = data.line;
+          busData = data.bus;
           const lineTime = data.lineTime;
           const seatLayout = busData.seatLayout.split(",");
 
@@ -52,12 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <form class="line-data-box-form" id="passage-form">
                   <p class="line-data-box-form-company">${lineData.ownerLine} - ${lineData.lineName}</p>
                   <p class="line-data-box-form-departuredate"><i class="fa-regular fa-calendar"></i> ${lineData.departureDate}</p>
-                  <p class="line-data-box-form-arrivaltime"><i class="fa-solid fa-arrow-right"></i> ${lineData.departureTime} - ${lineData.origin}</p>
+                  <p class="line-data-box-form-arrivaltime"><i class="fa-solid fa-bus"></i> ${lineData.departureTime} - ${lineData.origin}</p>
                   <i class="line-data-box-form-route"></i>
-                  <p class="line-data-box-form-departuretime"><i class="fa-solid fa-arrow-left"></i> ${lineData.arrivalTime} - ${lineData.destination}</p>
+                  <p class="line-data-box-form-departuretime"><i class="fa-solid fa-location-dot"></i> ${lineData.arrivalTime} - ${lineData.destination}</p>
                   <p class="line-data-box-form-price">${lineData.linePrice},00 UYU$</p>
                 </form>
               </section>
+              <p class="sub-title">Elegir Asiento</p>
+
             `;
 
             // Crea dinámicamente la cadena HTML para el diseño de asientos
@@ -65,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
               seatLayout,
               seatAvailability
             );
-            lineDataBox.innerHTML = passageInfoHTML + seatLayoutHTML;
+            lineDataBox.innerHTML = passageInfoHTML + seatLayoutHTML + ``;
 
             // Asigna la cadena HTML al innerHTML de lineDataBox
 
@@ -136,6 +143,17 @@ document.addEventListener("DOMContentLoaded", function () {
   buyForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     actualUser = await fetchActualUser(); // Esperamos a que se resuelva la promesa antes de asignar actualUser
+    const fechaActual = new Date();
+
+    // Obten los componentes de la fecha
+    const dia = fechaActual.getDate();
+    const mes = fechaActual.getMonth() + 1; // ¡Recuerda que los meses comienzan desde 0!
+    const año = fechaActual.getFullYear();
+
+    // Formatea la fecha en formato dd/mm/yyyy
+    const fechaFormateada = `${dia < 10 ? "0" : ""}${dia}/${
+      mes < 10 ? "0" : ""
+    }${mes}/${año}`;
 
     // Recopila los datos de los asientos seleccionados
     const selectedSeats = [];
@@ -165,9 +183,41 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((data) => {
           if (data.status == "success") {
-            console.log("Reserva realizada con éxito");
+            renderFactura.innerHTML = `
+            <div class="factura-header">
+    <h2>Factura de Compra</h2>
+    <p>Fecha: ${fechaFormateada}</p>
+  </div>
+
+  <div class="factura-detalle">
+    <h3>Detalles de la Compra</h3>
+    <p><strong>Linea:</strong> ${lineData.lineName}</p>
+    <p><strong>Empresa:</strong> ${lineData.ownerLine}</p>
+    <p><strong>Origen:</strong> ${lineData.origin}</p>
+    <p><strong>Destino:</strong> ${lineData.destination}</p>
+    <p><strong>Fecha de Salida:</strong> ${lineData.departureDate}</p>
+    <p><strong>Hora de Salida:</strong> ${lineData.departureTime}</p>
+    <p><strong>Asiento:</strong> ${selectedSeats[0]}</p>
+    <p><strong>Precio:</strong> ${lineData.linePrice},00 UYU$</p>
+  </div>
+
+  <div class="factura-total">
+    <h3>Total a Pagar</h3>
+    <p><strong>Total:</strong> ${lineData.linePrice},00 UYU$</p>
+  </div>
+
+  <div class="factura-informacion">
+    <h3>Información del Usuario</h3>
+    <p><strong>Nombre:</strong> ${actualUser}</p>
+  </div>
+
+  <div class="factura-pie">
+    <p>¡Gracias por tu compra!</p>
+  </div>
+            `;
+            dataMsg.innerHTML = "";
           } else {
-            console.error(data.msg);
+            dataMsg.innerHTML = data.msg;
           }
         });
     } catch (error) {

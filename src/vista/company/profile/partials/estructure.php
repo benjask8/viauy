@@ -32,10 +32,7 @@ if (!isset($_SESSION['company_name'])) {
     <a href="index.php?c=company&m=mainProfile_lineas"><span class="material-symbols-outlined">
         location_on
       </span>Lineas</a>
-    <a href="index.php?c=company&m=mainProfile_admins"><span
-        class="material-symbols-outlined">shield_person</span>Admins</a>
-    <a href="index.php?c=company&m=mainProfile_blog"><span
-        class="material-symbols-outlined">library_books</span>Blog</a>
+
   </section>
 
   <!-- Header con el logo de la empresa -->

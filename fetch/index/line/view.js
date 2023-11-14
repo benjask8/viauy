@@ -20,10 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const htmlContent = `
             <section class="line-data-box-header">
               <h1 class="line-data-box-header-title">${lineData.ownerLine} - ${lineData.lineName}</h1>
-              <section class="line-data-box-header-options">
-                <h2 class="line-data-box-header-price">${lineData.linePrice},00 UYU$</h2>
-                <a href="/viauy" class="line-data-box-header-buy">Continuar<span class="material-symbols-outlined">arrow_right_alt</span></a>
-              </section>
+              
             </section>
             <section class="line-data-box-info">
             <table class="line-data-box-info-table">
